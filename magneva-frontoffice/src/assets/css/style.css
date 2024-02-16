@@ -5916,7 +5916,7 @@ blockquote.vs-quote cite:before {
 }
 
 .comment-respond .custom-checkbox.notice {
-    margin-bottom: 25px
+    margin-bottom: 25px;
 }
 
 @media(min-width: 1199px) {
