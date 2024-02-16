@@ -13515,3 +13515,20 @@ blockquote.vs-quote cite:before {
     }
 }
 
+.bg-login {
+    background-color: rgba(202, 164, 148, 0.5);
+    backdrop-filter: blur(18px);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-color {
+    background-color: var(--theme-color);
+    color: var(--white-color);
+    border: none;
+    box-shadow: none;
+}
+.btn-color:focus,
+.btn-color:active {
+    outline: none;
+    box-shadow: none;
+}
