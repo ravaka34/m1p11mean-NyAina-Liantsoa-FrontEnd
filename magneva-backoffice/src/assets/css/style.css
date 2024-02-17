@@ -156,11 +156,11 @@
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -181,7 +181,7 @@
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 .gradient_one {
@@ -372,7 +372,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
   --bs-primary: #FF6A59;
-  --bs-secondary: #4CBC9A;
+  --bs-secondary: #121f38;
   --bs-success: #56c760;
   --bs-info: #58bad7;
   --bs-warning: #f0a901;
@@ -440,7 +440,7 @@ h6,
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-  color: #374557;
+  color: #121f38;
 }
 
 h1,
@@ -3456,8 +3456,8 @@ fieldset:disabled .btn {
 
 .btn-secondary {
   color: #000;
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
 }
 
 .btn-secondary:hover {
@@ -3495,8 +3495,8 @@ fieldset:disabled .btn {
 .btn-secondary:disabled,
 .btn-secondary.disabled {
   color: #000;
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
 }
 
 .btn-success {
@@ -3810,14 +3810,14 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-secondary {
-  color: #4CBC9A;
-  border-color: #4CBC9A;
+  color: #121f38;
+  border-color: #121f38;
 }
 
 .btn-outline-secondary:hover {
   color: #000;
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
 }
 
 .btn-check:focus+.btn-outline-secondary,
@@ -3831,8 +3831,8 @@ fieldset:disabled .btn {
 .btn-outline-secondary.active,
 .btn-outline-secondary.dropdown-toggle.show {
   color: #000;
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
 }
 
 .btn-check:checked+.btn-outline-secondary:focus,
@@ -3845,7 +3845,7 @@ fieldset:disabled .btn {
 
 .btn-outline-secondary:disabled,
 .btn-outline-secondary.disabled {
-  color: #4CBC9A;
+  color: #121f38;
   background-color: transparent;
 }
 
@@ -6846,7 +6846,7 @@ fieldset:disabled .btn {
   padding: 0.5rem 1rem;
   margin-bottom: 0;
   font-size: 0.875rem;
-  color: #374557;
+  color: #121f38;
   background-color: #f0f0f0;
   border-bottom: 1px solid #d8d8d8;
   border-top-left-radius: calc(0.3rem - 1px);
@@ -7159,7 +7159,7 @@ fieldset:disabled .btn {
 }
 
 .link-secondary {
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 .link-secondary:hover,
@@ -7580,7 +7580,7 @@ fieldset:disabled .btn {
 }
 
 .border-secondary {
-  border-color: #4CBC9A !important;
+  border-color: #121f38 !important;
 }
 
 .border-success {
@@ -8366,7 +8366,7 @@ fieldset:disabled .btn {
 }
 
 .text-secondary {
-  color: #4CBC9A !important;
+  color: #121f38 !important;
 }
 
 .text-success {
@@ -8438,7 +8438,7 @@ fieldset:disabled .btn {
 }
 
 .bg-secondary {
-  background-color: #4CBC9A !important;
+  background-color: #121f38 !important;
 }
 
 .bg-success {
@@ -18803,11 +18803,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -18828,7 +18828,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 /*
@@ -19128,11 +19128,11 @@ The smaller device rules always should write below the bigger device rules
 Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Component
 */
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -19153,7 +19153,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 @media only screen and (min-width: 48rem) {
@@ -19518,11 +19518,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -19543,7 +19543,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 @media (min-width: 64rem) {
@@ -22010,7 +22010,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .dlab-demo-panel .dlab-demo-bx.demo-active {
-  border-color: #4CBC9A;
+  border-color: #121f38;
 }
 
 .dlab-demo-panel .dlab-demo-bx.demo-active .overlay-layer {
@@ -27958,11 +27958,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -27983,7 +27983,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -28177,11 +28177,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -28202,7 +28202,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -29727,7 +29727,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 #external-events [data-class="bg-secondary"]::before {
-  background: #4CBC9A;
+  background: #121f38;
 }
 
 .fc .fc-row .fc-content-skeleton table,
@@ -30715,7 +30715,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 .ct-series-a .ct-area,
 .ct-series-a .ct-slice-pie {
-  fill: #4CBC9A;
+  fill: #121f38;
 }
 
 .ct-series-b .ct-area,
@@ -31561,11 +31561,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -31586,7 +31586,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -31819,14 +31819,14 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 .checkbox-secondary .form-check-input:focus {
-  border-color: #4CBC9A;
+  border-color: #121f38;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(76, 188, 154, 0.25);
 }
 
 .checkbox-secondary .form-check-input:checked {
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
 }
 
 [data-theme-version="dark"] .checkbox-secondary .form-check-input:checked {
@@ -32266,11 +32266,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -32291,7 +32291,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -32647,11 +32647,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -32672,7 +32672,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -32686,11 +32686,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -32711,7 +32711,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -32745,11 +32745,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -32770,7 +32770,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -32829,11 +32829,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -32854,7 +32854,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 
@@ -33678,7 +33678,7 @@ table {
 .ck.ck-editor .ck.ck-button {
   padding: 0.375rem 0.5rem;
   background-color: #fff;
-  color: #374557;
+  color: #121f38;
   font-weight: 900;
   border: 0.0625rem solid #F0F0F1;
 }
@@ -34129,7 +34129,7 @@ table {
 .alert-secondary {
   background: #ecf8f4;
   border-color: #ecf8f4;
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 [data-theme-version="dark"] .alert-secondary {
@@ -34205,7 +34205,7 @@ table {
 }
 
 .alert-alt.alert-secondary {
-  border-left: 0.25rem solid #4CBC9A;
+  border-left: 0.25rem solid #121f38;
 }
 
 .alert-alt.alert-success {
@@ -34276,9 +34276,9 @@ table {
 }
 
 .alert.alert-secondary.solid {
-  background: #4CBC9A;
+  background: #121f38;
   color: #fff;
-  border-color: #4CBC9A;
+  border-color: #121f38;
 }
 
 .alert.alert-success.solid {
@@ -34335,7 +34335,7 @@ table {
 .alert.alert-outline-secondary {
   background: transparent;
   color: #777777;
-  border-color: #4CBC9A;
+  border-color: #121f38;
 }
 
 .alert.alert-outline-success {
@@ -34467,7 +34467,7 @@ table {
 .light.badge-secondary {
   background-color: #ecf8f4;
   border-color: #84d1b9;
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 .light.badge-warning {
@@ -34500,8 +34500,8 @@ table {
 }
 
 .badge-outline-secondary {
-  border: 0.0625rem solid #4CBC9A;
-  color: #4CBC9A;
+  border: 0.0625rem solid #121f38;
+  color: #121f38;
 }
 
 [data-theme-version="dark"] .badge-outline-secondary {
@@ -34580,7 +34580,7 @@ table {
 }
 
 .badge-secondary {
-  background-color: #4CBC9A;
+  background-color: #121f38;
 }
 
 .badge-info {
@@ -34640,7 +34640,7 @@ table {
 
 .light.badge-secondary {
   background-color: #ecf8f4;
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 [data-theme-version="dark"] .light.badge-secondary {
@@ -35029,11 +35029,11 @@ button:focus {
 .light.btn-secondary {
   background-color: #ecf8f4;
   border-color: #ecf8f4;
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 .light.btn-secondary g [fill] {
-  fill: #4CBC9A;
+  fill: #121f38;
 }
 
 [data-theme-version="dark"] .light.btn-secondary {
@@ -35043,8 +35043,8 @@ button:focus {
 }
 
 .light.btn-secondary:hover {
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
   color: #fff;
 }
 
@@ -35192,16 +35192,16 @@ button:focus {
 }
 
 .btn.tp-btn.btn-secondary {
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 .btn.tp-btn.btn-secondary g [fill] {
-  fill: #4CBC9A;
+  fill: #121f38;
 }
 
 .btn.tp-btn.btn-secondary:hover {
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
   color: #fff;
 }
 
@@ -35341,21 +35341,21 @@ button:focus {
 }
 
 .btn.tp-btn-light.btn-secondary {
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 .btn.tp-btn-light.btn-secondary g [fill] {
-  fill: #4CBC9A;
+  fill: #121f38;
 }
 
 .btn.tp-btn-light.btn-secondary:hover {
   background-color: #ecf8f4;
   border-color: #ecf8f4;
-  color: #4CBC9A;
+  color: #121f38;
 }
 
 .btn.tp-btn-light.btn-secondary:hover g [fill] {
-  fill: #4CBC9A;
+  fill: #121f38;
 }
 
 .btn.tp-btn-light.btn-warning {
@@ -36497,7 +36497,7 @@ button:focus {
 }
 
 .label-secondary {
-  background: #4CBC9A;
+  background: #121f38;
   color: #fff;
 }
 
@@ -36607,8 +36607,8 @@ code {
 .list-group-item.disabled,
 .list-group-item:disabled {
   color: #fff;
-  background-color: #4CBC9A;
-  border-color: #4CBC9A;
+  background-color: #121f38;
+  border-color: #121f38;
 }
 
 [class*="bg-"] .list-group-item {
@@ -37064,7 +37064,7 @@ code {
 }
 
 .popover {
-  border: 0.125rem solid #4CBC9A;
+  border: 0.125rem solid #121f38;
   min-width: 13.125rem;
   box-shadow: 0 0 1.875rem 0 rgba(0, 0, 0, 0.1);
 }
@@ -37074,7 +37074,7 @@ code {
 }
 
 .popover-header {
-  background: #4CBC9A;
+  background: #121f38;
   color: #fff;
   font-weight: 300;
 }
@@ -37116,26 +37116,26 @@ code {
 .bs-popover-auto[data-popper-placement^="top"] .arrow::after,
 .bs-popover-auto[x-placement^="top"] .arrow::after {
   bottom: 0rem;
-  border-top-color: #4CBC9A;
+  border-top-color: #121f38;
 }
 
 .bs-popover-left .arrow::after,
 .bs-popover-auto[x-placement^="left"] .arrow::after {
   right: 0rem;
-  border-left-color: #4CBC9A;
+  border-left-color: #121f38;
 }
 
 .bs-popover-right .arrow::after,
 .bs-popover-auto[x-placement^="right"] .arrow::after {
   left: 0rem;
-  border-right-color: #4CBC9A;
+  border-right-color: #121f38;
 }
 
 .bs-popover-bottom .arrow::after,
 .bs-popover-auto[data-popper-placement^="bottom"] .arrow::after,
 .bs-popover-auto[x-placement^="bottom"] .arrow::after {
   top: 0rem;
-  border-bottom-color: #4CBC9A;
+  border-bottom-color: #121f38;
 }
 
 .note-popover {
@@ -38902,7 +38902,7 @@ code {
 
 .table.bg-secondary-hover tr:hover td,
 .table.bg-secondary-hover tr:hover th {
-  background: #4CBC9A;
+  background: #121f38;
   color: #fff !important;
 }
 
@@ -39214,7 +39214,7 @@ table.dataTable tbody td {
 }
 
 table.dataTable thead th {
-  color: #374557;
+  color: #121f38;
   white-space: nowrap;
   font-size: 1.125rem;
   text-transform: capitalize;
@@ -40116,15 +40116,15 @@ table.dataTable.display tbody td {
 }
 
 .custome-tooltip.style-1 .apexcharts-theme-light .apexcharts-tooltip.apexcharts-theme-light {
-  background: #4CBC9A;
+  background: #121f38;
 }
 
 .custome-tooltip.style-1 .apexcharts-theme-light .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
-  background: #4CBC9A;
+  background: #121f38;
 }
 
 .custome-tooltip.style-1 .apexcharts-theme-light .apexcharts-tooltip.apexcharts-theme-light:after {
-  background: #4CBC9A;
+  background: #121f38;
 }
 
 .redial-content {
@@ -40248,7 +40248,7 @@ table.dataTable.display tbody td {
 }
 
 .card-calendar.style-1 .bootstrap-datetimepicker-widget table .picker-switch {
-  color: #374557;
+  color: #121f38;
 }
 
 .card-calendar.style-1 .bootstrap-datetimepicker-widget table .picker-switch:hover {
@@ -40303,12 +40303,12 @@ table.dataTable.display tbody td {
 }
 
 .card-calendar.style-1 .bootstrap-datetimepicker-widget .table-condensed td.day {
-  color: #374557 !important;
+  color: #121f38 !important;
   border-radius: 0.625rem;
 }
 
 .card-calendar.style-1 .bootstrap-datetimepicker-widget .table-condensed td.day.today {
-  background: #4CBC9A;
+  background: #121f38;
   color: black;
 }
 
@@ -40324,7 +40324,7 @@ table.dataTable.display tbody td {
   height: 0.8125rem;
   width: 0.8125rem;
   border-radius: 0.8125rem;
-  background-color: #374557;
+  background-color: #121f38;
   border: 0.125rem solid #fff;
   top: -0.0625rem;
   right: -0.0625rem;
@@ -40554,7 +40554,7 @@ table.dataTable.display tbody td {
   text-align: center;
   line-height: 4rem;
   border-radius: 50%;
-  color: #374557;
+  color: #121f38;
   font-size: 1.125rem;
   font-weight: 600;
   margin-right: 1.25rem;
@@ -40761,7 +40761,7 @@ table.dataTable.display tbody td {
 .course-dedails-bx .description .user-pic span {
   font-size: 1rem;
   font-weight: 400;
-  color: #374557;
+  color: #121f38;
 }
 
 .star-orange {
@@ -40816,7 +40816,7 @@ table.dataTable.display tbody td {
 .course-details-tab .user-pic2 p {
   margin: 0;
   margin-top: 1rem;
-  color: #374557;
+  color: #121f38;
 }
 
 .course-details-tab .user-pic2 img {
@@ -41082,7 +41082,7 @@ table.dataTable.display tbody td {
   width: 50%;
   display: flex;
   float: left;
-  color: #374557;
+  color: #121f38;
   padding: 0.5625rem 0rem;
 }
 
@@ -41158,7 +41158,7 @@ table.dataTable.display tbody td {
   line-height: 1.5;
   font-weight: 600;
   margin: 0;
-  color: #374557;
+  color: #121f38;
 }
 
 .custome-accordion .accordion-header span {
@@ -41411,7 +41411,7 @@ table.dataTable.display tbody td {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: #374557;
+  color: #121f38;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.05);
 }
 
@@ -41923,7 +41923,7 @@ table.dataTable.display tbody td {
   width: 1rem;
   border: 0.125rem solid #fff;
   border-radius: 0.25rem;
-  background: #4CBC9A;
+  background: #121f38;
   position: absolute;
   bottom: -0.0625rem;
   right: 1rem;
@@ -42375,7 +42375,7 @@ table.dataTable.display tbody td {
   background: transparent;
   border-color: #A098AE;
   font-weight: 500;
-  color: #374557;
+  color: #121f38;
   margin: 0 1rem;
 }
 
@@ -42597,7 +42597,7 @@ table.dataTable.display tbody td {
   height: 2rem;
   width: 2rem;
   border-radius: 0.625rem;
-  background: #4CBC9A;
+  background: #121f38;
   text-align: center;
   line-height: 2rem;
 }
@@ -42867,7 +42867,7 @@ table.dataTable.display tbody td {
   height: 48px;
   width: 90px;
   border-radius: 8px;
-  background: #37455780;
+  background: #121f3880;
   text-align: center;
   line-height: 50px;
   color: white;
@@ -46849,11 +46849,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 :root {
-  --primary: #5bcfc5;
-  --secondary: #4CBC9A;
-  --secondary-dark: #3a9b7e;
-  --primary-hover: #38bfb3;
-  --primary-dark: #217069;
+  --primary: #9a563a;
+  --secondary: #121f38;
+  --secondary-dark: #121f38;
+  --primary-hover: #121f38;
+  --primary-dark: #9a563a;
   --rgba-primary-1: rgba(91, 207, 197, 0.1);
   --rgba-primary-2: rgba(91, 207, 197, 0.2);
   --rgba-primary-3: rgba(91, 207, 197, 0.3);
@@ -46874,7 +46874,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   --rgba-secondary-9: rgba(76, 188, 154, 0.9);
   --font-family-base: Roboto, sans-serif;
   --font-family-title: Roboto, sans-serif;
-  --title: #374557;
+  --title: #121f38;
 }
 
 

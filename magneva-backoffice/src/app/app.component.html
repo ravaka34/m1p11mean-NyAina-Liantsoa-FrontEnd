@@ -1,9 +1,9 @@
 <app-loader></app-loader>
 
-<div id="main-wrapper">
-  
+<div id="main-wrapper" *ngIf="!isLoginPage()">
+
   <app-header></app-header>
-  
+
   <app-sidebar></app-sidebar>
 
   <div class="content-body">
@@ -16,3 +16,5 @@
   <app-footer></app-footer>
 
 </div>
+
+<app-login *ngIf="isLoginPage()"></app-login>
