@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './template/footer/footer.component';
 import { LoaderComponent } from './template/loader/loader.component';
 import { MenuMobileComponent } from './template/menu-mobile/menu-mobile.component';
 import { HeaderComponent } from './template/header/header.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-root',
@@ -23,5 +25,9 @@ import { HeaderComponent } from './template/header/header.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  dialog = inject(MatDialog);
   title = 'magneva-frontoffice';
+
+
 }

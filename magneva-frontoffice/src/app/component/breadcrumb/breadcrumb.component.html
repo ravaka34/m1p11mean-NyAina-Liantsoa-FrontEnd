@@ -1,0 +1,19 @@
+<div class="breadcumb-wrapper background-image">
+    <div class="container z-index-common">
+      <div class="breadcumb-content">
+        <h1 class="breadcumb-title">{{ title }}</h1>
+        <div class="breadcumb-menu-wrap">
+          <ul class="breadcumb-menu">
+            <ng-container *ngFor="let item of breadcrumbChilds">
+              <li *ngIf="item.link !== null; else elseBlock">
+                <a [routerLink]="item.link">{{ item.title }}</a>
+              </li>
+              <ng-template #elseBlock>
+                <li> {{ item.title }} </li>
+              </ng-template>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
