@@ -1,0 +1,47 @@
+<section class="container mt-5 mb-5">
+    <h4 class="mb-3">Services</h4>
+    <hr>
+    <button class="vs-btn" type="submit">Ajouter une service</button>
+    <div class="row mt-4 mb-3">
+        <div  cdkDropList class="col-md-8" (cdkDropListDropped)="drop($event)">
+            <ng-container *ngFor="let serviceBookDetail of servicesBookDetails">
+                <div class="card mb-3 service-details" cdkDrag>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">{{ serviceBookDetail.serviceName }}</h5>
+                            </div>
+                            <div class="col">
+                                <p class="card-text">{{ serviceBookDetail.employeeName }}</p>
+                            </div>
+                            <div class="col">
+                                <p class="card-text">{{ serviceBookDetail.time }}</p>
+                            </div>
+                            <div class="col">
+                                <p class="card-text fw-bold">{{ serviceBookDetail.price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </ng-container>  
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p> Janvier 20, 2024 - 10:00 </p>
+                    <p class="fst-italic">En cours de sélection </p>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Addition</h5>
+                    <p> Total:  <span class="fw-bold">20,000 Ar</span> </p>
+                    <button class="vs-btn" type="submit">Payer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="vs-btn" type="submit">Valider la modification</button>
+</section>
+
