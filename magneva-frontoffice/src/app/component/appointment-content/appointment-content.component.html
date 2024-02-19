@@ -1,7 +1,6 @@
 <section class="container mt-5 mb-5">
     <h4 class="mb-3">Services</h4>
     <hr>
-    <button class="vs-btn" type="submit">Ajouter une service</button>
     <div class="row mt-4 mb-3">
         <div  cdkDropList class="col-md-8" (cdkDropListDropped)="drop($event)">
             <ng-container *ngFor="let serviceBookDetail of servicesBookDetails">
@@ -31,13 +30,21 @@
                 <div class="card-body">
                     <p> Janvier 20, 2024 - 10:00 </p>
                     <p class="fst-italic">En cours de sélection </p>
+                    <button class="vs-btn" type="submit">Ajouter une service</button>
                 </div>
             </div>
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Addition</h5>
                     <p> Total:  <span class="fw-bold">20,000 Ar</span> </p>
-                    <button class="vs-btn" type="submit">Payer</button>
+                    <div class="row">
+                        <div class="col-auto">
+                            <button class="vs-btn" type="submit">Payer</button>
+                        </div>
+                        <div class="col-auto">
+                              <button class="cancel-button">Annuler</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

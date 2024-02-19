@@ -18,3 +18,23 @@ opacity: 0;
 .cdk-drag-animating {
 transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.cancel-button {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    line-height: 1;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 17px 28px;
+    border: none;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .cancel-button:hover {
+    background-color: #9a563a;
+    color: #ffffff;
+  }
