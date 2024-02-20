@@ -1,7 +1,10 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, inject } from '@angular/core';
 import { ServiceBookDetails } from '../../interface/servicebookdetails';
 import { CommonModule } from '@angular/common';
 import { CdkDropList, CdkDragDrop, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop'
+import { AddServiceComponent } from '../add-service/add-service.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-appointment-content',
@@ -29,6 +32,12 @@ export class AppointmentContentComponent {
       price: "20,000 Ar"
     },
   ]
+
+  dialog: MatDialog = inject(MatDialog);
+
+  openAddService(){
+    this.dialog.open(AddServiceComponent);
+  }
 
   drop(event: CdkDragDrop<string[]>){
     console.log(event);
