@@ -1,0 +1,196 @@
+<style>
+    .profile-image {
+        max-width: 95px;
+    }
+</style>
+<app-loader *ngIf="loading"></app-loader>
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Employé / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div *ngIf="error" class="row">
+            <app-error [error]="error"></app-error>
+        </div>
+        <div *ngIf="employee" class="card">
+            <div class="card-header">
+                <div class="profile card-body px-0 pt-3 pb-0">
+                    <div class="profile-head">
+                        <div class="profile-info">
+                            <div class="profile-details">
+                                <img [src]="employee.employee.picture" class="img-fluid profile-image" alt="">
+                                <div class="profile-name pt-2 pt-md-5 pt-lg-5">
+                                    <h4 class="text-primary mb-0 px-3">
+                                        <span class="text-uppercase">{{employee.employee.name}}</span>
+                                        {{employee.employee.firstName}}
+                                    </h4>
+                                </div>
+                                <div class="dropdown ms-auto pt-lg-4">
+                                    <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown"
+                                        aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                            viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                                <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                                <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                            </g>
+                                        </svg></a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li class="dropdown-item"><i class="fa fa-key text-primary me-2"></i>
+                                            Modifier Mot De Passe</li>
+                                        <li class="dropdown-item"><i
+                                                class="fa fa-user-edit text-primary me-2"></i>Modifier profil</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="profile-tab">
+                    <div class="custom-tab-1">
+                        <div class="tab-content">
+                            <div id="about-me" class="tab-pane fade active show">
+                                <div class="profile-about-me"></div>
+                                <div class="profile-personal-employee">
+                                    <h4 class="text-primary mb-4">Informations personnelles</h4>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Nom <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span
+                                                class="text-uppercase">{{employee.employee.name}}</span>
+                                            <span class="px-1">{{employee.employee.firstName}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Email <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{employee.employee.email}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Contact <span class="pull-end">:</span></h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{employee.employee.contact}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Genre <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7">
+                                            <span>{{ employee.employee.sex === 1 ? 'Homme' : 'Femme' }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="profile-skills mb-3"></div>
+                                <div class="profile-skills mb-5">
+                                    <div class="row col-lg-3">
+                                        <div class="col-lg-6">
+                                            <h4 class="text-primary mb-2">Services</h4>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <button type="button" class="btn btn-info btn-xs" data-bs-toggle="modal"
+                                                data-bs-target="#addService">
+                                                <span class="btn-icon-start text-info"><i
+                                                        class="fa fa-plus color-info"></i></span>Ajouter
+                                            </button>
+                                            <div class="modal fade" id="addService" style="display: none;"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Ajouter un service</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal">
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3 row">
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom05">Choisir un service
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-8">
+                                                                    <select class="default-select wide form-control"
+                                                                        id="validationCustom05">
+                                                                        <option
+                                                                            *ngFor="let service of services"
+                                                                            [value]="service._id">{{ service.name }}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger light"
+                                                                data-bs-dismiss="modal">ANNULER</button>
+                                                            <button type="button"
+                                                                class="btn btn-primary">ENREGISTRER</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="basic-list-group row px-2 mt-2">
+                                        <ul *ngFor="let service of employee.services" class="list-group col-lg-3 mb-2">
+                                            <li
+                                                class="list-group-item d-flex justify-content-between align-items-center">
+                                                {{service.name}}
+                                                <span class="btn btn-danger shadow btn-xs sharp me-1" title="Supprimer"
+                                                    data-bs-toggle="modal"
+                                                    [attr.data-bs-target]="'#deleteService' + service._id">
+                                                    <i class="fa fa-trash"></i>
+                                                </span>
+
+
+                                                <div class="modal fade" id="deleteService{{service._id}}"
+                                                    style="display: none;" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Suppression d'un service</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal">
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="mb-3 row">
+                                                                    <p>Voulez-bous vraiment supprimer le service
+                                                                        <b>{{service.name}}</b>?</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger light"
+                                                                    data-bs-dismiss="modal">NON</button>
+                                                                <button type="button"
+                                                                    class="btn btn-primary">OUI</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

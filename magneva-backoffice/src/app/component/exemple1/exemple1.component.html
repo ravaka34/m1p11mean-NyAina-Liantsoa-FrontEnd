@@ -11,7 +11,9 @@
                 <h4 class="card-title">{{title}} </h4>
             </div>
             <div class="card-body">
-                <p>Contenue</p>
+                <div *ngFor="let tab of tableau">
+                    {{tab.id}} - {{tab.value}}
+                </div>
             </div>
         </div>
     </div>
