@@ -1,0 +1,59 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Employé / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des employés </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Nom</th>
+                                <th scope="col" class="text-uppercase">Email</th>
+                                <th scope="col" class="text-uppercase">Contact</th>
+                                <th scope="col" class="text-uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let employee of employees">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img [src]="employee.picture" alt="Image" width="50" height="50" alt=""/>
+
+                                        <span
+                                            class="w-space-no text-uppercase mx-1">{{employee.name}}</span> <span
+                                            class="w-space-no">{{employee.firstName}}</span> </div>
+                                </td>
+
+                                <td>{{employee.email}}</td>
+                                <td>{{employee.contact}}</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a [routerLink]="['/manager/employe/detail', employee._id]" title="Voir détail"
+                                            class="btn btn-info shadow btn-xs sharp me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" title="Modifier" class="btn btn-success shadow btn-xs sharp me-1"><i
+                                                class="fa fa-pencil"></i></a>
+                                        <a href="#" title="Supprimer" class="btn btn-danger shadow btn-xs sharp me-1"><i
+                                                class="fa fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

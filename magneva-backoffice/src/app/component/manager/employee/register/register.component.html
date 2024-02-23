@@ -1,0 +1,189 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Employé / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="form-validation">
+                    <form class="needs-validation" novalidate [formGroup]="applyForm" (submit)="createEmployee()">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Date début employé
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="date" class="form-control"
+                                            formControlName="startDate" required>
+                                        <div class="invalid-feedback">
+                                            Entrer une date.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Nom
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                            formControlName="name" required>
+                                        <div class="invalid-feedback">
+                                            Entrer un nom.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Prénom <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                            formControlName="firstName" required>
+                                        <div class="invalid-feedback">
+                                            Entrer un prénom.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Email <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="email" class="form-control"
+                                            formControlName="email" required>
+                                        <div class="invalid-feedback">
+                                            Entrer un email.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Contact <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                            formControlName="contact" required>
+                                        <div class="invalid-feedback">
+                                            Entrer un contact.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Genre
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control"
+                                            formControlName="sex">
+                                            <option *ngFor="let genre of genres" [value]="genre.value">{{ genre.name }}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Choisissez un genre.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Image <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="file" class="form-control" id="picture" required>
+                                        <div class="invalid-feedback">
+                                            Entrer un contact.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Mot De Passe
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <input *ngIf="!showPassword; else showText" type="password"
+                                                name="password" id="password"
+                                                class="form-control" formControlName="password" />
+                                            <ng-template #showText>
+                                                <input *ngIf="showPassword" type="text" name="password" id="password"
+                                                    class="form-control" formControlName="password" />
+                                            </ng-template>
+                                            <button type="button" id="togglePassword"
+                                                class="btn btn-outline-secondary btn-primary"
+                                                (click)="togglePassword()">
+                                                <i class="far"
+                                                    [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+                                            </button>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Entrer un mot de passe.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Services <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <button type="button" class="btn btn btn-outline-dark mb-2 form-control"
+                                            data-bs-toggle="modal" data-bs-target="#servicesModal">Définir les
+                                            services</button>
+                                        <div class="modal fade" id="servicesModal">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Choisir un(ou des) service(s)</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="basic-form">
+                                                            <div class="mb-3" formArrayName="serviceCheckbox">
+                                                                <div *ngFor="let service of services; let i = index" class="form-check form-check-inline">
+                                                                  <label>
+                                                                    <input type="checkbox" [formControlName]="i" class="form-check-input"> {{ service.name }}
+                                                                  </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button"
+                                                            class="btn btn-primary" data-bs-dismiss="modal">ENREGISTRER</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label"></label>
+                                    <div class="col-lg-6">
+                                        <button type="submit" class="btn btn-primary form-control">ENREGISTRER</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
