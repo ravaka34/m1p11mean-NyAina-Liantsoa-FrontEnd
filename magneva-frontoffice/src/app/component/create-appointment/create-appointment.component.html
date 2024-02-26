@@ -1,31 +1,33 @@
 <section class="bg-light-3 space shape-mockup-wrap">
     <div class="container">
       <div class="row gx-60">
+
         <div class="col-xl-5 mb-40 mb-xl-0 pb-20 pb-xl-0 wow fadeInUp wow-animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-          <form action="/appointment-mail.php" class="form-style2 appointment-form">
+          <form [formGroup]="createForm" (submit)="onSubmit()" class="form-style2 appointment-form">
             <h3 class="form-title mb-3">Prendre un rendez-vous</h3>
             <div class="form-group">
-              <input type="text" name="date" id="date" autocomplete="off" class="form-control dateTime-pick" placeholder="Choisir la date">
+              <input type="date" formControlName="date" id="date" autocomplete="off" class="form-control" placeholder="Choisir la date">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control time-pick" placeholder="Choisir l'heure" />
+              <input type="time" formControlName="hour" class="form-control" placeholder="Choisir l'heure" />
             </div>
+            <app-error-alert [error]="error" ></app-error-alert>
             <div class="form-group">
-              <button class="vs-btn" type="submit">Make Appointment</button>
+              <button class="vs-btn" type="submit">Valider</button>
             </div>
-            <p class="form-messages"></p>
           </form>
         </div>
+
         <div class="col-xl-7 wow fadeInUp wow-animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
           <div class="row">
             <div class="col-12 mb-4">
               <h2 class="h3 mb-4 mt-n2">Votre satisfaction est notre priorité absolue</h2>
               <p class="fs-md font-title mb-4">
                 Notre priorité absolue est votre satisfaction.
-                Nous écoutons attentivement vos besoins et nous nous engageons 
-                à les dépasser à chaque occasion. Notre équipe est dévouée à 
-                vous offrir une expérience exceptionnelle, et nous sommes 
-                toujours à votre disposition pour répondre à vos questions et 
+                Nous écoutons attentivement vos besoins et nous nous engageons
+                à les dépasser à chaque occasion. Notre équipe est dévouée à
+                vous offrir une expérience exceptionnelle, et nous sommes
+                toujours à votre disposition pour répondre à vos questions et
                 résoudre vos problèmes.
                 Merci de nous faire confiance pour prendre soin de vous.
               </p>
