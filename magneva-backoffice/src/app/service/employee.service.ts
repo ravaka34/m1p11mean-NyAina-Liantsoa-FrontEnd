@@ -16,7 +16,7 @@ export class EmployeeService {
   }
 
   getEmployee(id: string){
-    return this.apiService.get<any[]>("/manager/employee/detail/"+id);
+    return this.apiService.get<any[]>("/employee/detail/"+id);
   }
   
   createEmployee(body: any){
