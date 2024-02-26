@@ -1,0 +1,114 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Employé / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Modifier les informations personnelles</h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="form-validation">
+                    <form class="needs-validation" novalidate [formGroup]="applyForm" (submit)="updateEmployee()">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Date début employé
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="date" class="form-control"
+                                            formControlName="startDate" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Nom
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                            formControlName="name" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Prénom <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                            formControlName="firstName" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Email <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="email" class="form-control"
+                                            formControlName="email" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Contact <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control"
+                                            formControlName="contact" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Genre
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control"
+                                            formControlName="sex">
+                                            <option *ngFor="let genre of genres" [value]="genre.value">{{ genre.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Image <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="file" class="form-control" id="picture" (change)="onChangePicture()" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label"></label>
+                                    <div class="col-lg-6">
+                                        <div class="form-control image-container">
+                                            <img *ngIf="imageURL" [src]="imageURL" alt="Image employé">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label"></label>
+                                    <div class="col-lg-6">
+                                        <button type="submit" class="btn btn-primary form-control">MODIFIER</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

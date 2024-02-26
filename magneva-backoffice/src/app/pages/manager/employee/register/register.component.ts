@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { BodyComponent } from '../../../body/body.component';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from '../../../../service/service.service';
@@ -9,6 +8,7 @@ import { EmployeeService } from '../../../../service/employee.service';
 import { SuccessComponent } from '../../../../template/success/success.component';
 import { ImageService } from '../../../../service/image.service';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
+import { BodyComponent } from '../../../../component/body/body.component';
 
 @Component({
   selector: 'app-register',

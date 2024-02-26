@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { BodyComponent } from '../../../body/body.component';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { ServiceService } from '../../../../service/service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { CommonModule } from '@angular/common';
+import { BodyComponent } from '../../../../component/body/body.component';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'app-detail-service',
   standalone: true,
   imports: [
     CommonModule,

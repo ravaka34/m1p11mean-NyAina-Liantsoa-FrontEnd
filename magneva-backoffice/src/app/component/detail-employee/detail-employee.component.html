@@ -39,15 +39,25 @@
                                                 <circle fill="#000000" cx="19" cy="12" r="2"></circle>
                                             </g>
                                         </svg></a>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li class="dropdown-item"><i class="fa fa-key text-primary me-2"></i>
-                                            Modifier Mot De Passe</li>
-                                        <li class="dropdown-item"><i
-                                                class="fa fa-user-edit text-primary me-2"></i>Modifier profil</li>
+                                    <ul *ngIf="isManager" class="dropdown-menu dropdown-menu-end">
+                                        <li class="dropdown-item">
+                                            <a [routerLink]="['/manager/employe/modifierMdp', employee.info.employee._id]"><i class="fa fa-key text-primary me-2"></i>
+                                                Modifier Mot De Passe</a></li>
+                                        <li class="dropdown-item">
+                                            <a [routerLink]="['/manager/employe/modifierProfil', employee.info.employee._id]"><i
+                                                class="fa fa-user-edit text-primary me-2"></i>Modifier informations personnelles</a></li>
                                         <li class="dropdown-item"><a
                                                 [routerLink]="['/manager/employe/salaire', employee.info.employee._id]"><i
                                                     class="fa fa-coins text-primary me-2"></i>Ajouter/Modifier le
                                                 salaire</a></li>
+                                    </ul>
+                                    <ul *ngIf="!isManager" class="dropdown-menu dropdown-menu-end">
+                                        <li class="dropdown-item">
+                                            <a [routerLink]="['/manager/employe/modifierMdp', employee.info.employee._id]"><i class="fa fa-key text-primary me-2"></i>
+                                                Modifier Mot De Passe</a></li>
+                                        <li class="dropdown-item">
+                                            <a [routerLink]="['/employe/modifierProfil', employee.info.employee._id]"><i
+                                                class="fa fa-user-edit text-primary me-2"></i>Modifier informations personnelles</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -108,12 +118,37 @@
                                     </div>
                                 </div>
                                 <div class="profile-skills mb-3"></div>
+                                <div class="profile-personal-employee">
+                                    <h4 class="text-primary mb-4">Salaire</h4>
+                                    <div *ngIf="!employee.salary" class="row mb-2">
+                                        <p>{{ isManager ? 'Cet(e) employé(e) n\'a pas encore de salaire défini.' : 'Vous n\'avez pas encore de salaire défini.' }}</p>
+                                    </div>
+                                    <div *ngIf="employee.salary" class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Date <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span class="text-uppercase">{{employee.salary.date
+                                                | date:'yyyy-MM-dd'}}</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="employee.salary" class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Montant <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{employee.salary.amount | number:'1.2-2'}}
+                                                Ar</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-skills mb-3"></div>
                                 <div class="profile-skills mb-5">
                                     <div class="row col-lg-3">
                                         <div class="col-lg-6">
                                             <h4 class="text-primary mb-2">Services</h4>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div *ngIf="isManager" class="col-lg-6">
                                             <button type="button" class="btn btn-info btn-xs" data-bs-toggle="modal"
                                                 data-bs-target="#addService">
                                                 <span class="btn-icon-start text-info"><i
@@ -132,12 +167,12 @@
                                                         <div class="modal-body">
                                                             <div class="mb-3 row">
                                                                 <label class="col-lg-4 col-form-label"
-                                                                    for="validationCustom05">Choisir un service
+                                                                    for="serviceSelect">Choisir un service
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-8">
                                                                     <select class="default-select wide form-control"
-                                                                        id="validationCustom05">
+                                                                        id="serviceSelect">
                                                                         <option *ngFor="let service of services"
                                                                             [value]="service._id">{{ service.name }}
                                                                         </option>
@@ -149,11 +184,19 @@
                                                             <button type="button" class="btn btn-danger light"
                                                                 data-bs-dismiss="modal">ANNULER</button>
                                                             <button type="button"
-                                                                class="btn btn-primary">ENREGISTRER</button>
+                                                                class="btn btn-primary" data-bs-dismiss="modal" (click)="actionService('', true)">ENREGISTRER</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isManager" class="row mt-2">
+                                        <div *ngIf="errorService" class="row">
+                                            <app-error [error]="errorService"></app-error>
+                                        </div>
+                                        <div *ngIf="success" class="row">
+                                            <app-success [success]="success"></app-success>
                                         </div>
                                     </div>
                                     <div class="basic-list-group row px-2 mt-2">
@@ -162,12 +205,12 @@
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-center">
                                                 {{service.name}}
-                                                <span class="btn btn-danger shadow btn-xs sharp me-1" title="Supprimer"
+                                                <span *ngIf="isManager && employee.info.services.length > 1" class="btn btn-danger shadow btn-xs sharp me-1" title="Supprimer"
                                                     data-bs-toggle="modal"
                                                     [attr.data-bs-target]="'#deleteService' + service._id">
                                                     <i class="fa fa-trash"></i>
                                                 </span>
-                                                <div class="modal fade" id="deleteService{{service._id}}"
+                                                <div *ngIf="isManager" class="modal fade" id="deleteService{{service._id}}"
                                                     style="display: none;" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
@@ -188,38 +231,13 @@
                                                                 <button type="button" class="btn btn-danger light"
                                                                     data-bs-dismiss="modal">NON</button>
                                                                 <button type="button"
-                                                                    class="btn btn-primary">OUI</button>
+                                                                    class="btn btn-primary" (click)="actionService(service._id, false)" data-bs-dismiss="modal">OUI</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
-                                <div class="profile-skills mb-3"></div>
-                                <div class="profile-personal-employee">
-                                    <h4 class="text-primary mb-4">Salaire</h4>
-                                    <div *ngIf="!employee.salary" class="row mb-2">
-                                        <p>Cet(e) employé(e) n'as pas encore de salaire défini. </p>
-                                    </div>
-                                    <div *ngIf="employee.salary" class="row mb-2">
-                                        <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Date <span class="pull-end">:</span>
-                                            </h5>
-                                        </div>
-                                        <div class="col-sm-9 col-7"><span class="text-uppercase">{{employee.salary.date
-                                                | date:'yyyy-MM-dd'}}</span>
-                                        </div>
-                                    </div>
-                                    <div *ngIf="employee.salary" class="row mb-2">
-                                        <div class="col-sm-3 col-5">
-                                            <h5 class="f-w-500">Montant <span class="pull-end">:</span>
-                                            </h5>
-                                        </div>
-                                        <div class="col-sm-9 col-7"><span>{{employee.salary.amount | number:'1.2-2'}}
-                                                Ar</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

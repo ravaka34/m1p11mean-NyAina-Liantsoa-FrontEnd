@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BodyComponent } from '../../../body/body.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { ServiceService } from '../../../../service/service.service';
@@ -9,6 +8,7 @@ import { SuccessComponent } from '../../../../template/success/success.component
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
+import { BodyComponent } from '../../../../component/body/body.component';
 
 @Component({
   selector: 'app-form-service',

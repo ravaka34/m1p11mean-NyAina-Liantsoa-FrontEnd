@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BodyComponent } from '../../../body/body.component';
 import { EmployeeService } from '../../../../service/employee.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
+import { BodyComponent } from '../../../../component/body/body.component';
 
 @Component({
   selector: 'app-list',

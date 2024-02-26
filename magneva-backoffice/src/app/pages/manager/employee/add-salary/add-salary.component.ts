@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BodyComponent } from '../../../body/body.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { CommonModule } from '@angular/common';
@@ -9,6 +8,7 @@ import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { DateService } from '../../../../service/date.service';
 import { EmployeeService } from '../../../../service/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BodyComponent } from '../../../../component/body/body.component';
 
 @Component({
   selector: 'app-add-salary',
