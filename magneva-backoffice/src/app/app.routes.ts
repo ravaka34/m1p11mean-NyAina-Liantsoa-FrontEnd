@@ -9,6 +9,7 @@ import { CreateComponent as CreateService } from './component/manager/service/cr
 import { ListComponent as ListService } from './component/manager/service/list/list.component';
 import { UpdateComponent as UpdateService} from './component/manager/service/update/update.component';
 import { DetailComponent as DetailService } from './component/manager/service/detail/detail.component';
+import { AddSalaryComponent } from './component/manager/employee/add-salary/add-salary.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'manager/employe/inscription', component: RegisterComponent, title: "Inscrption d'un employé"},
   { path: 'manager/employe/liste', component: ListComponent, title: "Liste des employés"},
   { path: 'manager/employe/détail/:idEmploye', component: DetailComponent, title: "Détail employé"},
+  { path: 'manager/employe/salaire/:idEmploye', component: AddSalaryComponent, title: "Ajout/Modification salaire"},
 
   { path: 'manager/service/ajout', component: CreateService, title: "Nouveau Service"},
   { path: 'manager/service/liste', component: ListService, title: "Liste des services"},

@@ -22,5 +22,9 @@ export class EmployeeService {
   createEmployee(body: any){
     return this.apiService.post<any, any>("/manager/employee/create/", body);
   }
+
+  addOrUpdateSalary(salary: any){
+    return this.apiService.post<any, any>("/manager/employee/addSalary/", salary);
+  }
 }
 

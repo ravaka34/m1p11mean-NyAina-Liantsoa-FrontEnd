@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../body/body.component';
 import { EmployeeService } from '../../../../service/employee.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { CommonModule } from '@angular/common';
 import { ServiceService } from '../../../../service/service.service';
@@ -14,7 +14,8 @@ import { ErrorComponent } from '../../../../template/error/error.component';
   imports: [
     CommonModule,
     LoaderComponent,
-    ErrorComponent
+    ErrorComponent,
+    RouterModule
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css',

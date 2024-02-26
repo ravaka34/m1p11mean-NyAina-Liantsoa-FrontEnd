@@ -20,11 +20,11 @@
                     <div class="profile-head">
                         <div class="profile-info">
                             <div class="profile-details">
-                                <img [src]="employee.employee.picture" class="img-fluid profile-image" alt="">
+                                <img [src]="employee.info.employee.picture" class="img-fluid profile-image" alt="">
                                 <div class="profile-name pt-2 pt-md-5 pt-lg-5">
                                     <h4 class="text-primary mb-0 px-3">
-                                        <span class="text-uppercase">{{employee.employee.name}}</span>
-                                        {{employee.employee.firstName}}
+                                        <span class="text-uppercase">{{employee.info.employee.name}}</span>
+                                        {{employee.info.employee.firstName}}
                                     </h4>
                                 </div>
                                 <div class="dropdown ms-auto pt-lg-4">
@@ -44,6 +44,10 @@
                                             Modifier Mot De Passe</li>
                                         <li class="dropdown-item"><i
                                                 class="fa fa-user-edit text-primary me-2"></i>Modifier profil</li>
+                                        <li class="dropdown-item"><a
+                                                [routerLink]="['/manager/employe/salaire', employee.info.employee._id]"><i
+                                                    class="fa fa-coins text-primary me-2"></i>Ajouter/Modifier le
+                                                salaire</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,8 +69,8 @@
                                             </h5>
                                         </div>
                                         <div class="col-sm-9 col-7"><span
-                                                class="text-uppercase">{{employee.employee.name}}</span>
-                                            <span class="px-1">{{employee.employee.firstName}}</span>
+                                                class="text-uppercase">{{employee.info.employee.name}}</span>
+                                            <span class="px-1">{{employee.info.employee.firstName}}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -74,14 +78,14 @@
                                             <h5 class="f-w-500">Email <span class="pull-end">:</span>
                                             </h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>{{employee.employee.email}}</span>
+                                        <div class="col-sm-9 col-7"><span>{{employee.info.employee.email}}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-3 col-5">
                                             <h5 class="f-w-500">Contact <span class="pull-end">:</span></h5>
                                         </div>
-                                        <div class="col-sm-9 col-7"><span>{{employee.employee.contact}}</span>
+                                        <div class="col-sm-9 col-7"><span>{{employee.info.employee.contact}}</span>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -90,9 +94,17 @@
                                             </h5>
                                         </div>
                                         <div class="col-sm-9 col-7">
-                                            <span>{{ employee.employee.sex === 1 ? 'Homme' : 'Femme' }}</span>
+                                            <span>{{ employee.info.employee.sex === 1 ? 'Homme' : 'Femme' }}</span>
                                         </div>
-
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Date employé <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7">
+                                            <span>{{ employee.info.employee.startDate | date:'yyyy-MM-dd' }}</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="profile-skills mb-3"></div>
@@ -126,8 +138,7 @@
                                                                 <div class="col-lg-8">
                                                                     <select class="default-select wide form-control"
                                                                         id="validationCustom05">
-                                                                        <option
-                                                                            *ngFor="let service of services"
+                                                                        <option *ngFor="let service of services"
                                                                             [value]="service._id">{{ service.name }}
                                                                         </option>
                                                                     </select>
@@ -146,7 +157,8 @@
                                         </div>
                                     </div>
                                     <div class="basic-list-group row px-2 mt-2">
-                                        <ul *ngFor="let service of employee.services" class="list-group col-lg-3 mb-2">
+                                        <ul *ngFor="let service of employee.info.services"
+                                            class="list-group col-lg-3 mb-2">
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-center">
                                                 {{service.name}}
@@ -155,8 +167,6 @@
                                                     [attr.data-bs-target]="'#deleteService' + service._id">
                                                     <i class="fa fa-trash"></i>
                                                 </span>
-
-
                                                 <div class="modal fade" id="deleteService{{service._id}}"
                                                     style="display: none;" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -170,7 +180,8 @@
                                                             <div class="modal-body">
                                                                 <div class="mb-3 row">
                                                                     <p>Voulez-bous vraiment supprimer le service
-                                                                        <b>{{service.name}}</b>?</p>
+                                                                        <b>{{service.name}}</b>?
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -184,6 +195,31 @@
                                                 </div>
                                             </li>
                                         </ul>
+                                    </div>
+                                </div>
+                                <div class="profile-skills mb-3"></div>
+                                <div class="profile-personal-employee">
+                                    <h4 class="text-primary mb-4">Salaire</h4>
+                                    <div *ngIf="!employee.salary" class="row mb-2">
+                                        <p>Cet(e) employé(e) n'as pas encore de salaire défini. </p>
+                                    </div>
+                                    <div *ngIf="employee.salary" class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Date <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span class="text-uppercase">{{employee.salary.date
+                                                | date:'yyyy-MM-dd'}}</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="employee.salary" class="row mb-2">
+                                        <div class="col-sm-3 col-5">
+                                            <h5 class="f-w-500">Montant <span class="pull-end">:</span>
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-9 col-7"><span>{{employee.salary.amount | number:'1.2-2'}}
+                                                Ar</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
