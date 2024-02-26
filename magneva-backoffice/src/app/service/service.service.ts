@@ -1,19 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environnement } from '../../environnement/environnement';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
+  
+  apiService : ApiService = inject(ApiService);
 
-  private baseURL : string = environnement.baseURL;
+  constructor() { }
 
-  constructor(private http: HttpClient) { }
+  getAllServices(){
+    return this.apiService.get<any[]>("/service/list");
+  }
 
-  getAllServices(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseURL + "/service/list");
+  getService(id: string){
+    return this.apiService.get<any[]>("/service/detail/"+id);
   }
   
+  createService(body: any){
+    return this.apiService.post<any, any>("/service/create/", body);
+  }
+
+  updateService(id: string, body: any){
+    return this.apiService.put<any, any>("/service/update/"+id, body);
+  }
+
 }

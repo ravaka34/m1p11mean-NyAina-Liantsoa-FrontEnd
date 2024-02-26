@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BodyComponent } from '../../../body/body.component';
-import { EmployeeService } from '../../../../service/employee.service';
+import { PageTitleService } from '../../../../service/page-title.service';
+import { ServiceService } from '../../../../service/service.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 
@@ -17,19 +17,18 @@ import { ErrorComponent } from '../../../../template/error/error.component';
     ErrorComponent
   ],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css',
-  providers: [EmployeeService]
+  styleUrl: './list.component.css'
 })
-export class ListComponent extends BodyComponent implements OnInit  {
+export class ListComponent extends BodyComponent implements OnInit {
 
   override title = "Liste";
-  employees: any = [];
+  services: any = [];
   loading: boolean = false;
   error: string = "";
 
   constructor(
     pageTitleService: PageTitleService, 
-    private employeeService: EmployeeService
+    private serviceService: ServiceService
   ) {
     super(pageTitleService);
   }
@@ -37,13 +36,13 @@ export class ListComponent extends BodyComponent implements OnInit  {
   ngOnInit(): void {
     this.loading = true;
     this.setPageTitleService();
-    this.getAllEmployees();
+    this.getAllServices();
   }
 
-  getAllEmployees() {
-    this.employeeService.getAllEmployees().subscribe(
+  getAllServices() {
+    this.serviceService.getAllServices().subscribe(
       (data) => {
-        this.employees = data;
+        this.services = data;
         this.loading = false;
       },
       (error) => {
@@ -52,5 +51,5 @@ export class ListComponent extends BodyComponent implements OnInit  {
       },
     );
   }
-  
+
 }

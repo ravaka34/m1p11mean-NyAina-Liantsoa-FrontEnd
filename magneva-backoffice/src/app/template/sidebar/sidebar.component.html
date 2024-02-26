@@ -11,14 +11,23 @@
                 </ul>
             </li>
             <li><a class="has-arrow" aria-expanded="false">
-                <i class="bi bi-people"></i>
-                <span class="nav-text">Employés</span>
-            </a>
-            <ul aria-expanded="false">
-                <li><a [routerLink]="['manager/employe/inscription']">Inscription</a></li>
-                <li><a [routerLink]="['manager/employe/liste']">Liste</a></li>
-            </ul>
-        </li>
+                    <i class="bi bi-people"></i>
+                    <span class="nav-text">Employés</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/employe/inscription']">Inscription</a></li>
+                    <li><a [routerLink]="['manager/employe/liste']">Liste</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-brush"></i>
+                    <span class="nav-text">Service</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/service/ajout']">Nouveau Service</a></li>
+                    <li><a [routerLink]="['manager/service/liste']">Liste</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

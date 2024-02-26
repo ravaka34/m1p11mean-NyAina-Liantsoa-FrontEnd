@@ -1,0 +1,48 @@
+<app-loader *ngIf="loading"></app-loader>
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Service / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="service" class="row">
+                    <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="first">
+                                <img class="img-fluid" [src]="service.picture" alt="Image d'un service">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
+                        <div class="product-detail-content">
+                            <div class="new-arrival-content pr">
+                                <h4>{{service.name}}</h4>
+                                <div class="comment-review star-rating">
+                                    <ul>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <p><b>Prix:</b> <span class="mx-1"> {{service.price | number:'1.2-2'}} Ar</span>
+                                </p>
+                                <p><b>Commission:</b> <span class="mx-1"> {{service.commission}} %</span> </p>
+                                <p><b>Description:</b> <span class="mx-1"> {{service.description}}</span>
+                                </p>
+                                <p><a [routerLink]="['/manager/service/modifier', service._id]" title="Modifier" class="btn btn-success">MODIFIER</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

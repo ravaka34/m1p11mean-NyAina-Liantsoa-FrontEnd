@@ -3,10 +3,10 @@ import { BodyComponent } from '../../../body/body.component';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from '../../../../service/service.service';
-import { ErrorComponent } from '../../../error/error.component';
+import { ErrorComponent } from '../../../../template/error/error.component';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { EmployeeService } from '../../../../service/employee.service';
-import { SuccessComponent } from '../../../success/success.component';
+import { SuccessComponent } from '../../../../template/success/success.component';
 import { ImageService } from '../../../../service/image.service';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 

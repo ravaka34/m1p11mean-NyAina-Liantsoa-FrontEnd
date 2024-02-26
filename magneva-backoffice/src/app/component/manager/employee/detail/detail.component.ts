@@ -6,7 +6,7 @@ import { PageTitleService } from '../../../../service/page-title.service';
 import { CommonModule } from '@angular/common';
 import { ServiceService } from '../../../../service/service.service';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
-import { ErrorComponent } from '../../../error/error.component';
+import { ErrorComponent } from '../../../../template/error/error.component';
 
 @Component({
   selector: 'app-detail',
