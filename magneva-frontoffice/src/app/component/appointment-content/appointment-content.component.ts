@@ -1,4 +1,4 @@
-import { Component, NgModule, inject } from '@angular/core';
+import { Component, Input, NgModule, inject } from '@angular/core';
 import { ServiceBookDetails } from '../../interface/servicebookdetails';
 import { CommonModule } from '@angular/common';
 import { CdkDropList, CdkDragDrop, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop'
@@ -18,6 +18,9 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './appointment-content.component.css'
 })
 export class AppointmentContentComponent {
+
+  @Input() data! : any;
+
   servicesBookDetails : ServiceBookDetails[] = [
     {
       serviceName: "Massage",

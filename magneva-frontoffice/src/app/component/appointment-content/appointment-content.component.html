@@ -21,16 +21,16 @@
                             </div>
                         </div>
                     </div>
-                </div>    
-            </ng-container>  
+                </div>
+            </ng-container>
         </div>
-        
+
         <div class="col-md-4">
             <div class="card mb-3">
                 <div class="card-body">
-                    <p> Janvier 20, 2024 - 10:00 </p>
-                    <p class="fst-italic">En cours de sélection </p>
-                    <button class="vs-btn" (click)="openAddService()">Ajouter une service</button>
+                    <p> Le {{ data?.readableDate }} - {{ data?.hour }} </p>
+                    <!-- <p class="fst-italic">En cours de sélection </p> -->
+                    <button *ngIf="!data.isDatetimeAlreadyPassed" class="vs-btn" (click)="openAddService()">Ajouter une service</button>
                 </div>
             </div>
             <div class="card mb-3">
