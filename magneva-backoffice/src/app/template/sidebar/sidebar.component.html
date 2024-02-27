@@ -28,6 +28,42 @@
                     <li><a [routerLink]="['manager/service/liste']">Liste</a></li>
                 </ul>
             </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-receipt"></i>
+                    <span class="nav-text">Type de dépense</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/typeDepense/ajout']">Nouveau Type de dépense</a></li>
+                    <li><a [routerLink]="['manager/typeDepense/liste']">Liste</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-cash-stack"></i>
+                    <span class="nav-text">Dépense</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/depense/ajout']">Nouveau dépense</a></li>
+                    <li><a [routerLink]="['manager/depense/liste']">Liste</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-scissors"></i>
+                    <span class="nav-text">Pièce</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/piece/ajout']">Nouvelle pièce</a></li>
+                    <li><a [routerLink]="['manager/piece/liste']">Liste</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-bag-check"></i>
+                    <span class="nav-text">Achat</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/achat/ajout']">Nouveau achat</a></li>
+                    <li><a [routerLink]="['manager/achat/liste']">Liste</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

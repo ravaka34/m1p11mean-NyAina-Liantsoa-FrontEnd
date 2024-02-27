@@ -1,0 +1,40 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Pièce / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des pièces </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Nom</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let piece of pieces">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="w-space-no text-uppercase mx-1">{{piece.name}}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

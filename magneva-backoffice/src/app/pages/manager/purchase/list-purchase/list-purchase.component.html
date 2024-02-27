@@ -1,0 +1,116 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Achat / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Recherche </h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form [formGroup]="applyForm" (submit)="filter()">
+                        <div class="row">
+                            <div class="mb-3 col-md-2">
+                                <label class="form-label">Date début</label>
+                                <input type="date" class="form-control" formControlName="startDate">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label class="form-label">Date fin</label>
+                                <input type="date" class="form-control" formControlName="endDate">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label class="form-label">Montant min</label>
+                                <input type="text" class="form-control" formControlName="minAmount">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label class="form-label">Montant max</label>
+                                <input type="text" class="form-control" formControlName="maxAmount">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                                <label style="color: transparent;">bouton</label>
+                                <button type="submit" class="btn btn-primary form-control">FILTRER</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des achats </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Date</th>
+                                <th scope="col" class="text-uppercase">Montant Total</th>
+                                <th scope="col" class="text-uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let purchase of purchases">
+                                <td>
+                                    {{purchase.date | date:'yyyy-MM-dd'}}
+                                </td>
+                                <td>
+                                    {{ purchase.totalAmount | number:'1.2-2'}} Ar
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a [routerLink]="['/manager/achat/detail', purchase._id]" title="Voir détail"
+                                            class="btn btn-info shadow btn-xs sharp me-1"><i class="fa fa-eye"></i></a>
+                                        <a title="Supprimer" class="btn btn-danger shadow btn-xs sharp me-1"
+                                            data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#deletePurchase' + purchase._id"><i
+                                                class="fa fa-trash"></i></a>
+
+                                        <div class="modal fade" id="deletePurchase{{purchase._id}}" style="display: none;"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Suppression d'un achat</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3 row">
+                                                            <p>Voulez-bous vraiment supprimer cet achat? </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light"
+                                                            data-bs-dismiss="modal">NON</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="deletePurchase(purchase._id)"
+                                                            data-bs-dismiss="modal">OUI</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

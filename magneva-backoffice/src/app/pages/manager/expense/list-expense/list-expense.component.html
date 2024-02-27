@@ -1,0 +1,130 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Dépense / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Recherche </h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form [formGroup]="applyForm" (submit)="filter()">
+                        <div class="row">
+                            <div class="mb-3 col-md-2">
+                                <label class="form-label">Date début</label>
+                                <input type="date" class="form-control" formControlName="startDate">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label class="form-label">Date fin</label>
+                                <input type="date" class="form-control" formControlName="endDate">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Nom</label>
+                                <input type="text" class="form-control" formControlName="expenseCategoryName">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label>Type de dépense</label>
+                                <select class="form-control" formControlName="expenseCategoryType">
+                                    <option [value]="null">Choisir un type de dépense</option>
+                                    <option *ngFor="let type of types" [value]="type.value">{{ type.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <label style="color: transparent;">Type</label>
+                                <button type="submit" class="btn btn-primary form-control">FILTRER</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des dépenses </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Nom</th>
+                                <th scope="col" class="text-uppercase">Date</th>
+                                <th scope="col" class="text-uppercase">Montant</th>
+                                <th scope="col" class="text-uppercase">Motif</th>
+                                <th scope="col" class="text-uppercase">Type</th>
+                                <th scope="col" class="text-uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let expense of expenses">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span
+                                            class="w-space-no text-uppercase mx-1">{{expense.expenseCategory.name}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{expense.date | date:'yyyy-MM-dd'}}
+                                </td>
+                                <td>
+                                    {{expense.amount | number:'1.2-2'}} Ar
+                                </td>
+                                <td>{{expense.motif}}</td>
+                                <td>{{ expense.expenseCategory.type === 1 ? 'Dépense mensuelle' : 'Autres dépenses' }}
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a title="Supprimer" class="btn btn-danger shadow btn-xs sharp me-1"
+                                            data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#deleteExpense' + expense._id"><i
+                                                class="fa fa-trash"></i></a>
+
+                                        <div class="modal fade" id="deleteExpense{{expense._id}}" style="display: none;"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Suppression d'une dépense</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3 row">
+                                                            <p>Voulez-bous vraiment supprimer cette dépense? </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light"
+                                                            data-bs-dismiss="modal">NON</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="deleteExpense(expense._id)"
+                                                            data-bs-dismiss="modal">OUI</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

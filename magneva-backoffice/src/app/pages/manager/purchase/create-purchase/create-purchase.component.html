@@ -1,0 +1,114 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Achat / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Ajouter un nouveau achat</h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="form-validation">
+                    <form class="needs-validation" novalidate [formGroup]="applyForm" (submit)="submitForm()">
+                        <div class="row">
+                            <div class="row col-xl-12">
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label">Date
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="date" class="form-control" formControlName="date" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-xl-12">
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <h5 class="col-lg-6">Détails de l'achat
+                                        </h5>
+                                        <div class="col-lg-6">
+                                            <button type="button" (click)="addRowDetail()" class="btn btn-info btn-xs">
+                                                <span class="btn-icon-start text-info"><i
+                                                        class="fa fa-plus color-info"></i></span>Ajouter
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-xl-12" *ngFor="let detail of details; let i = index">
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label">Pièce
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <select class="form-control" id="piece_{{ detail.id }}">
+                                                <option *ngFor="let piece of pieces" [value]="piece._id">{{ piece.name
+                                                    }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label">Quantité
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" id="quantity_{{ detail.id }}" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label">Prix Unitaire
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" id="unitPrice_{{ detail.id }}" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-1">
+                                    <div class="mb-3 row">
+                                        <div class="col-lg-12">
+                                        <button type="button" title="Supprimer" class="btn btn-danger sharp me-1" (click)="removeRowDetail(i)"><i
+                                            class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-xl-12">
+                                <div class="col-xl-4"></div>
+                                <div class="col-xl-4"></div>
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <label class="col-lg-4 col-form-label"></label>
+                                        <div class="col-lg-6">
+                                            <button type="submit"
+                                                class="btn btn-primary form-control">ENREGISTRER</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

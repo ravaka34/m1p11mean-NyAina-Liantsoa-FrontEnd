@@ -80,7 +80,7 @@ export class AddSalaryComponent extends BodyComponent implements OnInit{
     };
     this.employeeService.addOrUpdateSalary(salary).subscribe(
       (data) =>{
-        this.router.navigate(["/manager/employe/détail/"+this.employee.info.employee._id]);
+        this.router.navigate(["/manager/employe/detail/"+this.employee.info.employee._id]);
         this.error = "";
         this.loading = false;
       },
