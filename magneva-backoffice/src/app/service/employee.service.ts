@@ -42,5 +42,13 @@ export class EmployeeService {
   updateProfil(employeeID: string, body: any){
     return this.apiService.put<any, any>("/employee/updateProfil/"+employeeID, body);
   }
+
+  getTasksOfDay(employeeID: string){
+    return this.apiService.get<any[]>("/employee/tasksOfDay/"+employeeID);
+  }
+
+  finishTask(appointmentDetailID: string){
+    return this.apiService.get<any[]>("/employee/finishTask/"+appointmentDetailID);
+  }
 }
 

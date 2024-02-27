@@ -23,6 +23,7 @@ import { ListPieceComponent } from './pages/manager/piece/list-piece/list-piece.
 import { ListPurchaseComponent } from './pages/manager/purchase/list-purchase/list-purchase.component';
 import { DetailPurchaseComponent } from './pages/manager/purchase/detail-purchase/detail-purchase.component';
 import { CreatePurchaseComponent } from './pages/manager/purchase/create-purchase/create-purchase.component';
+import { DashboardComponent } from './pages/employee/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -40,10 +41,6 @@ export const routes: Routes = [
   { path: 'manager/service/liste', component: ListService, title: "Liste des services"},
   { path: 'manager/service/modifier/:idService', component: UpdateService, title: "Modifier service"},
   { path: 'manager/service/detail/:idService', component: DetailService, title: "Détail service"},
-
-  { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},
-  { path: 'employe/modifierMdp/:idEmploye', component: UpdateMdpEmp, title: "Modifier Mot De Passe"},
-  { path: 'employe/modifierProfil/:idEmploye', component: UpdateProfilEmployeeComponent, title: "Modifier Profil"},
   
   { path: 'manager/typeDepense/ajout', component: CreateExpenseCategoryComponent, title: "Nouveau Type de dépense"},
   { path: 'manager/typeDepense/liste', component: ListExpenseCategoryComponent, title: "Liste types de dépense"}, 
@@ -57,4 +54,10 @@ export const routes: Routes = [
   { path: 'manager/achat/liste', component: ListPurchaseComponent, title: "Liste des achats"}, 
   { path: 'manager/achat/detail/:idPurchase', component: DetailPurchaseComponent, title: "Détail achat"},  
   { path: 'manager/achat/ajout', component: CreatePurchaseComponent, title: "Nouveau achat"}, 
+  
+  
+  { path: 'employe/accueil', component: DashboardComponent, title: "Accueil"},
+  { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},
+  { path: 'employe/modifierMdp/:idEmploye', component: UpdateMdpEmp, title: "Modifier Mot De Passe"},
+  { path: 'employe/modifierProfil/:idEmploye', component: UpdateProfilEmployeeComponent, title: "Modifier Profil"},
 ];

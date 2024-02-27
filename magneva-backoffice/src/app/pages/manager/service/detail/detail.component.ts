@@ -6,6 +6,7 @@ import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { CommonModule } from '@angular/common';
 import { BodyComponent } from '../../../../component/body/body.component';
+import { HeureService } from '../../../../service/heure.service';
 
 @Component({
   selector: 'app-detail-service',
@@ -33,7 +34,8 @@ export class DetailComponent extends BodyComponent implements OnInit{
   constructor(
     pageTitleService: PageTitleService,
     private serviceService: ServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private heureService: HeureService
   ) {
     super(pageTitleService);
   }
@@ -41,6 +43,10 @@ export class DetailComponent extends BodyComponent implements OnInit{
   ngOnInit(): void {
       this.setPageTitleService();
       this.getService();
+  }
+
+  formatHour(hour: Number) {
+    return this.heureService.formatHour(hour);
   }
 
   getService(){

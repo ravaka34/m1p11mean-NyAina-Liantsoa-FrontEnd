@@ -1,0 +1,121 @@
+<app-loader *ngIf="loading"></app-loader>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Vos tâches effectuées le {{today | date: 'yyyy-MM-dd'}}</h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="tasks" class="row">
+                    <div class="col-lg-8">
+                        <div class="table-responsive">
+                            <table class="table primary-table-bordered">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th scope="col" class="text-uppercase">Services</th>
+                                        <th scope="col" class="text-uppercase">Client</th>
+                                        <th scope="col" class="text-uppercase">Prix</th>
+                                        <th scope="col" class="text-uppercase">Commission</th>
+                                        <th scope="col" class="text-uppercase">Horaires</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="tasks.tasksFinished.length === 0">
+                                        <td colspan="6">Vous n'avez pas encore de tâches effectuer</td>
+                                    </tr>
+                                    <tr *ngFor="let task of tasks.tasksFinished">
+                                        <td>
+                                            {{task.service.name}}
+
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="w-space-no text-uppercase mx-1">{{task.client.name}}</span>{{task.client.firstName}}
+                                        </td>
+                                        <td>
+                                            {{task.service.price | number:'1.2-2'}} Ar
+                                        </td>
+                                        <td>{{task.service.commission}} %</td>
+                                        <td>{{formatHour(task.hourBegin)}} - {{formatHour(task.hourEnd)}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="commission-container mt-0">
+                            <h4> Montant Commission:</h4>
+                            <p>{{ tasks.commission | number:'1.2-2' }} Ar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Vos tâches à effectuer pour le {{today | date: 'yyyy-MM-dd'}}</h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error2" class="row">
+                    <app-error [error]="error2"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div *ngIf="tasks" class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table primary-table-bordered">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th scope="col" class="text-uppercase">Services</th>
+                                        <th scope="col" class="text-uppercase">Client</th>
+                                        <th scope="col" class="text-uppercase">Prix</th>
+                                        <th scope="col" class="text-uppercase">Commission</th>
+                                        <th scope="col" class="text-uppercase">Horaires</th>
+                                        <th scope="col" class="text-uppercase"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="tasks.tasksNotFinished.length === 0">
+                                        <td colspan="6">Vous n'avez plus de tâches à effectuer</td>
+                                    </tr>
+                                    <tr *ngFor="let task of tasks.tasksNotFinished">
+                                        <td>{{task.service.name}}
+
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="w-space-no text-uppercase mx-1">{{task.client.name}}</span>{{task.client.firstName}}
+                                        </td>
+                                        <td>
+                                            {{task.service.price | number:'1.2-2'}} Ar
+                                        </td>
+                                        <td>{{task.service.commission}} %</td>
+                                        <td>{{formatHour(task.hourBegin)}} - {{formatHour(task.hourEnd)}} </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="badge badge-info"
+                                                    (click)="finishTask(task._id)">Terminer</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

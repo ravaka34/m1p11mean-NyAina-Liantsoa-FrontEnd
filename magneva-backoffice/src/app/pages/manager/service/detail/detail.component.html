@@ -34,6 +34,8 @@
                                 </div>
                                 <p><b>Prix:</b> <span class="mx-1"> {{service.price | number:'1.2-2'}} Ar</span>
                                 </p>
+                                <p><b>Durée:</b> <span class="mx-1"> {{formatHour(service.duration)}} h</span>
+                                </p>
                                 <p><b>Commission:</b> <span class="mx-1"> {{service.commission}} %</span> </p>
                                 <p><b>Description:</b> <span class="mx-1"> {{service.description}}</span>
                                 </p>
