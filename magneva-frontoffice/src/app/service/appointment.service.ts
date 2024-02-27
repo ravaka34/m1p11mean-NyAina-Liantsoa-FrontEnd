@@ -12,7 +12,7 @@ export class AppointmentService {
   constructor() { }
 
   createAppointment(appointment: any){
-    //Render dynamic userId
+    //TODO: Render dynamic userId
     const userId = "65d114b9694b16acf977652b";
     appointment.userId = userId;
     return this.apiService.post<any, any>("/appointment/create", appointment);
@@ -20,5 +20,9 @@ export class AppointmentService {
 
   getAppointments (){
     return this.apiService.get<any[]>("/appointment/list?userId=65d114b9694b16acf977652b") ;
+  }
+
+  getPageDetailsData(id: string){
+    return this.apiService.get<any>("/page-fo/appointment-details/"+id);
   }
 }
