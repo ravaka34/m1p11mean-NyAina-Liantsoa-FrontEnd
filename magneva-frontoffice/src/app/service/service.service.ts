@@ -13,4 +13,8 @@ export class ServiceService {
   getAllServices(){
     return this.apiService.get<any[]>("/service/list");
   }
+
+  getAllServicesWithReviews(){
+    return this.apiService.get<any[]>("/review/services");
+  }
 }
