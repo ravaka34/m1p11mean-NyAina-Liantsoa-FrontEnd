@@ -72,8 +72,8 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
       description: this.createForm.value.description
     }
     createData[this.data.entityName] = this.data.entityId;
+
     this.loaderService.showLoader();
-    console.log(createData);
     this.reviewService.createReview(createData).subscribe(
       data => {
         //redirect to the details page
@@ -94,6 +94,7 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
       note : this.createForm.value.note ,
       description : this.createForm.value.description
     }
+    
     this.loaderService.showLoader();
     this.reviewService.updateReview(updateData).subscribe(
       data => {

@@ -36,4 +36,17 @@ export class ReviewService {
   createReview(data : any){
     return this.apiService.post("/review", data);
   }
+
+  getAllEntitiesWithReviews(entitiesName : string){
+    return this.apiService.get<any[]>("/review/"+entitiesName);
+  }
+
+  getEntityWithReviews(entityId : string, entityName : string){
+    // let user = this.localStorageService.getItem("user");
+    // let userIdQuery = (user) ? "?userId="+user.id : "";
+    //TODO render dynamic userIdQuery
+    let userIdQuery = "?userId=65dc4454cf95340c0db28ee4";
+    return this.apiService.get<any[]>(`/review/${entityName}/${entityId}${userIdQuery}`);
+  }
+
 }
