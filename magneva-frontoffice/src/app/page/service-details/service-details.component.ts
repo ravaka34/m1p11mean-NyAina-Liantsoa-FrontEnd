@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceService } from '../../service/service.service';
 import { CommonModule } from '@angular/common';
 import { ReviewCardComponent } from '../../component/review-card/review-card.component';
 import { LoaderService } from '../../service/loader.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddReviewComponent } from '../../component/add-review/add-review.component';
+import { ReviewService } from '../../service/review.service';
 
 @Component({
   selector: 'app-service-details',
@@ -20,7 +20,7 @@ import { AddReviewComponent } from '../../component/add-review/add-review.compon
 export class ServiceDetailsComponent {
 
   route: ActivatedRoute = inject(ActivatedRoute);
-  serviceService: ServiceService = inject(ServiceService);
+  reviewService: ReviewService = inject(ReviewService);
   service: any;
   loaderService: LoaderService = inject(LoaderService);
   dialog: MatDialog = inject(MatDialog);
@@ -28,7 +28,7 @@ export class ServiceDetailsComponent {
   ngOnInit(){
     let serviceId = this.route.snapshot.params['id'];
     this.loaderService.showLoader();
-    this.serviceService.getServiceWithReviews(serviceId).subscribe(
+    this.reviewService.getEntityWithReviews(serviceId, "service").subscribe(
       data => {
         this.service = data;
         this.loaderService.hideLoader();

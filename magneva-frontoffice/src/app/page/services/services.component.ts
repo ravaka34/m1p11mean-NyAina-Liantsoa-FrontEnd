@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ServiceService } from '../../service/service.service';
 import { LoaderService } from '../../service/loader.service';
 import { CommonModule } from '@angular/common';
 import { ServiceCardComponent } from '../../component/service-card/service-card.component';
+import { ReviewService } from '../../service/review.service';
 
 @Component({
   selector: 'app-services',
@@ -16,12 +16,12 @@ import { ServiceCardComponent } from '../../component/service-card/service-card.
 })
 export class ServicesComponent {
   services!: any[];
-  serviceService : ServiceService = inject(ServiceService);
+  reviewService : ReviewService = inject(ReviewService);
   loaderService : LoaderService = inject(LoaderService);
 
   ngOnInit() {
     this.loaderService.showLoader();
-    this.serviceService.getAllServicesWithReviews().subscribe(
+    this.reviewService.getAllEntitiesWithReviews("services").subscribe(
       data => {
         this.services = data;
         this.loaderService.hideLoader();
