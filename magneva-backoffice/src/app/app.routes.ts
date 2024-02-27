@@ -24,6 +24,7 @@ import { ListPurchaseComponent } from './pages/manager/purchase/list-purchase/li
 import { DetailPurchaseComponent } from './pages/manager/purchase/detail-purchase/detail-purchase.component';
 import { CreatePurchaseComponent } from './pages/manager/purchase/create-purchase/create-purchase.component';
 import { DashboardComponent } from './pages/employee/dashboard/dashboard.component';
+import { AppointmentEmpListComponent } from './pages/employee/appointment/appointment-emp-list/appointment-emp-list.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -60,4 +61,5 @@ export const routes: Routes = [
   { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},
   { path: 'employe/modifierMdp/:idEmploye', component: UpdateMdpEmp, title: "Modifier Mot De Passe"},
   { path: 'employe/modifierProfil/:idEmploye', component: UpdateProfilEmployeeComponent, title: "Modifier Profil"},
+  { path: 'employe/rendezVous/liste', component: AppointmentEmpListComponent, title: "Liste des rendez-vous"},
 ];

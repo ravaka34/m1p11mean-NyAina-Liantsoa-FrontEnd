@@ -50,5 +50,9 @@ export class EmployeeService {
   finishTask(appointmentDetailID: string){
     return this.apiService.get<any[]>("/employee/finishTask/"+appointmentDetailID);
   }
+
+  getAllAppointment(employeeID: string, body: any){
+    return this.apiService.get<any[]>("/employee/listAppointment/"+employeeID, body);
+  }
 }
 

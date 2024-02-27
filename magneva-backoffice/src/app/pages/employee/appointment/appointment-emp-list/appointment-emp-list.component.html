@@ -1,0 +1,100 @@
+<app-loader *ngIf="loading"></app-loader>
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Rendez-Vous / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Recherche </h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form [formGroup]="applyForm" (submit)="filter()">
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Date début</label>
+                                <input type="date" class="form-control" formControlName="startDate">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Date fin</label>
+                                <input type="date" class="form-control" formControlName="endDate">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Statu</label>
+                                <select class="form-control" formControlName="isFinished">
+                                    <option [value]="null">Choisir un statu</option>
+                                    <option *ngFor="let statu of status" [value]="statu.value">{{ statu.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label style="color: transparent;">bouton</label>
+                                <button type="submit" class="btn btn-primary form-control">FILTRER</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des rendez-vous </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Date</th>
+                                <th scope="col" class="text-uppercase">Service</th>
+                                <th scope="col" class="text-uppercase">Client</th>
+                                <th scope="col" class="text-uppercase">Prix</th>
+                                <th scope="col" class="text-uppercase">Commission</th>
+                                <th scope="col" class="text-uppercase">Horaires</th>
+                                <th scope="col" class="text-uppercase">Statu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let appointment of appointments">
+                                <td>
+                                    {{appointment.appointment.date | date:'yyyy-MM-dd'}}
+                                </td>
+                                <td>
+                                    {{appointment.service.name}}
+                                </td>
+                                <td>
+                                    <span
+                                        class="w-space-no text-uppercase mx-1">{{appointment.client.name}}</span>{{appointment.client.firstName}}
+                                </td>
+                                <td>
+                                    {{appointment.service.price | number:'1.2-2'}} Ar
+                                </td>
+                                <td>{{appointment.service.commission}} %</td>
+                                <td>{{formatHour(appointment.hourBegin)}} - {{formatHour(appointment.hourEnd)}} </td>
+                                <td *ngIf="appointment.isFinished === 0"> 
+                                    <span class="badge badge-info">Pas terminé</span>
+                                </td>
+                                <td *ngIf="appointment.isFinished === 1"> 
+                                    <span class="badge badge-success">Terminé</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
