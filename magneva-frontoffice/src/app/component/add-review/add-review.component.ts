@@ -21,7 +21,10 @@ import { CommonFunctionalityComponentComponent } from '../common-functionality-c
 export class AddReviewComponent extends CommonFunctionalityComponentComponent {
 
   formBuilder : FormBuilder = inject(FormBuilder);
-  createForm! : FormGroup ;
+  createForm : FormGroup = this.formBuilder.group({
+    "note": '',
+    "description": ''
+  });
   reviewService : ReviewService = inject(ReviewService);
   loaderService : LoaderService = inject(LoaderService);
   error : string | null = null;
@@ -31,15 +34,58 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
   public dialogRef: MatDialogRef<AddReviewComponent>,
   public override router:Router){
     super(router);
-    this.createForm = this.formBuilder.group({
-      "note": this.data.note,
-      "description": this.data.description
-    })
+    if(!data.isCreate){
+      this.createForm = this.formBuilder.group({
+        "note": this.data.note,
+        "description": this.data.description
+      })
+    }
   }
 
   onSubmit(){
     console.log(this.createForm.value);
-    this.update();
+    if(this.data.isCreate){
+      this.create();
+    }else{
+      this.update();
+    }
+  }
+
+// {
+//     "description": "La service est top.",
+//     "note": "4",
+//     "user": "65d114b9694b16acf977652b",
+//     "service" : "65d200cf0d829e1159c1f4d7"
+// }
+// OR
+// {
+//     "description": "La service est top.",
+//     "note": "4",
+//     "user": "65d114b9694b16acf977652b",
+//     "employee" : "65d200cf0d829e1159c1f4d7"
+// }
+  create(){
+    // TODO: make the user dynamic
+    let createData : any = {
+      note:this.createForm.value.note,
+      user: "65dc4454cf95340c0db28ee4",
+      description: this.createForm.value.description
+    }
+    createData[this.data.entityName] = this.data.entityId;
+    this.loaderService.showLoader();
+    console.log(createData);
+    this.reviewService.createReview(createData).subscribe(
+      data => {
+        //redirect to the details page
+        this.loaderService.hideLoader();
+        this.dialogRef.close();
+        this.reloadComponent(true);
+       },
+      error => {
+        this.error = error.error.message;
+        this.loaderService.hideLoader();
+      }
+    )
   }
 
   update(){

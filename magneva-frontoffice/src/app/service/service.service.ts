@@ -23,7 +23,7 @@ export class ServiceService {
     // let user = this.localStorageService.getItem("user");
     // let userIdQuery = (user) ? "?userId="+user.id : "";
     //TODO render dynamic userIdQuery
-    let userIdQuery = "?userId=65d114b9694b16acf977652b";
+    let userIdQuery = "?userId=65dc4454cf95340c0db28ee4";
     return this.apiService.get<any[]>("/review/service/"+serviceId+userIdQuery);
   }
 }

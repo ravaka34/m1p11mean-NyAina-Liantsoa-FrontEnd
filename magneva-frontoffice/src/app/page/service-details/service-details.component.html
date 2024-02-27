@@ -1,13 +1,14 @@
 <div *ngIf="service" >
   <p>service-details works!</p>
-  <p> {{ service.entity?.name }}</p>
-  <p> Description : {{ service.entity?.description  }}</p>
-  <p> Prix : {{ service.entity?.price }} Ar </p>
+  <p> {{ service.entity.name }}</p>
+  <p> Description : {{ service.entity.description  }}</p>
+  <p> Prix : {{ service.entity.price }} Ar </p>
+  <p> Note : {{ service.note }} </p>
 
   <h3> Votre revue :</h3>
     <div *ngIf="!service.userReview; elseBlock" >
       Vous n'avez pas encore donnez votre avis
-      <button> Ajouter mon avis </button>
+      <button (click)="openAddReview()" > Ajouter mon avis </button>
     </div>
 
     <app-review-card #elseBlock [review]="service.userReview"  [updatable]="true" > </app-review-card>

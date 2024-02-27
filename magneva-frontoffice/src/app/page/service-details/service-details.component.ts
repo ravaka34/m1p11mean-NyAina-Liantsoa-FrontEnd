@@ -4,6 +4,8 @@ import { ServiceService } from '../../service/service.service';
 import { CommonModule } from '@angular/common';
 import { ReviewCardComponent } from '../../component/review-card/review-card.component';
 import { LoaderService } from '../../service/loader.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddReviewComponent } from '../../component/add-review/add-review.component';
 
 @Component({
   selector: 'app-service-details',
@@ -21,6 +23,7 @@ export class ServiceDetailsComponent {
   serviceService: ServiceService = inject(ServiceService);
   service: any;
   loaderService: LoaderService = inject(LoaderService);
+  dialog: MatDialog = inject(MatDialog);
 
   ngOnInit(){
     let serviceId = this.route.snapshot.params['id'];
@@ -30,9 +33,16 @@ export class ServiceDetailsComponent {
         this.service = data;
         this.loaderService.hideLoader();
       }
-
     )
   }
 
-  
+  openAddReview(){
+    let dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      isCreate : true,
+      entityName : "service",
+      entityId : this.service.entity._id
+    };
+    this.dialog.open(AddReviewComponent, dialogConfig);
+  }
 }

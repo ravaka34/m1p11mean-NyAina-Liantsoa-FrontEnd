@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="review" >
   <p>{{ review.user.name }} {{ review.user.firstName }}</p>
   <p> Note : {{ review.note }} {{ review.date | date:'YYYY/MM/dd' }}</p>
   <p> {{ review.description }} </p>
