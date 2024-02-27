@@ -1,1 +1,20 @@
-<p>service-details works!</p>
+<div *ngIf="service" >
+  <p>service-details works!</p>
+  <p> {{ service.entity?.name }}</p>
+  <p> Description : {{ service.entity?.description  }}</p>
+  <p> Prix : {{ service.entity?.price }} Ar </p>
+
+  <h3> Votre revue :</h3>
+    <div *ngIf="!service.userReview; elseBlock" >
+      Vous n'avez pas encore donnez votre avis
+      <button> Ajouter mon avis </button>
+    </div>
+
+    <app-review-card #elseBlock [review]="service.userReview"  [updatable]="true" > </app-review-card>
+
+
+  <h3> Les revues :</h3>
+    <app-review-card *ngFor="let review of service.reviews" [review]="review" ></app-review-card>
+</div>
+
+
