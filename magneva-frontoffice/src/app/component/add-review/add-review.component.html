@@ -1,0 +1,11 @@
+<p>Add or update review</p>
+<form  [formGroup]="createForm" (submit)="onSubmit()" >
+  <p>
+    Note: <input type="number" step="any" formControlName="note" />
+  </p>
+  <p>
+    Description: <input type="text" formControlName="description" />
+  </p>
+  <app-error-alert [error]="error" ></app-error-alert>
+  <button type="submit"> Valider </button>
+</form>
