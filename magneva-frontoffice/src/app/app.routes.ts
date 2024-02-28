@@ -7,11 +7,12 @@ import { ServicesComponent } from './page/services/services.component';
 import { ServiceDetailsComponent } from './page/service-details/service-details.component';
 import { EmployeesComponent } from './page/employees/employees.component';
 import { EmployeesDetailsComponent } from './page/employees-details/employees-details.component';
+import { CreateAppointmentComponent } from './page/create-appointment/create-appointment.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
   { path: 'inscription', component: InscriptionComponent, title: 'Inscription'},
-  { path: 'rendez-vous', component: AppointmentComponent, title: 'Rendez-vous' },
+  { path: 'rendez-vous', component: CreateAppointmentComponent, title: 'Rendez-vous' },
   { path: 'rendez-vous/:id', component: AppointmentDetailsComponent, title: 'Rendez-vous'},
   { path: 'services', component: ServicesComponent, title: 'Services' },
   { path: 'service/:id', component: ServiceDetailsComponent, title: 'Service'},
