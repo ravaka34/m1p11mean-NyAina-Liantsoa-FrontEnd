@@ -28,6 +28,8 @@ import { AppointmentEmpListComponent } from './pages/employee/appointment/appoin
 import { ListOfferComponent } from './pages/manager/offer/list-offer/list-offer.component';
 import { DetailOfferComponent } from './pages/manager/offer/detail-offer/detail-offer.component';
 import { CreateOfferComponent } from './pages/manager/offer/create-offer/create-offer.component';
+import { HourlyDetailComponent } from './pages/employee/hourly/hourly-detail/hourly-detail.component';
+import { CreateHourlyComponent } from './pages/employee/hourly/create-hourly/create-hourly.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -63,9 +65,15 @@ export const routes: Routes = [
   { path: 'manager/offreSpecial/detail/:idOffer', component: DetailOfferComponent, title: "Détail d'une offre spéciale"}, 
   { path: 'manager/offreSpecial/ajout', component: CreateOfferComponent, title: "Nouvelle offre spéciale"}, 
   
+
   { path: 'employe/accueil', component: DashboardComponent, title: "Accueil"},
+
   { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},
   { path: 'employe/modifierMdp/:idEmploye', component: UpdateMdpEmp, title: "Modifier Mot De Passe"},
   { path: 'employe/modifierProfil/:idEmploye', component: UpdateProfilEmployeeComponent, title: "Modifier Profil"},
+
   { path: 'employe/rendezVous/liste', component: AppointmentEmpListComponent, title: "Liste des rendez-vous"},
+
+  { path: 'employe/horaire/detail', component: HourlyDetailComponent, title: "Détail horaire de travail"},
+  { path: 'employe/horaire/ajout', component: CreateHourlyComponent, title: "Nouveau horaire de travail"},
 ];

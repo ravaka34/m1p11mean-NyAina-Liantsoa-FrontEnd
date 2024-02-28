@@ -1,0 +1,15 @@
+.schedule-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.schedule-details {
+    flex: 1;
+}
+
+.schedule-action {
+    margin-left: 1px;
+}

@@ -2,15 +2,6 @@
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
             <li><a class="has-arrow" aria-expanded="false">
-                    <i class="bi bi-grid"></i>
-                    <span class="nav-text">Exemples</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a [routerLink]="['exemple1']">Exemple 1</a></li>
-                    <li><a [routerLink]="['exemple2']">Exemple 2</a></li>
-                </ul>
-            </li>
-            <li><a class="has-arrow" aria-expanded="false">
                     <i class="bi bi-people"></i>
                     <span class="nav-text">Employés</span>
                 </a>
@@ -86,6 +77,15 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a [routerLink]="['employe/rendezVous/liste']">Liste</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-clock"></i>
+                    <span class="nav-text">Horaire de travail</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['employe/horaire/ajout']">Nouveau horaire</a></li>
+                    <li><a [routerLink]="['employe/horaire/detail']">Détail</a></li>
                 </ul>
             </li>
         </ul>
