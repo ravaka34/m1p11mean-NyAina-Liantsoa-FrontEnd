@@ -1,0 +1,20 @@
+.plus-button {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #007bff;
+  border-radius: 10%;
+  background-color: transparent;
+  color: #007bff;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+}
+
+.plus-button-clicked {
+  width: 30px;
+  height: 30px;
+  border-radius: 10%;
+  cursor: pointer;
+  outline: none;
+  background-color: rgb(12, 172, 12);
+}

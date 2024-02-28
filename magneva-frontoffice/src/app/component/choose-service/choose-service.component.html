@@ -1,0 +1,9 @@
+<div>
+  <p>Nom
+    {{ service.entity.name }}</p>
+  <p> Prix {{ service.entity.price }}</p>
+  <p> Note {{ service.note }}</p>
+  <p> {{ service.entity._id }} </p>
+  <button  [ngClass]="{'plus-button': !isChecked, 'plus-button-clicked': isChecked}"  (click)="onClick()">+</button>
+  <!-- <input type="checkbox" [(ngModel)]="isChecked" (change)="onChange($event)" > -->
+</div>

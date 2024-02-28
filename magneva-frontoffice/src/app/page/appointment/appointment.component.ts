@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { CreateAppointmentComponent } from '../../component/create-appointment/create-appointment.component'; 
+import { CreateAppointmentComponent } from '../create-appointment/create-appointment.component';
 import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
 import { BreadcrumbChild } from '../../interface/breadcrumbchild';
-import { AppointmentListComponent } from '../../component/appointment-list/appointment-list.component'; 
+import { AppointmentListComponent } from '../../component/appointment-list/appointment-list.component';
 
 @Component({
   selector: 'app-appointment',

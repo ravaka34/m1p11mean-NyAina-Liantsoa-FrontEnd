@@ -1,0 +1,31 @@
+<div>
+  <p>Nom
+    {{ service.entity.name }}</p>
+  <p> Prix {{ service.entity.price }}</p>
+  <p> Note {{ service.note }}</p>
+  <p *ngIf="employeeChoosen"> {{ employeeChoosen.entity.name }} {{ employeeChoosen.entity.firstName }} </p>
+  <p class="d-inline-flex gap-1">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+    [attr.data-bs-target]="'#collapseEmployee-' + service.entity._id" aria-expanded="false" aria-controls="collapseExample">
+      Choisir un professionel
+    </button>
+  </p>
+  <div class="collapse" [id]="'collapseEmployee-' + service.entity._id">
+
+    <div class="card card-body">
+
+      <ng-container *ngFor="let employee of employees[service.entity._id]">
+        <button class="card" (click)="chooseEmployee(employee)" >
+          <div class="card-body">
+            <p>Nom
+              {{ employee.entity.name }} {{ employee.entity.firstName }}</p>
+            <p> Note {{ employee.note }}</p>
+              <p *ngIf="employeeChoosen && employeeChoosen.entity._id == employee.entity._id" >
+                It's choosen
+              </p>
+          </div>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>
