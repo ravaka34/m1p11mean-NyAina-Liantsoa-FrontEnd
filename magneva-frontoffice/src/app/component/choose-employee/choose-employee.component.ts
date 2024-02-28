@@ -20,5 +20,4 @@ export class ChooseEmployeeComponent {
     this.employeeChoosen = employee;
     this.service.employee = employee;
   }
-
 }

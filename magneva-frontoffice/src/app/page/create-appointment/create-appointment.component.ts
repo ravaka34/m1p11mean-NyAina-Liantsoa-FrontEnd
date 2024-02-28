@@ -9,6 +9,8 @@ import { ReviewService } from '../../service/review.service';
 import { ChooseServiceComponent } from '../../component/choose-service/choose-service.component';
 import { ChooseEmployeeComponent } from '../../component/choose-employee/choose-employee.component';
 import { CdkDropList, CdkDragDrop, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
+import moment from 'moment';
+
 
 @Component({
   selector: 'app-create-appointment',
@@ -33,6 +35,7 @@ export class CreateAppointmentComponent implements DoCheck {
   selectedServices : any[] = [];
   totalHours = 0;
   priceTotal = 0;
+  duration = "";
 
   otherInformation = this.formBuilder.group({
     hour: '',
@@ -69,6 +72,7 @@ export class CreateAppointmentComponent implements DoCheck {
 
   private updateTotalHours(): void {
     this.totalHours = this.selectedServices.reduce((total, service) => total + service.entity.duration, 0);
+    this.duration = moment(this.totalHours.toString().padStart(4,'0'),  "HH:mm").format("HH:mm");
   }
 
   private updateTotalPrice(): void {
@@ -83,18 +87,6 @@ export class CreateAppointmentComponent implements DoCheck {
 
   onClick(): void {
     this.sendData();
-    // this.loaderService.showLoader();
-    // this.appointmentService.createAppointment(this.createForm.value).subscribe(
-    //   (res) => {
-    //     console.log(res);
-    //     this.loaderService.hideLoader();
-    //     this.router.navigate(['rendez-vous/'+res._id]);
-    //   },
-    //   (error) => {
-    //     this.error = error.error.message;
-    //     this.loaderService.hideLoader();
-    //   }
-    // )
   }
 
   sendData(){
@@ -113,10 +105,21 @@ export class CreateAppointmentComponent implements DoCheck {
     let jsonToSend = {
       date : this.otherInformation.value.date,
       hour : this.otherInformation.value.hour,
-      services : this.selectedServices,
-      userId : "dddd"
+      services : this.selectedServices
     }
 
     console.log(jsonToSend);
+    this.loaderService.showLoader();
+    this.appointmentService.createAppointment(jsonToSend).subscribe(
+      (res) => {
+        console.log(res);
+        this.loaderService.hideLoader();
+        // this.router.navigate(['rendez-vous/'+res._id]);
+      },
+      (error) => {
+        this.error = error.error.message;
+        this.loaderService.hideLoader();
+      }
+    )
   }
 }
