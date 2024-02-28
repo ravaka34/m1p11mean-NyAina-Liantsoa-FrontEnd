@@ -15,5 +15,4 @@ export class UpdateComponent{
   isCreate: boolean = false;
   titleForm: string = "Modifier service";
 
-
 }

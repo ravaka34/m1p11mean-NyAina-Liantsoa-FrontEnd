@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { PageTitleService } from '../../../../service/page-title.service';
+import { Component, OnInit, inject } from '@angular/core';
 import { ServiceService } from '../../../../service/service.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { BodyComponent } from '../../../../component/body/body.component';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-list',
@@ -23,18 +23,18 @@ export class ListComponent extends BodyComponent implements OnInit {
 
   override title = "Liste";
   services: any = [];
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  serviceService : ServiceService = inject(ServiceService);
+
   error: string = "";
 
-  constructor(
-    pageTitleService: PageTitleService, 
-    private serviceService: ServiceService
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loaderService.showLoader();
     this.setPageTitleService();
     this.getAllServices();
   }
@@ -43,11 +43,11 @@ export class ListComponent extends BodyComponent implements OnInit {
     this.serviceService.getAllServices().subscribe(
       (data) => {
         this.services = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) => {
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
     );
   }

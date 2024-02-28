@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../../component/body/body.component';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { PurchaseService } from '../../../../service/purchase.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -8,6 +7,7 @@ import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { SuccessComponent } from '../../../../template/success/success.component';
 import { RouterModule } from '@angular/router';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-list-purchase',
@@ -27,19 +27,20 @@ export class ListPurchaseComponent extends BodyComponent implements OnInit {
 
     override title = "Liste";
     purchases: any = [];
-    loading: boolean = false;
+
+    loaderService : LoaderService = inject(LoaderService);
+    purchaseService: PurchaseService = inject(PurchaseService);
+  
+
     error: string = "";
     success: string = "";
   
-    constructor(
-      pageTitleService: PageTitleService, 
-      private purchaseService: PurchaseService
-    ) {
-      super(pageTitleService);
+    constructor() {
+      super();
     }
   
     ngOnInit(): void {
-      this.loading = true;
+      this.loaderService.showLoader();
       this.setPageTitleService();
       this.getAllPurchases();
     }
@@ -58,18 +59,18 @@ export class ListPurchaseComponent extends BodyComponent implements OnInit {
         minAmount: this.applyForm.value.minAmount,
         maxAmount: this.applyForm.value.maxAmount,
       };
-      this.loading = true;
+      this.loaderService.showLoader();
       this.purchaseService.getAllPurchases(body).subscribe(
         (data) => {
           this.success = "";
           this.purchases = data;
-          this.loading = false;
+          this.loaderService.hideLoader();
           this.error = "";
         },
         (error) => {
           this.success = "";
           this.error = error.error.message;
-          this.loading = false;
+          this.loaderService.hideLoader();
         },
       );
     }
@@ -79,18 +80,17 @@ export class ListPurchaseComponent extends BodyComponent implements OnInit {
     }
   
     deletePurchase(purchaseID: string){
-      console.log(purchaseID);
-      this.loading = true;
+      this.loaderService.showLoader();
       this.purchaseService.deletePurchase(purchaseID).subscribe(
         (data) => {
           this.success = "Achat supprimé avec succès.";
           this.purchases = data;
-          this.loading = false;
+          this.loaderService.hideLoader();
           this.error = "";
         },
         (error) => {
           this.error = error.error.message;
-          this.loading = false;
+          this.loaderService.hideLoader();
           this.success = "";
         },
       );

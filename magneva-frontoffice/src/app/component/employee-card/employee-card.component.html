@@ -1,0 +1,7 @@
+<div>
+  <p>Nom
+    {{ employee.entity.name }} {{ employee.entity.firstName }}</p>
+  <p> Note {{ employee.note }}</p>
+  <a [routerLink]="['/membre', employee.entity._id ]" > Go check</a>
+</div>
+

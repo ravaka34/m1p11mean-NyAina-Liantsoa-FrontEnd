@@ -1,0 +1,95 @@
+
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Offre Spéciale / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des offres spéciales </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Service</th>
+                                <th scope="col" class="text-uppercase">Prix</th>
+                                <th scope="col" class="text-uppercase">Date</th>
+                                <th scope="col" class="text-uppercase">Réduction</th>
+                                <th scope="col" class="text-uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="offers.length === 0">
+                                <td colspan="4">Aucune offre spéciale</td>
+                            </tr>
+                            <tr *ngFor="let offer of offers">
+                                <td>
+                                    {{offer.service.name}}
+                                </td>
+                                <td>
+                                    {{offer.service.price | number:'1.2-2'}} Ar
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>- Début: {{offer.startDate | date:'dd/MM/yyyy' }} à {{formatHour(offer.hourBegin) }} </li>
+                                        <li>- Fin: {{offer.endDate | date:'dd/MM/yyyy' }} à {{formatHour(offer.hourEnd) }}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    {{offer.percentage}} %
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a [routerLink]="['/manager/offreSpecial/detail/', offer._id]" title="Voir détail"
+                                            class="btn btn-info shadow btn-xs sharp me-1"><i class="fa fa-eye"></i></a>
+                                        <a title="Supprimer" class="btn btn-danger shadow btn-xs sharp me-1"
+                                            data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#deleteOffer' + offer._id"><i
+                                                class="fa fa-trash"></i></a>
+
+                                        <div class="modal fade" id="deleteOffer{{offer._id}}" style="display: none;"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Suppression d'une offre</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3 row">
+                                                            <p>Voulez-bous vraiment supprimer cette offre? </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light"
+                                                            data-bs-dismiss="modal">NON</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="deleteOffer(offer._id)"
+                                                            data-bs-dismiss="modal">OUI</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

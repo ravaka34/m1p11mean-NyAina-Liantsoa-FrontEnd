@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './add-service.component.css'
 })
 export class AddServiceComponent {
+  services! : any[];
+  employees! : any[];
+
+
+  ngOnInit(){
+    
+  }
 
 }

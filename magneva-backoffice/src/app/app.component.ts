@@ -6,6 +6,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './component/login/login.component';
+import { LoaderService } from './service/loader.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -25,7 +26,18 @@ export class AppComponent {
   
   title = 'magneva-backoffice';
   
-  constructor(private router: Router) {}
+  showLoader = false;
+
+  constructor(
+    private loaderService: LoaderService,
+    private router: Router
+  ){
+    this.loaderService.loader$.subscribe((data: boolean) => {
+      setTimeout(() => {
+        this.showLoader = data ? data : false;
+      })
+    })
+  }
 
   isLoginPage(): boolean {
     return this.router.url === '/connexion';

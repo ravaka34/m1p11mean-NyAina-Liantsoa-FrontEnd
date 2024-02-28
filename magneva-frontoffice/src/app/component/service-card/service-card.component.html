@@ -1,0 +1,8 @@
+<div>
+  <p>Nom
+    {{ service.entity.name }}</p>
+  <p> Prix {{ service.entity.price }}</p>
+  <p> Note {{ service.note }}</p>
+  <a [routerLink]="['/service', service.entity._id ]" > Go check</a>
+</div>
+

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { PageTitleService } from '../../../../service/page-title.service';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { BodyComponent } from '../../../../component/body/body.component';
 import { ExpenseCategoryService } from '../../../../service/expense-category.service';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-list',
@@ -26,18 +26,18 @@ export class ListExpenseCategoryComponent extends BodyComponent implements OnIni
 
   override title = "Liste";
   expenseCategories: any = [];
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  expenseCategoryService: ExpenseCategoryService = inject(ExpenseCategoryService);
+
   error: string = "";
 
-  constructor(
-    pageTitleService: PageTitleService, 
-    private expenseCategoryService: ExpenseCategoryService
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loaderService.showLoader();
     this.setPageTitleService();
     this.getAllExpenseCategories();
   }
@@ -46,11 +46,11 @@ export class ListExpenseCategoryComponent extends BodyComponent implements OnIni
     this.expenseCategoryService.getAllExpenseCategories().subscribe(
       (data) => {
         this.expenseCategories = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) => {
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
     );
   }

@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../../component/body/body.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { PurchaseService } from '../../../../service/purchase.service';
 import { PieceService } from '../../../../service/piece.service';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { SuccessComponent } from '../../../../template/success/success.component';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-create-purchase',
@@ -30,7 +30,10 @@ export class CreatePurchaseComponent extends BodyComponent implements OnInit{
 
   override title: string = "Nouveau achat";
   
-  loading: boolean = false;
+  loaderService : LoaderService = inject(LoaderService);
+  purchaseService: PurchaseService = inject(PurchaseService);
+  pieceService: PieceService = inject(PieceService);
+
   error: string = "";
   success: string = "";
 
@@ -42,12 +45,8 @@ export class CreatePurchaseComponent extends BodyComponent implements OnInit{
     date: new FormControl('')
   });
 
-  constructor(
-    pageTitleService: PageTitleService,
-    private purchaseService: PurchaseService,
-    private pieceService: PieceService,
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
@@ -56,17 +55,17 @@ export class CreatePurchaseComponent extends BodyComponent implements OnInit{
   }
 
   getAllPieces(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.pieceService.getAllPieces().subscribe(
       (data) =>{
         this.pieces = data;
         this.error = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
@@ -77,17 +76,17 @@ export class CreatePurchaseComponent extends BodyComponent implements OnInit{
       date: this.applyForm.value.date,
       details: this.rowData
     };
-    this.loading = true;
+    this.loaderService.showLoader();
     this.purchaseService.createPurchase(body).subscribe(
       (data) =>{
         this.success = "Achat créé avec succès!";
         this.error = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }

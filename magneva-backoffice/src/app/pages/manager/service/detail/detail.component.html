@@ -1,4 +1,4 @@
-<app-loader *ngIf="loading"></app-loader>
+
 <div class="row page-titles">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Service / <span class="text-primary"> {{title}}</span></li>
@@ -32,12 +32,12 @@
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
                                 </div>
-                                <p><b>Prix:</b> <span class="mx-1"> {{service.price | number:'1.2-2'}} Ar</span>
+                                <p><strong>Prix:</strong> <span class="mx-1"> {{service.price | number:'1.2-2'}} Ar</span>
                                 </p>
-                                <p><b>Durée:</b> <span class="mx-1"> {{formatHour(service.duration)}} h</span>
+                                <p><strong>Durée:</strong> <span class="mx-1"> {{formatHour(service.duration)}} h</span>
                                 </p>
-                                <p><b>Commission:</b> <span class="mx-1"> {{service.commission}} %</span> </p>
-                                <p><b>Description:</b> <span class="mx-1"> {{service.description}}</span>
+                                <p><strong>Commission:</strong> <span class="mx-1"> {{service.commission}} %</span> </p>
+                                <p><strong>Description:</strong> <span class="mx-1"> {{service.description}}</span>
                                 </p>
                                 <p><a [routerLink]="['/manager/service/modifier', service._id]" title="Modifier" class="btn btn-success">MODIFIER</a></p>
                             </div>

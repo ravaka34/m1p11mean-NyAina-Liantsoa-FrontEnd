@@ -1,0 +1,93 @@
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Offre spéciale / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div *ngIf="offer" class="row">
+                    <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
+                        <h4>Offre spéciale sur le service: {{offer.service.name}}</h4>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="first">
+                                <img class="img-fluid" [src]="offer.service.picture" alt="Image d'un service">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table header-border table-responsive-sm">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Date de l'offre:</strong></td>
+                                        <td>
+                                            <ul>
+                                                <li>- Début: {{offer.startDate | date:'dd/MM/yyyy' }} à {{formatHour(offer.hourBegin) }}</li>
+                                                <li>- Fin: {{offer.endDate | date:'dd/MM/yyyy' }} à {{formatHour(offer.hourEnd) }}</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Réduction de l'offre:</strong></td>
+                                        <td>
+                                            {{offer.percentage}} %
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Description de l'offre:</strong></td>
+                                        <td>
+                                            {{offer.description}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Prix du service:</strong></td>
+                                        <td>
+                                            {{offer.service.price | number:'1.2-2'}} Ar
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Durée du service:</strong></td>
+                                        <td>
+                                            {{formatHour(offer.service.duration)}} h
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Commission du service:</strong></td>
+                                        <td>
+                                            {{offer.service.commission}} %
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Description du service:</strong></td>
+                                        <td>
+                                            {{offer.service.description}} %
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <a class="btn btn-info mt-3" (click)="sendMail()"><span
+                                                    class="btn-icon-start text-danger"><i
+                                                        class="fa fa-envelope color-danger"></i>
+                                                </span>Informer les clients de l'offre via email</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

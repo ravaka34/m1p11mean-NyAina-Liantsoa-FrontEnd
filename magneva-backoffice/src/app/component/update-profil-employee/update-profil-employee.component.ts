@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../body/body.component';
 import { EmployeeService } from '../../service/employee.service';
 import { CommonModule } from '@angular/common';
@@ -7,9 +7,9 @@ import { SuccessComponent } from '../../template/success/success.component';
 import { ErrorComponent } from '../../template/error/error.component';
 import { LoaderComponent } from '../../template/loader/loader.component';
 import { ActivatedRoute } from '@angular/router';
-import { PageTitleService } from '../../service/page-title.service';
 import { ImageService } from '../../service/image.service';
 import moment from 'moment';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-update-profil-employee',
@@ -34,9 +34,11 @@ export class UpdateProfilEmployeeComponent extends BodyComponent implements OnIn
   employeID: string = "";
   employee: any;
   imageURL: string = "";
-  employeeService = inject(EmployeeService);
-  imageService = inject(ImageService);
-  loading: boolean = false;
+
+  employeeService : EmployeeService = inject(EmployeeService);
+  imageService : ImageService= inject(ImageService);
+  loaderService : LoaderService = inject(LoaderService);
+  
   error: string = "";
   success: string = "";
 
@@ -46,10 +48,9 @@ export class UpdateProfilEmployeeComponent extends BodyComponent implements OnIn
   ];
 
   constructor(
-    private route: ActivatedRoute, 
-    pageTitleService: PageTitleService
+    private route: ActivatedRoute
   ){
-    super(pageTitleService);
+    super();
   }
 
   ngOnInit(): void {
@@ -67,7 +68,7 @@ export class UpdateProfilEmployeeComponent extends BodyComponent implements OnIn
   });
 
   getEmployee(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeID = this.route.snapshot.paramMap.get('idEmploye') ?? "";
     this.employeeService.getEmployee(this.employeID).subscribe(
       (data) =>{
@@ -82,11 +83,11 @@ export class UpdateProfilEmployeeComponent extends BodyComponent implements OnIn
           startDate: moment(new Date(this.employee.info.employee.startDate)).format('YYYY-MM-DD')
         });
         this.imageURL = this.employee.info.employee.picture;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
@@ -103,13 +104,13 @@ export class UpdateProfilEmployeeComponent extends BodyComponent implements OnIn
       .catch(error => {
         this.error = "Une erreur s'est produite lors de la conversion du fichier en base64";
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       });
     }
   }
 
   updateEmployee(){
-    this.loading = true;
+    this.loaderService.showLoader();
     const body = {
       name: this.applyForm.value.name,
       firstName: this.applyForm.value.firstName,
@@ -123,12 +124,12 @@ export class UpdateProfilEmployeeComponent extends BodyComponent implements OnIn
       (data) =>{
         this.success = "Modification effectuée avec succès!";
         this.error = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }

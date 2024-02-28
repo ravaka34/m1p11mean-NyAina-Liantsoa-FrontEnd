@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { PageTitleService } from '../../../../service/page-title.service';
+import { Component, OnInit, inject } from '@angular/core';
 import { ServiceService } from '../../../../service/service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { CommonModule } from '@angular/common';
 import { BodyComponent } from '../../../../component/body/body.component';
 import { HeureService } from '../../../../service/heure.service';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-detail-service',
   standalone: true,
   imports: [
     CommonModule,
-    LoaderComponent,
     ErrorComponent,
     RouterModule
   ],
@@ -22,7 +20,10 @@ import { HeureService } from '../../../../service/heure.service';
 })
 export class DetailComponent extends BodyComponent implements OnInit{
 
-  loading: boolean = false;
+  loaderService : LoaderService = inject(LoaderService);
+  serviceService: ServiceService = inject(ServiceService);
+  heureService: HeureService = inject(HeureService);
+
   error: string = "";
   success: string = "";
 
@@ -32,12 +33,9 @@ export class DetailComponent extends BodyComponent implements OnInit{
   override title = "Détail Service"; 
 
   constructor(
-    pageTitleService: PageTitleService,
-    private serviceService: ServiceService,
-    private route: ActivatedRoute,
-    private heureService: HeureService
+    private route: ActivatedRoute
   ) {
-    super(pageTitleService);
+    super();
   }
 
   ngOnInit(): void {
@@ -50,16 +48,16 @@ export class DetailComponent extends BodyComponent implements OnInit{
   }
 
   getService(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.serviceID = this.route.snapshot.paramMap.get('idService') ?? "";
     this.serviceService.getService(this.serviceID).subscribe(
       (data) =>{
         this.service = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }

@@ -1,0 +1,28 @@
+<div *ngIf="employee" >
+  <p>employee-details works!</p>
+  <p> {{ employee.entity.name }} {{ employee.entity.firstName }}</p>
+  <p>
+    Ses activites :
+  </p>
+  <p> Note : {{ employee.note }} </p>
+
+  <h3> Votre revue :</h3>
+    <div *ngIf="!employee.userReview; elseBlock" >
+      Vous n'avez pas encore donnez votre avis
+      <button (click)="openAddReview()" > Ajouter mon avis </button>
+    </div>
+
+    <app-review-card #elseBlock [review]="employee.userReview" [updatable]="true" > </app-review-card>
+
+
+  <h3> Les revues :</h3>
+  <ng-container *ngIf="employee.reviews.length > 0; else noReviews">
+    <app-review-card *ngFor="let review of employee.reviews" [review]="review"></app-review-card>
+  </ng-container>
+
+  <ng-template #noReviews>
+    <p>Pas encore de revue.</p>
+  </ng-template>
+</div>
+
+

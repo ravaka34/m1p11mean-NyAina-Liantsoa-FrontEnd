@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../../component/body/body.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { CommonModule } from '@angular/common';
 import { SuccessComponent } from '../../../../template/success/success.component';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { PieceService } from '../../../../service/piece.service';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-form-piece',
@@ -31,7 +31,10 @@ export class FormPieceComponent extends BodyComponent implements OnInit{
   @Input() titleForm!: string;
 
   expenseCategory: any;
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  pieceService: PieceService = inject(PieceService);
+
   error: string = "";
   success: string = "";
 
@@ -42,11 +45,8 @@ export class FormPieceComponent extends BodyComponent implements OnInit{
     name: new FormControl('')
   });
 
-  constructor(
-    pageTitleService: PageTitleService,
-    private pieceService: PieceService
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
@@ -58,18 +58,18 @@ export class FormPieceComponent extends BodyComponent implements OnInit{
     const body = {
       name: this.applyForm.value.name
     }
-    this.loading = true;
+    this.loaderService.showLoader();
     if(this.isCreate){
       this.pieceService.createPiece(body).subscribe(
         (data) =>{
           this.success = "Pièce créée avec succès!";
           this.error = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         },
         (error) =>{
           this.error = error.error.message;
           this.success = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         }
       );
     }

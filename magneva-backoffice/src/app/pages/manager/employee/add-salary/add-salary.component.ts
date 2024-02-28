@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { SuccessComponent } from '../../../../template/success/success.component';
@@ -9,6 +8,7 @@ import { DateService } from '../../../../service/date.service';
 import { EmployeeService } from '../../../../service/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BodyComponent } from '../../../../component/body/body.component';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-add-salary',
@@ -30,7 +30,10 @@ export class AddSalaryComponent extends BodyComponent implements OnInit{
 
   override title: string = "Ajout/Modification salaire";
 
-  loading: boolean = false;
+  loaderService : LoaderService = inject(LoaderService);
+  dateService: DateService = inject(DateService);
+  employeeService: EmployeeService = inject(EmployeeService);
+
   error: string = "";
   success: string = "";
 
@@ -38,13 +41,10 @@ export class AddSalaryComponent extends BodyComponent implements OnInit{
   employee: any;
 
   constructor(
-    pageTitleService: PageTitleService,
-    private dateService: DateService,
-    private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    super(pageTitleService);
+    super();
   }
 
   applyForm = new FormGroup({
@@ -58,16 +58,16 @@ export class AddSalaryComponent extends BodyComponent implements OnInit{
   }
 
   getEmployee(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeID = this.route.snapshot.paramMap.get('idEmploye') ?? "";
     this.employeeService.getEmployee(this.employeID).subscribe(
       (data) =>{
         this.employee = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
@@ -82,12 +82,12 @@ export class AddSalaryComponent extends BodyComponent implements OnInit{
       (data) =>{
         this.router.navigate(["/manager/employe/detail/"+this.employee.info.employee._id]);
         this.error = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
 
