@@ -1,5 +1,3 @@
-<app-loader *ngIf="loading"></app-loader>
-
 <div class="row page-titles">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Rendez-Vous / <span class="text-primary"> {{title}}</span></li>
@@ -64,10 +62,13 @@
                                 <th scope="col" class="text-uppercase">Prix</th>
                                 <th scope="col" class="text-uppercase">Commission</th>
                                 <th scope="col" class="text-uppercase">Horaires</th>
-                                <th scope="col" class="text-uppercase">Statu</th>
+                                <th scope="col" class="text-uppercase">Statut</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <tr *ngIf="appointments.length === 0">
+                                <td colspan="7">Aucun rendez-vous</td>
+                            </tr>
                             <tr *ngFor="let appointment of appointments">
                                 <td>
                                     {{appointment.appointment.date | date:'yyyy-MM-dd'}}

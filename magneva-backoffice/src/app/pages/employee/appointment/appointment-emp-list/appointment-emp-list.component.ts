@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../../component/body/body.component';
 import { PageTitleService } from '../../../../service/page-title.service';
 import { EmployeeService } from '../../../../service/employee.service';
@@ -8,6 +8,7 @@ import { ErrorComponent } from '../../../../template/error/error.component';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { HeureService } from '../../../../service/heure.service';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-appointment-emp-list',
@@ -15,7 +16,6 @@ import { HeureService } from '../../../../service/heure.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LoaderComponent,
     ErrorComponent,
     SuccessComponent
   ],
@@ -26,21 +26,21 @@ export class AppointmentEmpListComponent extends BodyComponent implements OnInit
 
   override title = "Liste";
   appointments: any = [];
-  loading: boolean = false;
+  
+  loaderService : LoaderService = inject(LoaderService);
+  employeeService: EmployeeService = inject(EmployeeService);
+  heureService: HeureService = inject(HeureService);
+
   error: string = "";
   success: string = "";
-  employeeID: string = "65dc447ccf95340c0db28eec";
+  employeeID: string = "65dc4454cf95340c0db28ee4";
 
-  constructor(
-    pageTitleService: PageTitleService, 
-    private employeeService: EmployeeService,
-    private heureService: HeureService
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loaderService.showLoader();
     this.setPageTitleService();
     this.getAllAppointment();
   }
@@ -57,7 +57,7 @@ export class AppointmentEmpListComponent extends BodyComponent implements OnInit
   
   status = [
     {"value": 0, "name":"Pas terminé"},
-    {"value": 0, "name":"Terminé"},
+    {"value": 1, "name":"Terminé"},
   ]
 
   getAllAppointment() {
@@ -66,19 +66,18 @@ export class AppointmentEmpListComponent extends BodyComponent implements OnInit
       endDate: this.applyForm.value.endDate,
       isFinished: this.applyForm.value.isFinished
     };
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeeService.getAllAppointment(this.employeeID, body).subscribe(
       (data) => {
         this.success = "";
         this.appointments = data;
-        console.log(this.appointments);
-        this.loading = false;
+        this.loaderService.hideLoader();
         this.error = "";
       },
       (error) => {
         this.success = "";
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
     );
   }
