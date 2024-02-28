@@ -1,8 +1,6 @@
-
-
 <div class="row page-titles">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Service / <span class="text-primary"> {{title}}</span></li>
+        <li class="breadcrumb-item">Offre Spéciale / <span class="text-primary"> {{title}}</span></li>
     </ol>
 </div>
 
@@ -10,7 +8,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">{{h4}} </h4>
+                <h4 class="card-title">Ajouter une nouvelle offre</h4>
             </div>
             <div class="card-body">
                 <div *ngIf="error" class="row">
@@ -24,26 +22,44 @@
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="mb-3 row">
-                                    <label class="col-lg-4 col-form-label">Nom
+                                    <label class="col-lg-4 col-form-label">Date début
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" formControlName="name" required>
+                                        <input type="datetime-local" class="form-control" formControlName="startDate"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-lg-4 col-form-label">Prix (Ar)
+                                    <label class="col-lg-4 col-form-label">Date fin
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" formControlName="price" required>
+                                        <input type="datetime-local" class="form-control" formControlName="endDate"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-lg-4 col-form-label">Durée <span class="text-danger">*</span>
+                                    <label class="col-lg-4 col-form-label">Services
+                                        <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="time" class="form-control" formControlName="duree" required>
+                                        <select class="form-control" formControlName="service">
+                                            <option value="">Choisir un service</option>
+                                            <option *ngFor="let service of services"
+                                                [value]="service._id">{{ service.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="mb-3 row">
+                                    <label class="col-lg-4 col-form-label">Réduction
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" formControlName="percentage" required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -55,30 +71,10 @@
                                             required></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="mb-3 row">
-                                    <label class="col-lg-4 col-form-label">Commission <span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="commission" class="form-control" formControlName="commission"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
-                                    <label class="col-lg-4 col-form-label">Image <span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <div class="form-control image-container">
-                                            <p *ngIf="!imageDataUrl" >Faites glisser et déposez l'image ici.</p>
-                                            <img *ngIf="imageDataUrl" [src]="imageDataUrl" alt="Image déposée">
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="mb-3 row">
                                     <label class="col-lg-4 col-form-label"></label>
                                     <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary form-control">{{submit}}</button>
+                                        <button type="submit" class="btn btn-primary form-control">ENREGISTRER</button>
                                     </div>
                                 </div>
                             </div>

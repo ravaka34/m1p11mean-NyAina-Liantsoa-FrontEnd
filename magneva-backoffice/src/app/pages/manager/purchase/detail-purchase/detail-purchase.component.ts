@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BodyComponent } from '../../../../component/body/body.component';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { PurchaseService } from '../../../../service/purchase.service';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-detail-purchase',
@@ -21,7 +21,9 @@ import { PurchaseService } from '../../../../service/purchase.service';
 })
 export class DetailPurchaseComponent extends BodyComponent implements OnInit{
 
-  loading: boolean = false;
+  loaderService : LoaderService = inject(LoaderService);
+  purchaseService: PurchaseService = inject(PurchaseService);
+
   error: string = "";
   success: string = "";
 
@@ -31,11 +33,9 @@ export class DetailPurchaseComponent extends BodyComponent implements OnInit{
   override title = "Détail Achat"; 
 
   constructor(
-    pageTitleService: PageTitleService,
-    private purchaseService: PurchaseService,
     private route: ActivatedRoute
   ) {
-    super(pageTitleService);
+    super();
   }
 
   ngOnInit(): void {
@@ -44,16 +44,16 @@ export class DetailPurchaseComponent extends BodyComponent implements OnInit{
 }
 
 getPurchase(){
-  this.loading = true;
+  this.loaderService.showLoader();
   this.purchaseID = this.route.snapshot.paramMap.get('idPurchase') ?? "";
   this.purchaseService.getPurchase(this.purchaseID).subscribe(
     (data) =>{
       this.purchase = data;
-      this.loading = false;
+      this.loaderService.hideLoader();
     },
     (error) =>{
       this.error = error.error.message;
-      this.loading = false;
+      this.loaderService.hideLoader();
     }
   );
 }

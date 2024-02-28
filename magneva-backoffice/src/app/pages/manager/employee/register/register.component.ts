@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from '../../../../service/service.service';
 import { ErrorComponent } from '../../../../template/error/error.component';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { EmployeeService } from '../../../../service/employee.service';
 import { SuccessComponent } from '../../../../template/success/success.component';
 import { ImageService } from '../../../../service/image.service';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { BodyComponent } from '../../../../component/body/body.component';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -34,14 +34,15 @@ export class RegisterComponent extends BodyComponent implements OnInit{
 
   services: any[] = [];
 
+  loaderService : LoaderService = inject(LoaderService);
+  employeeService: EmployeeService = inject(EmployeeService);
+  serviceService: ServiceService = inject(ServiceService);
+  imageService: ImageService = inject(ImageService);
+
   constructor(
-    pageTitleService: PageTitleService, 
-    private employeeService: EmployeeService,
-    private serviceService: ServiceService,
-    private formBuilder: FormBuilder,
-    private imageService: ImageService
+    private formBuilder: FormBuilder
   ) {
-    super(pageTitleService);
+    super();
   }
 
   applyForm = new FormGroup({
@@ -55,7 +56,6 @@ export class RegisterComponent extends BodyComponent implements OnInit{
     serviceCheckbox: this.formBuilder.array([])
   });
   
-  loading: boolean = false;
   error: string = "";
   success: string = "";
 
@@ -71,16 +71,16 @@ export class RegisterComponent extends BodyComponent implements OnInit{
   }
 
   getAllServices(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.serviceService.getAllServices().subscribe(
       (data) =>{
         this.services = data;
         this.addCheckboxes();
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
@@ -108,7 +108,7 @@ export class RegisterComponent extends BodyComponent implements OnInit{
 
     const fileInput = document.getElementById('picture') as HTMLInputElement;
     if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      this.loading = true;
+      this.loaderService.showLoader();
       const file = fileInput.files[0];
       await this.imageService.fileToBase64(file).then((base64String: string | null) => {
         const body = {
@@ -127,19 +127,19 @@ export class RegisterComponent extends BodyComponent implements OnInit{
           (data) =>{
             this.success = "Employé(e) créé(e) avec succès!";
             this.error = "";
-            this.loading = false;
+            this.loaderService.hideLoader();
           },
           (error) =>{
             this.error = error.error.message;
             this.success = "";
-            this.loading = false;
+            this.loaderService.hideLoader();
           }
         );
       })
       .catch(error => {
         this.error = "Une erreur s'est produite lors de la conversion du fichier en base64";
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       });
     }else{
       this.error = "Image requise";

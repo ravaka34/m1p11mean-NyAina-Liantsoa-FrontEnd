@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { ServiceService } from '../../../../service/service.service';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from '../../../../template/error/error.component';
@@ -9,6 +8,7 @@ import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
 import { BodyComponent } from '../../../../component/body/body.component';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-form-service',
@@ -35,7 +35,10 @@ export class FormServiceComponent extends BodyComponent implements OnInit{
 
   h4: string = "Ajouter un nouveau service";
   submit: string = "ENREGISTRER";
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  serviceService: ServiceService = inject(ServiceService);
+
   error: string = "";
   success: string = "";
 
@@ -50,11 +53,9 @@ export class FormServiceComponent extends BodyComponent implements OnInit{
   });
 
   constructor(
-    pageTitleService: PageTitleService,
-    private serviceService: ServiceService,
     private route: ActivatedRoute
   ) {
-    super(pageTitleService);
+    super();
   }
 
   ngOnInit(): void{
@@ -88,7 +89,7 @@ export class FormServiceComponent extends BodyComponent implements OnInit{
   }
 
   getService(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.serviceID = this.route.snapshot.paramMap.get('idService') ?? "";
     this.serviceService.getService(this.serviceID).subscribe(
       (data) =>{
@@ -103,11 +104,11 @@ export class FormServiceComponent extends BodyComponent implements OnInit{
         this.imageDataUrl = this.service.picture;
         this.h4 = "Modifier un service";
         this.submit = "MODIFIER";
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
@@ -123,18 +124,18 @@ export class FormServiceComponent extends BodyComponent implements OnInit{
     }
     console.log(body);
 
-    this.loading = true;
+    this.loaderService.showLoader();
     if(this.isCreate){
       this.serviceService.createService(body).subscribe(
         (data) =>{
           this.success = "Service créé avec succès!";
           this.error = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         },
         (error) =>{
           this.error = error.error.message;
           this.success = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         }
       );
     }else{
@@ -142,12 +143,12 @@ export class FormServiceComponent extends BodyComponent implements OnInit{
         (data) =>{
           this.success = "Service créé avec succès!";
           this.error = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         },
         (error) =>{
           this.error = error.error.message;
           this.success = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         }
       );
     }

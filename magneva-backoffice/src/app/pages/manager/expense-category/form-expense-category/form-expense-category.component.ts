@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../../component/body/body.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PageTitleService } from '../../../../service/page-title.service';
 import { ErrorComponent } from '../../../../template/error/error.component';
 import { CommonModule } from '@angular/common';
 import { SuccessComponent } from '../../../../template/success/success.component';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { ExpenseCategoryService } from '../../../../service/expense-category.service';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-form-expense-category',
@@ -31,7 +31,10 @@ export class FormExpenseCategoryComponent extends BodyComponent implements OnIni
   @Input() titleForm!: string;
 
   expenseCategory: any;
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  expenseCategoryService: ExpenseCategoryService = inject(ExpenseCategoryService);
+
   error: string = "";
   success: string = "";
 
@@ -43,11 +46,8 @@ export class FormExpenseCategoryComponent extends BodyComponent implements OnIni
     type: new FormControl(1)
   });
 
-  constructor(
-    pageTitleService: PageTitleService,
-    private expenseCategoryService: ExpenseCategoryService
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
@@ -65,18 +65,18 @@ export class FormExpenseCategoryComponent extends BodyComponent implements OnIni
       name: this.applyForm.value.name,
       type: this.applyForm.value.type
     }
-    this.loading = true;
+    this.loaderService.showLoader();
     if(this.isCreate){
       this.expenseCategoryService.createExpenseCategory(body).subscribe(
         (data) =>{
           this.success = "Type dépense créé avec succès!";
           this.error = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         },
         (error) =>{
           this.error = error.error.message;
           this.success = "";
-          this.loading = false;
+          this.loaderService.hideLoader();
         }
       );
     }

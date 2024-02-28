@@ -2,12 +2,12 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../body/body.component';
 import { EmployeeService } from '../../service/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PageTitleService } from '../../service/page-title.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SuccessComponent } from '../../template/success/success.component';
 import { ErrorComponent } from '../../template/error/error.component';
 import { LoaderComponent } from '../../template/loader/loader.component';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-update-mdp-employee',
@@ -32,17 +32,16 @@ export class UpdateMdpEmployeeComponent extends BodyComponent implements OnInit{
   @Input() isManager!: boolean;
   
   employeID: string = "";
-  employeeService = inject(EmployeeService);
-  loading: boolean = false;
+  employeeService : EmployeeService = inject(EmployeeService);
+  loaderService : LoaderService = inject(LoaderService);
   error: string = "";
   success: string = "";
 
   constructor(
-    private route: ActivatedRoute, 
-    pageTitleService: PageTitleService,
+    private route: ActivatedRoute,
     private router: Router
   ){
-    super(pageTitleService);
+    super();
   }
 
   ngOnInit(): void {
@@ -66,7 +65,7 @@ export class UpdateMdpEmployeeComponent extends BodyComponent implements OnInit{
   }
 
   updatePassword(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeID = this.route.snapshot.paramMap.get('idEmploye') ?? "";
     const body = {
       lastPassword: this.applyForm.value.lastPassword,
@@ -74,7 +73,7 @@ export class UpdateMdpEmployeeComponent extends BodyComponent implements OnInit{
     }
     this.employeeService.updatePassword(this.employeID, body).subscribe(
       (data) =>{
-        this.loading = false;
+        this.loaderService.hideLoader();
         if(this.isManager){
           this.success = "Mot de passe changé avec succès!";
           this.error = "";
@@ -86,7 +85,7 @@ export class UpdateMdpEmployeeComponent extends BodyComponent implements OnInit{
       (error) =>{
         this.error = error.error.message;
         this.success = "";
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   };

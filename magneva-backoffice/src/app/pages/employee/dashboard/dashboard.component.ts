@@ -1,13 +1,13 @@
 import { ErrorComponent } from '../../../template/error/error.component';
 import { LoaderComponent } from '../../../template/loader/loader.component';
-import { PageTitleService } from '../../../service/page-title.service';
 import { EmployeeService } from '../../../service/employee.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BodyComponent } from '../../../component/body/body.component';
 import { HeureService } from '../../../service/heure.service';
 import { SuccessComponent } from '../../../template/success/success.component';
+import { LoaderService } from '../../../service/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +25,11 @@ export class DashboardComponent extends BodyComponent implements OnInit{
 
   override title = "Accueil";
   tasks: any;
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  employeeService: EmployeeService = inject(EmployeeService);
+  heureService: HeureService = inject(HeureService);
+  
   error: string = "";
   error2 : string = "";
   success: string = "";
@@ -33,16 +37,13 @@ export class DashboardComponent extends BodyComponent implements OnInit{
   today = new Date();
 
   constructor(
-    private route: ActivatedRoute, 
-    pageTitleService: PageTitleService, 
-    private employeeService: EmployeeService,
-    private heureService: HeureService
+    private route: ActivatedRoute
   ) {
-    super(pageTitleService);
+    super();
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loaderService.showLoader();
     this.setPageTitleService();
     this.getTasksOfDay();
   }
@@ -55,17 +56,17 @@ export class DashboardComponent extends BodyComponent implements OnInit{
     this.employeeService.getTasksOfDay(this.employeID).subscribe(
       (data) => {
         this.tasks = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) => {
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
     );
   }
 
   finishTask(appointmentDetailID: string){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeeService.finishTask(appointmentDetailID).subscribe(
       (data) => {
         this.getTasksOfDay();
@@ -74,7 +75,7 @@ export class DashboardComponent extends BodyComponent implements OnInit{
       },
       (error) => {
         this.error2 = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
         this.error = "";
         this.success = "";
       },

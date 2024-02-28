@@ -24,6 +24,9 @@ import { ListPurchaseComponent } from './pages/manager/purchase/list-purchase/li
 import { DetailPurchaseComponent } from './pages/manager/purchase/detail-purchase/detail-purchase.component';
 import { CreatePurchaseComponent } from './pages/manager/purchase/create-purchase/create-purchase.component';
 import { DashboardComponent } from './pages/employee/dashboard/dashboard.component';
+import { ListOfferComponent } from './pages/manager/offer/list-offer/list-offer.component';
+import { DetailOfferComponent } from './pages/manager/offer/detail-offer/detail-offer.component';
+import { CreateOfferComponent } from './pages/manager/offer/create-offer/create-offer.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -55,6 +58,9 @@ export const routes: Routes = [
   { path: 'manager/achat/detail/:idPurchase', component: DetailPurchaseComponent, title: "Détail achat"},  
   { path: 'manager/achat/ajout', component: CreatePurchaseComponent, title: "Nouveau achat"}, 
   
+  { path: 'manager/offreSpecial/liste', component: ListOfferComponent, title: "Liste des offres spéciales"}, 
+  { path: 'manager/offreSpecial/detail/:idOffer', component: DetailOfferComponent, title: "Détail d'une offre spéciale"}, 
+  { path: 'manager/offreSpecial/ajout', component: CreateOfferComponent, title: "Nouvelle offre spéciale"}, 
   
   { path: 'employe/accueil', component: DashboardComponent, title: "Accueil"},
   { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},

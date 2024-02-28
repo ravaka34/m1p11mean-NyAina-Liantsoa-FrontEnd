@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { PageTitleService } from '../../../../service/page-title.service';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from '../../../../template/loader/loader.component';
@@ -8,6 +7,7 @@ import { BodyComponent } from '../../../../component/body/body.component';
 import { ExpenseService } from '../../../../service/expense.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SuccessComponent } from '../../../../template/success/success.component';
+import { LoaderService } from '../../../../service/loader.service';
 
 @Component({
   selector: 'app-list',
@@ -30,19 +30,19 @@ export class ListExpenseComponent extends BodyComponent implements OnInit {
 
   override title = "Liste";
   expenses: any = [];
-  loading: boolean = false;
+
+  loaderService : LoaderService = inject(LoaderService);
+  expenseService: ExpenseService = inject(ExpenseService);
+
   error: string = "";
   success: string = "";
 
-  constructor(
-    pageTitleService: PageTitleService, 
-    private expenseService: ExpenseService
-  ) {
-    super(pageTitleService);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loaderService.showLoader();
     this.setPageTitleService();
     this.getAllExpenses();
   }
@@ -66,18 +66,18 @@ export class ListExpenseComponent extends BodyComponent implements OnInit {
       expenseCategoryName: this.applyForm.value.expenseCategoryName,
       expenseCategoryType: this.applyForm.value.expenseCategoryType
     };
-    this.loading = true;
+    this.loaderService.showLoader();
     this.expenseService.getAllExpenses(body).subscribe(
       (data) => {
         this.success = "";
         this.expenses = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
         this.error = "";
       },
       (error) => {
         this.success = "";
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
     );
   }
@@ -88,17 +88,17 @@ export class ListExpenseComponent extends BodyComponent implements OnInit {
 
   deleteExpense(expenseID: string){
     console.log(expenseID);
-    this.loading = true;
+    this.loaderService.showLoader();
     this.expenseService.deleteExpense(expenseID).subscribe(
       (data) => {
         this.success = "Dépense supprimée avec succès.";
         this.expenses = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
         this.error = "";
       },
       (error) => {
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
         this.success = "";
       },
     );

@@ -3,11 +3,11 @@ import { BodyComponent } from '../body/body.component';
 import { EmployeeService } from '../../service/employee.service';
 import { ServiceService } from '../../service/service.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { PageTitleService } from '../../service/page-title.service';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../../template/loader/loader.component';
 import { ErrorComponent } from '../../template/error/error.component';
 import { SuccessComponent } from '../../template/success/success.component';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-detail-employee',
@@ -35,42 +35,44 @@ export class DetailEmployeeComponent extends BodyComponent implements OnInit{
   employeID: string = "";
   employee: any;
   services: any[] = [];
+
   employeeService = inject(EmployeeService);
   serviceService = inject(ServiceService);
-  loading: boolean = false;
+  loaderService : LoaderService = inject(LoaderService);
+
   error: string = "";
   errorService: string = "";
   success: string = "";
 
-  constructor(private route: ActivatedRoute, pageTitleService: PageTitleService){
-    super(pageTitleService);
+  constructor(private route: ActivatedRoute){
+    super();
   }
 
   getEmployee(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeID = this.route.snapshot.paramMap.get('idEmploye') ?? "";
     this.employeeService.getEmployee(this.employeID).subscribe(
       (data) =>{
         this.employee = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
 
   getAllServices(){
-    this.loading = true;
+    this.loaderService.showLoader();
     this.serviceService.getAllServices().subscribe(
       (data) =>{
         this.services = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
       },
       (error) =>{
         this.error = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
       }
     );
   }
@@ -90,11 +92,11 @@ export class DetailEmployeeComponent extends BodyComponent implements OnInit{
       serviceEmployeeID: this.employee.info._id,
       serviceID: serviceID
     };
-    this.loading = true;
+    this.loaderService.showLoader();
     this.employeeService.removeOrAddService(this.employee.info.employee._id, body, isAddService).subscribe(
       (data) =>{
         this.employee = data;
-        this.loading = false;
+        this.loaderService.hideLoader();
         if( isAddService ){
           this.success = "Ajout effectué avec succès.";
         }else{
@@ -105,7 +107,7 @@ export class DetailEmployeeComponent extends BodyComponent implements OnInit{
       },
       (error) =>{
         this.errorService = error.error.message;
-        this.loading = false;
+        this.loaderService.hideLoader();
         this.success = "";
         this.error = "";
       }

@@ -64,6 +64,15 @@
                     <li><a [routerLink]="['manager/achat/liste']">Liste</a></li>
                 </ul>
             </li>
+            <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-gift"></i>
+                    <span class="nav-text">Offre spéciale</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/offreSpecial/ajout']">Nouvelle offre</a></li>
+                    <li><a [routerLink]="['manager/offreSpecial/liste']">Liste</a></li>
+                </ul>
+            </li>
 
 
             <li><a [routerLink]="['employe/accueil']">
