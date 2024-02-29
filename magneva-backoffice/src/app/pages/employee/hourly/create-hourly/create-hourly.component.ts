@@ -26,7 +26,7 @@ export class CreateHourlyComponent extends BodyComponent implements OnInit{
   loaderService : LoaderService = inject(LoaderService);
   hourlyService : HourlyService = inject(HourlyService);
 
-  employeeID : string = "65e0c80b14ccd438357aa3ef";
+  employeeID : string = this.getUserId();
 
   error: string = "";
   success: string = "";

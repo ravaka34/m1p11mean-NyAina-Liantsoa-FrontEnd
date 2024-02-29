@@ -30,7 +30,7 @@ export class UpdateMdpEmployeeComponent extends BodyComponent implements OnInit{
   override title: string = "Modifier mot de passe";
 
   @Input() isManager!: boolean;
-  
+
   employeID: string = "";
   employeeService : EmployeeService = inject(EmployeeService);
   loaderService : LoaderService = inject(LoaderService);
@@ -80,7 +80,7 @@ export class UpdateMdpEmployeeComponent extends BodyComponent implements OnInit{
           this.error = "";
         }
         else{
-          this.router.navigate(["/connexion"]);
+          this.router.navigate(["/employe/connexion"]);
         }
       },
       (error) =>{
