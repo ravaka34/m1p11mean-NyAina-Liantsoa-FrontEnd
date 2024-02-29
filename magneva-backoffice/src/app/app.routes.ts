@@ -34,6 +34,7 @@ import { DashboardManagerComponent } from './pages/manager/dashboard-manager/das
 import { ListRdvComponent } from './pages/manager/appointment/list-rdv/list-rdv.component';
 import { LoginManagerComponent } from './pages/manager/login-manager/login-manager.component';
 import { LoginEmployeeComponent } from './pages/employee/login-employee/login-employee.component';
+import { LogoutComponent } from './component/logout/logout.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -57,26 +58,26 @@ export const routes: Routes = [
   { path: 'manager/service/liste', component: ListService, title: "Liste des services"},
   { path: 'manager/service/modifier/:idService', component: UpdateService, title: "Modifier service"},
   { path: 'manager/service/detail/:idService', component: DetailService, title: "Détail service"},
-  
+
   { path: 'manager/typeDepense/ajout', component: CreateExpenseCategoryComponent, title: "Nouveau Type de dépense"},
-  { path: 'manager/typeDepense/liste', component: ListExpenseCategoryComponent, title: "Liste types de dépense"}, 
+  { path: 'manager/typeDepense/liste', component: ListExpenseCategoryComponent, title: "Liste types de dépense"},
 
-  { path: 'manager/depense/liste', component: ListExpenseComponent, title: "Liste des dépenses"}, 
-  { path: 'manager/depense/ajout', component: CreateExpenseComponent, title: "Nouveau dépense"}, 
+  { path: 'manager/depense/liste', component: ListExpenseComponent, title: "Liste des dépenses"},
+  { path: 'manager/depense/ajout', component: CreateExpenseComponent, title: "Nouveau dépense"},
 
-  { path: 'manager/piece/ajout', component: CreatePieceComponent, title: "Nouvelle pièce"}, 
-  { path: 'manager/piece/liste', component: ListPieceComponent, title: "Liste des pièces"}, 
+  { path: 'manager/piece/ajout', component: CreatePieceComponent, title: "Nouvelle pièce"},
+  { path: 'manager/piece/liste', component: ListPieceComponent, title: "Liste des pièces"},
 
-  { path: 'manager/achat/liste', component: ListPurchaseComponent, title: "Liste des achats"}, 
-  { path: 'manager/achat/detail/:idPurchase', component: DetailPurchaseComponent, title: "Détail achat"},  
-  { path: 'manager/achat/ajout', component: CreatePurchaseComponent, title: "Nouveau achat"}, 
-  
-  { path: 'manager/offreSpecial/liste', component: ListOfferComponent, title: "Liste des offres spéciales"}, 
-  { path: 'manager/offreSpecial/detail/:idOffer', component: DetailOfferComponent, title: "Détail d'une offre spéciale"}, 
-  { path: 'manager/offreSpecial/ajout', component: CreateOfferComponent, title: "Nouvelle offre spéciale"}, 
+  { path: 'manager/achat/liste', component: ListPurchaseComponent, title: "Liste des achats"},
+  { path: 'manager/achat/detail/:idPurchase', component: DetailPurchaseComponent, title: "Détail achat"},
+  { path: 'manager/achat/ajout', component: CreatePurchaseComponent, title: "Nouveau achat"},
 
-  { path: 'manager/rendezVous/liste', component: ListRdvComponent, title: "Liste rendez-vous"}, 
-  
+  { path: 'manager/offreSpecial/liste', component: ListOfferComponent, title: "Liste des offres spéciales"},
+  { path: 'manager/offreSpecial/detail/:idOffer', component: DetailOfferComponent, title: "Détail d'une offre spéciale"},
+  { path: 'manager/offreSpecial/ajout', component: CreateOfferComponent, title: "Nouvelle offre spéciale"},
+
+  { path: 'manager/rendezVous/liste', component: ListRdvComponent, title: "Liste rendez-vous"},
+
 
   { path: 'employe/connexion', component: LoginEmployeeComponent, title: "Connexion employé"},
 
@@ -91,4 +92,5 @@ export const routes: Routes = [
   { path: 'employe/horaire/detail', component: HourlyDetailComponent, title: "Détail horaire de travail"},
   { path: 'employe/horaire/ajout', component: CreateHourlyComponent, title: "Nouveau horaire de travail"},
 
+  { path: 'logout', component: LogoutComponent, title: "Se deconnecter"}
 ];

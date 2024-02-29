@@ -6,6 +6,7 @@ import { LocalStorageService } from '../../service/local-storage.service';
 import { Router, RouterModule } from '@angular/router';
 import { ErrorComponent } from '../../template/error/error.component';
 import { LoaderComponent } from '../../template/loader/loader.component';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit{
 
   loginService : LoginService = inject(LoginService);
   localStorageService : LocalStorageService = inject(LocalStorageService);
+  authService : AuthService = inject(AuthService);
 
   error : string = "";
   loading : boolean = false;
@@ -66,13 +68,13 @@ export class LoginComponent implements OnInit{
     this.loginService.login(body).subscribe(
       (data) =>{
         this.loading = false;
-        this.localStorageService.setItem("user", data);
+        this.authService.setUser(data);
         if(this.isManager){
-          this.localStorageService.setItem("isManager", 1);
           this.router.navigate(['/manager/accueil']);
+          this.authService.setIsManager(1);
         }else{
-          this.localStorageService.setItem("isManager", 0);
           this.router.navigate(['/employe/accueil']);
+          this.authService.setIsManager(0);
         }
       },
       (error) =>{

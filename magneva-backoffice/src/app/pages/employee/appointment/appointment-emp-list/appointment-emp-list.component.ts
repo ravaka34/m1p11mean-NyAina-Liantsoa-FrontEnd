@@ -9,6 +9,7 @@ import { LoaderComponent } from '../../../../template/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { HeureService } from '../../../../service/heure.service';
 import { LoaderService } from '../../../../service/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-emp-list',
@@ -26,14 +27,15 @@ export class AppointmentEmpListComponent extends BodyComponent implements OnInit
 
   override title = "Liste";
   appointments: any = [];
-  
+
   loaderService : LoaderService = inject(LoaderService);
   employeeService: EmployeeService = inject(EmployeeService);
   heureService: HeureService = inject(HeureService);
 
   error: string = "";
   success: string = "";
-  employeeID: string = "65e0c80b14ccd438357aa3ef";
+  employeeID: string = this.getUserId();
+  router: Router = inject(Router);
 
   constructor() {
     super();
@@ -54,7 +56,7 @@ export class AppointmentEmpListComponent extends BodyComponent implements OnInit
   formatHour(hour: Number) {
     return this.heureService.formatHour(hour);
   }
-  
+
   status = [
     {"value": 0, "name":"Pas terminé"},
     {"value": 1, "name":"Terminé"},

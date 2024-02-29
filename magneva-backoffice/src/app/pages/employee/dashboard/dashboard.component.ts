@@ -29,11 +29,11 @@ export class DashboardComponent extends BodyComponent implements OnInit{
   loaderService : LoaderService = inject(LoaderService);
   employeeService: EmployeeService = inject(EmployeeService);
   heureService: HeureService = inject(HeureService);
-  
+
   error: string = "";
   error2 : string = "";
   success: string = "";
-  employeID: string = "65e0c80b14ccd438357aa3ef";
+  employeID: string = this.getUserId();
   today = new Date();
 
   constructor(
@@ -51,7 +51,7 @@ export class DashboardComponent extends BodyComponent implements OnInit{
   formatHour(hour: Number) {
     return this.heureService.formatHour(hour);
   }
-  
+
   getTasksOfDay() {
     this.employeeService.getTasksOfDay(this.employeID).subscribe(
       (data) => {
