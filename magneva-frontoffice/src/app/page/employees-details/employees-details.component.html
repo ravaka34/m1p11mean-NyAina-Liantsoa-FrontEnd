@@ -1,28 +1,78 @@
-<div *ngIf="employee" >
-  <p>employee-details works!</p>
-  <p> {{ employee.entity.name }} {{ employee.entity.firstName }}</p>
-  <p>
-    Ses activites :
-  </p>
-  <p> Note : {{ employee.note }} </p>
-
-  <h3> Votre revue :</h3>
-    <div *ngIf="!employee.userReview; elseBlock" >
-      Vous n'avez pas encore donnez votre avis
-      <button (click)="openAddReview()" > Ajouter mon avis </button>
+<app-breadcrumb
+  [breadcrumbChilds]="breadcrumChilds"
+  [title]="title"
+></app-breadcrumb>
+<div class="container mt-5" *ngIf="employee">
+  <div class="row gx-60">
+    <div class="col-lg-3 col-xl-3 mb-40 mb-lg-0">
+      <div class="team-pic">
+        <img src="{{ employee.entity.picture }}" />
+      </div>
     </div>
+    <div class="col-lg-9 col-xl-9 align-self-center">
+      <div class="team-about">
+        <span class="team-degi">{{ services }}</span>
+        <h3 class="team-name h1">
+          {{ employee.entity.name }} {{ employee.entity.firstName }}
+        </h3>
+        <div class="team-info">
+          <ul class="list-unstyled">
+            <li>
+              <span class="title">Evaluation:</span> {{ employee.note }}
+              <i class="fas fa-star"> </i>
+            </li>
+            <li>
+              <span class="title">Phone:</span>
+              <a
+                class="text-inherit"
+                href="tel:{{ employee.entity.contact }}"
+                >{{ employee.entity.contact }}</a
+              >
+            </li>
+            <li>
+              <span class="title">Email:</span>
+              <a
+                class="text-inherit"
+                href="mailto:{{ employee.entity.email }}"
+                >{{ employee.entity.email }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <app-review-card #elseBlock [review]="employee.userReview" [updatable]="true" > </app-review-card>
+  <div class="mb-5">
+    <h5 class="mb-2">Votre revue</h5>
+  </div>
+  <div *ngIf="!employee.userReview; elseBlock">
+    Vous n'avez pas encore donnez votre avis
+    <button class="btn vs-btn" (click)="openAddReview()">Ajouter mon avis</button>
+  </div>
 
+  <div #elseBlock class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+      <app-review-card  [review]="employee.userReview" [updatable]="true"></app-review-card>
+    </div>
+  </div>
 
-  <h3> Les revues :</h3>
-  <ng-container *ngIf="employee.reviews.length > 0; else noReviews">
-    <app-review-card *ngFor="let review of employee.reviews" [review]="review"></app-review-card>
-  </ng-container>
+  <div class="mb-5">
+    <h5>Les Revues</h5>
+    <ng-container *ngIf="employee.reviews.length > 0; else noReviews">
+      <div class="row">
+        <app-review-card
+          class="col-md-4"
+          *ngFor="let review of employee.reviews"
+          [review]="review"
+        ></app-review-card>
+      </div>
+    </ng-container>
 
-  <ng-template #noReviews>
-    <p>Pas encore de revue.</p>
-  </ng-template>
+    <ng-template #noReviews>
+      <p>Pas encore de revue.</p>
+    </ng-template>
+  </div>
 </div>
-
-

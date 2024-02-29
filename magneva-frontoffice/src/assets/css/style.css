@@ -2205,7 +2205,7 @@ textarea.is-invalid {
     position: absolute;
     left: 150%;
     top: -50%;
-    height: 200%;
+    height: 100px;
     width: 100px;
     background-color: var(--white-color);
     z-index: 1;
@@ -5338,7 +5338,7 @@ blockquote.vs-quote cite:before {
 
 .blog-style1 .blog-img {
     overflow: hidden;
-    position: relative;
+    height: 250px;
     margin-bottom: 22px
 }
 
@@ -5572,7 +5572,9 @@ blockquote.vs-quote cite:before {
 }
 
 .blog-style4 .blog-img {
-    overflow: hidden
+    overflow: hidden;
+
+    height: 300px;
 }
 
 .blog-style4 .blog-img img {

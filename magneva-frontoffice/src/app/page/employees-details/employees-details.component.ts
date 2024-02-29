@@ -6,13 +6,16 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddReviewComponent } from '../../component/add-review/add-review.component';
 import { CommonModule } from '@angular/common';
 import { ReviewCardComponent } from '../../component/review-card/review-card.component';
+import { BreadcrumbChild } from '../../interface/breadcrumbchild';
+import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-employees-details',
   standalone: true,
   imports: [
     CommonModule,
-    ReviewCardComponent
+    ReviewCardComponent,
+    BreadcrumbComponent
   ],
   templateUrl: './employees-details.component.html',
   styleUrl: './employees-details.component.css'
@@ -23,16 +26,25 @@ export class EmployeesDetailsComponent {
   employee: any;
   loaderService: LoaderService = inject(LoaderService);
   dialog: MatDialog = inject(MatDialog);
+  title = "Details membre";
+  services = "";
 
   ngOnInit(){
     let employeeId = this.route.snapshot.params['id'];
     this.loaderService.showLoader();
     this.reviewService.getEntityWithReviews(employeeId, "employee").subscribe(
       data => {
-        this.employee = data;
         this.loaderService.hideLoader();
+        this.employee = data;
+        this.prepareStringService();
       }
     )
+  }
+
+  prepareStringService(){
+    for(let service of this.employee.services.services){
+      this.services += " "+service.name;
+  }
   }
 
   openAddReview(){
@@ -44,4 +56,15 @@ export class EmployeesDetailsComponent {
     };
     this.dialog.open(AddReviewComponent, dialogConfig);
   }
+
+  breadcrumChilds: BreadcrumbChild [] = [
+    {
+      title: "ACCUEIL",
+      link: "/accueil"
+    },
+    {
+      title: "RENDEZ-VOUS",
+      link: null
+    },
+  ]
 }

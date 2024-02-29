@@ -6,13 +6,16 @@ import { LoaderService } from '../../service/loader.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddReviewComponent } from '../../component/add-review/add-review.component';
 import { ReviewService } from '../../service/review.service';
+import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
+import { BreadcrumbChild } from '../../interface/breadcrumbchild';
 
 @Component({
   selector: 'app-service-details',
   standalone: true,
   imports: [
     CommonModule,
-    ReviewCardComponent
+    ReviewCardComponent,
+    BreadcrumbComponent
   ],
   templateUrl: './service-details.component.html',
   styleUrl: './service-details.component.css'
@@ -24,6 +27,22 @@ export class ServiceDetailsComponent {
   service: any;
   loaderService: LoaderService = inject(LoaderService);
   dialog: MatDialog = inject(MatDialog);
+  title = "Details Service"
+
+  breadcrumChilds: BreadcrumbChild [] = [
+    {
+      title: "ACCUEIL",
+      link: "/accueil"
+    },
+    {
+      title: "SERVICES",
+      link: "/services"
+    },
+    {
+      title: "Details",
+      link: null
+    },
+  ]
 
   ngOnInit(){
     let serviceId = this.route.snapshot.params['id'];

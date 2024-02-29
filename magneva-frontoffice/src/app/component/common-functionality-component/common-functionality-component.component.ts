@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-
+import moment from 'moment';
 
 @Component({
   selector: 'app-common-functionality-component',
@@ -25,5 +24,9 @@ export class CommonFunctionalityComponentComponent {
         console.log(`After navigation I am on:${this.router.url}`)
       })
     })
+  }
+
+  convertToReadableHour(hour: Number){
+    return  moment(hour.toString().padStart(4,'0'),  "HH:mm").format("HH:mm");
   }
 }

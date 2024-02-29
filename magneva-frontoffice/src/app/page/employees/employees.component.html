@@ -1,2 +1,23 @@
-<p>employees with reviews</p>
-<app-employee-card  *ngFor="let employee of employees" [employee]="employee"></app-employee-card>
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+      <div class="title-centered">
+        <h2 class="sec-title4">Nos membres</h2>
+        <p class="sec-text">
+          Ils sont dévoués à leurs passions et à vous offrir
+          la meilleure expérience à tous les utilisateurs.
+        </p>
+      </div>
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <app-employee-card class="col-md-4 mb-3" *ngFor="let employee of employees" [employee]="employee"></app-employee-card>
+  </div>
+</div>
+
+

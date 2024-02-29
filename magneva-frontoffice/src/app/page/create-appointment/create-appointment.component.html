@@ -1,88 +1,52 @@
-<div *ngIf="services">
-  <div>
-      <h3> Nos services </h3>
-      <app-choose-service *ngFor="let service of services" [service] = "service" [selectedServices]= "selectedServices"> </app-choose-service>
+<app-breadcrumb [breadcrumbChilds]="breadcrumChilds" [title]="title"> </app-breadcrumb>
+<div class="container mt-5" *ngIf="services">
+  <div class="row mb-5">
+      <h4 class="mb-4"> Selection des services </h4>
+      <!-- <div class="scrollable-div"> -->
+        <app-choose-service class=" row mb-3" *ngFor="let service of services" [service] = "service" [selectedServices]= "selectedServices"> </app-choose-service>
+      <!-- </div> -->
   </div>
 
-  <div>
-    <h3> Selection professionnels et ordre</h3>
-      <div  cdkDropList class="col-md-8" (cdkDropListDropped)="drop($event)">
+  <div class="row mb-5">
+    <h4 class="mb-4"> Choix des professionels et l'ordre </h4>
+      <div  cdkDropList (cdkDropListDropped)="drop($event)">
         <ng-container *ngFor="let service of selectedServices">
+          <div class="mb-3 row">
             <app-choose-employee [service] = "service" [employees]="employees" cdkDrag> </app-choose-employee>
+          </div>
         </ng-container>
       </div>
-      Nbr de service : {{ selectedServices.length }}
+      <div class="row " >
+        <p class="highlight"> {{ selectedServices.length }} Service(s), {{ duration }} h, {{ priceTotal | number:'1.2-2' }} Ar </p>
+      </div>
   </div>
 
-  <div>
-    <h3>Autres informations</h3>
-    <form [formGroup]="otherInformation" class="form-style2 appointment-form">
-      <div class="form-group">
-        <input type="date" formControlName="date" id="date" autocomplete="off" class="form-control" placeholder="Choisir la date">
+  <div class="mb-5">
+    <h4 class="mb-4">Autres informations</h4>
+
+    <form [formGroup]="otherInformation" class="appointment-form">
+
+      <div class="row mb-3">
+        <label for="date" class="col-1 col-form-label">Date</label>
+        <div class="col-4">
+          <input type="date" formControlName="date" id="date" autocomplete="off" class="input" placeholder="Choisir la date">
+        </div>
       </div>
-      <div class="form-group">
-        <input type="time" formControlName="hour" class="form-control" placeholder="Choisir l'heure" />
+
+      <div class="row mb-3">
+        <label for="time" class="col-1 col-form-label">L'heure</label>
+        <div class="col-4">
+          <input type="time" formControlName="hour" id="time"  class="input" >
+        </div>
+      </div>
+
+      <app-error-alert [error]="error" ></app-error-alert>
+
+      <div class="row">
+        <div class="col-2">
+          <button class="vs-btn" (click)="onClick()">Valider</button>
+        </div>
       </div>
     </form>
   </div>
-
-  <app-error-alert [error]="error" ></app-error-alert>
-
-  Nombre de service : {{ selectedServices.length }}
-  Duree : {{  duration }}
-  Prix total : {{ priceTotal }}
-  <div class="form-group">
-    <button (click)="onClick()">Valider</button>
-  </div>
-
 </div>
-
-
-
-
-
-<!-- <section class="bg-light-3 space shape-mockup-wrap">
-    <div class="container">
-      <div class="row gx-60">
-
-        <div class="col-xl-5 mb-40 mb-xl-0 pb-20 pb-xl-0 wow fadeInUp wow-animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-          <form [formGroup]="createForm" (submit)="onSubmit()" class="form-style2 appointment-form">
-            <h3 class="form-title mb-3">Prendre un rendez-vous</h3>
-            <div class="form-group">
-              <input type="date" formControlName="date" id="date" autocomplete="off" class="form-control" placeholder="Choisir la date">
-            </div>
-            <div class="form-group">
-              <input type="time" formControlName="hour" class="form-control" placeholder="Choisir l'heure" />
-            </div>
-            <app-error-alert [error]="error" ></app-error-alert>
-            <div class="form-group">
-              <button class="vs-btn" type="submit">Valider</button>
-            </div>
-          </form>
-        </div>
-
-        <div class="col-xl-7 wow fadeInUp wow-animated" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-          <div class="row">
-            <div class="col-12 mb-4">
-              <h2 class="h3 mb-4 mt-n2">Votre satisfaction est notre priorité absolue</h2>
-              <p class="fs-md font-title mb-4">
-                Notre priorité absolue est votre satisfaction.
-                Nous écoutons attentivement vos besoins et nous nous engageons
-                à les dépasser à chaque occasion. Notre équipe est dévouée à
-                vous offrir une expérience exceptionnelle, et nous sommes
-                toujours à votre disposition pour répondre à vos questions et
-                résoudre vos problèmes.
-                Merci de nous faire confiance pour prendre soin de vous.
-              </p>
-            </div>
-            <div class="col-md-7 mb-30">
-              <img src="assets/img/about/appoin-1-2.jpg" alt="about" class="w-100">
-            </div>
-            <div class="col-md-5 mb-30">
-              <img src="assets/img/about/appoin-1-1.jpg" alt="about" class="w-100">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</section> -->
