@@ -29,7 +29,7 @@ export class ServiceDetailsComponent {
   service: any;
   loaderService: LoaderService = inject(LoaderService);
   dialog: MatDialog = inject(MatDialog);
-  title = "Details Service";
+  title = "Détails Service";
   router: Router = inject(Router);
   authService: AuthService = inject(AuthService);
 

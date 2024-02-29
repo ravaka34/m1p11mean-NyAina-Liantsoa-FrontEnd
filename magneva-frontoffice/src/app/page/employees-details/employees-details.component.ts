@@ -28,7 +28,7 @@ export class EmployeesDetailsComponent {
   employee: any;
   loaderService: LoaderService = inject(LoaderService);
   dialog: MatDialog = inject(MatDialog);
-  title = "Details membre";
+  title = "Détails membre";
   services = "";
   authService = inject(AuthService);
   router: Router = inject(Router);

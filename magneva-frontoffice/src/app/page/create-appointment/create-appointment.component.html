@@ -1,14 +1,14 @@
 <app-breadcrumb [breadcrumbChilds]="breadcrumChilds" [title]="title"> </app-breadcrumb>
 <div class="container mt-5" *ngIf="services">
   <div class="row mb-5">
-      <h4 class="mb-4"> Selection des services </h4>
+      <h4 class="mb-4"> Sélection des services </h4>
       <!-- <div class="scrollable-div"> -->
         <app-choose-service class=" row mb-3" *ngFor="let service of services" [service] = "service" [selectedServices]= "selectedServices"> </app-choose-service>
       <!-- </div> -->
   </div>
 
   <div class="row mb-5">
-    <h4 class="mb-4"> Choix des professionels et l'ordre </h4>
+    <h4 class="mb-4"> Choix des professionnels et l'ordre </h4>
       <div  cdkDropList (cdkDropListDropped)="drop($event)">
         <ng-container *ngFor="let service of selectedServices">
           <div class="mb-3 row">
