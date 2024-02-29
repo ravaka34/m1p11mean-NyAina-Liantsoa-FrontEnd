@@ -47,7 +47,7 @@ export class ListRdvComponent extends BodyComponent implements OnInit {
   }
 
   page: Number = 1;
-  pageSize: Number = 10;
+  pageSize: Number = 100;
 
   statuts = [
     {"value": "true", "name":"Payé"},

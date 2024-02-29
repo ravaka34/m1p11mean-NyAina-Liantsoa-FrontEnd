@@ -1,20 +1,19 @@
 <app-loader *ngIf="showLoader"></app-loader>
 
-<div id="main-wrapper" *ngIf="!isLoginPage()">
-
-  <app-header></app-header>
-
-  <app-sidebar></app-sidebar>
-
-  <div class="content-body">
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-
-    </div>
-  </div>
-
-  <app-footer></app-footer>
+<div id="main-wrapper">
+  <app-header [hidden]="hideSidebar"></app-header>
+  <app-sidebar [hidden]="hideSidebar"></app-sidebar>
+  <app-login-manager *ngIf="isLoginManager(); else elseBlock"></app-login-manager>
+  <ng-template #elseBlock>
+    <app-login-employee *ngIf="isLoginEmployee(); else elseIfBlock"></app-login-employee>
+    <ng-template #elseIfBlock>
+      <div class="content-body">
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
+  <app-footer [hidden]="hideSidebar"></app-footer>
 
 </div>
-
-<app-login *ngIf="isLoginPage()"></app-login>

@@ -31,14 +31,19 @@ import { CreateOfferComponent } from './pages/manager/offer/create-offer/create-
 import { HourlyDetailComponent } from './pages/employee/hourly/hourly-detail/hourly-detail.component';
 import { CreateHourlyComponent } from './pages/employee/hourly/create-hourly/create-hourly.component';
 import { DashboardManagerComponent } from './pages/manager/dashboard-manager/dashboard-manager.component';
-import { ChartManagerComponent } from './pages/manager/chart-manager/chart-manager.component';
 import { ListRdvComponent } from './pages/manager/appointment/list-rdv/list-rdv.component';
+import { LoginManagerComponent } from './pages/manager/login-manager/login-manager.component';
+import { LoginEmployeeComponent } from './pages/employee/login-employee/login-employee.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
   { path: 'exemple1', component: Exemple1Component, title: 'Exemple 1'},
   { path: 'exemple2', component: Exemple2Component, title: 'Exemple 2'},
-  
+
+  { path: '', redirectTo: '/manager/connexion', pathMatch: 'full' },
+
+  { path: 'manager/connexion', component: LoginManagerComponent, title: "Connexion manager"},
+
   { path: 'manager/accueil', component: DashboardManagerComponent, title: "Accueil"},
 
   { path: 'manager/employe/inscription', component: RegisterComponent, title: "Inscrption d'un employé"},
@@ -73,6 +78,8 @@ export const routes: Routes = [
   { path: 'manager/rendezVous/liste', component: ListRdvComponent, title: "Liste rendez-vous"}, 
   
 
+  { path: 'employe/connexion', component: LoginEmployeeComponent, title: "Connexion employé"},
+
   { path: 'employe/accueil', component: DashboardComponent, title: "Accueil"},
 
   { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},
@@ -84,5 +91,4 @@ export const routes: Routes = [
   { path: 'employe/horaire/detail', component: HourlyDetailComponent, title: "Détail horaire de travail"},
   { path: 'employe/horaire/ajout', component: CreateHourlyComponent, title: "Nouveau horaire de travail"},
 
-  { path: 'chart', component: ChartManagerComponent, title: "Nouveau horaire de travail"},
 ];

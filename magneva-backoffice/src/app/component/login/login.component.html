@@ -1,3 +1,4 @@
+<app-loader *ngIf="loading"></app-loader>
 <div class="body vh-100">
     <div class="container vh-100">
         <div class="row h-100 align-items-center justify-content-center">
@@ -9,18 +10,20 @@
                                 <div>
                                     <img src="assets/images/bg-login.jpg" class="education-img"
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
-
                                 </div>
                             </div>
 
                             <div class="col-xl-6 col-md-6">
                                 <div class="sign-in-your text">
-                                    <h4 class="fs-20 font-w800 text-black text-center">LOGIN</h4>
-                                    <form action="https://getskills.dexignzone.com/xhtml/index.html">
+                                    <h4 class="fs-20 font-w800 text-black text-center text-uppercase">{{ isManager ? 'Login manager' : 'Login employé'}}</h4>
+                                    <form [formGroup]="applyForm" (submit)="login()">
+                                        <div *ngIf="error" class="mb-3">
+                                            <app-error [error]="error"></app-error>
+                                        </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Email</strong> <span
                                                     class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" value="{{mail}}">
+                                            <input type="email" class="form-control" formControlName="email">
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Mot De Passe</strong> <span
@@ -28,10 +31,10 @@
                                             <div class="input-group">
                                                 <input *ngIf="!showPassword; else showText" type="password"
                                                     name="password" id="password" class="form-control"
-                                                    [(ngModel)]="mdp" />
+                                                 formControlName="password"/>
                                                 <ng-template #showText>
                                                     <input *ngIf="showPassword" type="text" name="password"
-                                                        id="password" class="form-control" [(ngModel)]="mdp" />
+                                                        id="password" class="form-control" formControlName="password"/>
                                                 </ng-template>
                                                 <button type="button" id="togglePassword"
                                                     class="btn btn-outline-secondary btn-primary"
@@ -50,8 +53,11 @@
                                                         style="font-weight: normal !important" for="basic_checkbox_1">Me
                                                         Rappeler</label>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <a class="text-primary">Mot de passe oublié?</a>
+                                                <div *ngIf="isManager" class="mb-3">
+                                                    <a class="text-primary" [routerLink]="['employe/connexion']">Connexion employé</a>
+                                                </div>
+                                                <div *ngIf="!isManager" class="mb-3">
+                                                    <a class="text-primary" [routerLink]="['manager/connexion']">Connexion manager</a>
                                                 </div>
                                             </div>
                                         </div>
