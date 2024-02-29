@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { ReviewCardComponent } from '../../component/review-card/review-card.component';
 import { BreadcrumbChild } from '../../interface/breadcrumbchild';
 import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-details',
@@ -28,17 +30,25 @@ export class EmployeesDetailsComponent {
   dialog: MatDialog = inject(MatDialog);
   title = "Details membre";
   services = "";
+  authService = inject(AuthService);
+  router: Router = inject(Router);
 
   ngOnInit(){
-    let employeeId = this.route.snapshot.params['id'];
-    this.loaderService.showLoader();
-    this.reviewService.getEntityWithReviews(employeeId, "employee").subscribe(
-      data => {
-        this.loaderService.hideLoader();
-        this.employee = data;
-        this.prepareStringService();
-      }
-    )
+    if(this.authService.isConnected == false){
+      this.router.navigate(['/connecter']);
+      return;
+    }else{
+      let employeeId = this.route.snapshot.params['id'];
+      this.loaderService.showLoader();
+      this.reviewService.getEntityWithReviews(employeeId, "employee").subscribe(
+        data => {
+          this.loaderService.hideLoader();
+          this.employee = data;
+          this.prepareStringService();
+        }
+      )
+    }
+
   }
 
   prepareStringService(){

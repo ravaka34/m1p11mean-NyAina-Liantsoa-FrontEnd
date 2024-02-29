@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { ApiService } from './api.service';
 export class ReviewService {
 
   apiService : ApiService = inject(ApiService);
+  authService = inject(AuthService);
 
   constructor() { }
 
@@ -42,10 +44,8 @@ export class ReviewService {
   }
 
   getEntityWithReviews(entityId : string, entityName : string){
-    // let user = this.localStorageService.getItem("user");
-    // let userIdQuery = (user) ? "?userId="+user.id : "";
-    //TODO render dynamic userIdQuery
-    let userIdQuery = "?userId=65dc4454cf95340c0db28ee4";
+    console.log(this.authService.getUser());
+    let userIdQuery = "?userId="+this.authService.getUser().id;
     return this.apiService.get<any[]>(`/review/${entityName}/${entityId}${userIdQuery}`);
   }
 

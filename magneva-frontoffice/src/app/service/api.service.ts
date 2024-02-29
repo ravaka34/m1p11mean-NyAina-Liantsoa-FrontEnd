@@ -2,14 +2,12 @@ import { Inject, Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, finalize, tap, throwError } from 'rxjs';
 import { environment } from '../environment';
-import { LoaderService } from './loader.service';
-import { error } from 'console';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
+
   private readonly http = inject(HttpClient);
   private readonly api_url = environment.baseUrl;
-  private readonly loaderService = inject(LoaderService);
 
   get<T>(url: string, params: HttpParams = new HttpParams()): Observable<T> {
     return this.http.get<T>(`${this.api_url}${url}`, {

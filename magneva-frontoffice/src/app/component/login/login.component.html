@@ -1,6 +1,6 @@
 <style>
     .space {
-        background-image: url('assets/img/bg/bg2.jpg');
+        /* background-image: url('assets/img/bg/bg2.jpg'); */
         background-size: cover;
         background-position: center;
     }
@@ -10,26 +10,25 @@
         <div class="col-lg-12 mb-40 mb-lg-0 wow fadeInUp p-5" data-wow-delay="0.2s">
             <div class="text-center text-lg-start">
                 <h2 class="sec-title3 h1 text-uppercase mb-xxl-2 pb-xxl-1 text-center">
-                    LOGIN
+                    Se connecter
                 </h2>
                 <div class="col-xxl-10 pb-xl-3">
                     <p class="pe-xxl-4"></p>
                 </div>
             </div>
-            <form class="ajax-contact form-style6">
+            <form class="form-style6" [formGroup]="loginForm" (submit)="onSubmit()" >
                 <p class="form-messages"></p>
                 <div class="form-group">
                     <label><b>Email</b> <span class="text-danger">*</span></label>
-                    <input type="email" name="email" id="email" value="{{mail}}" />
+                    <input type="email" name="email" formControlName="email" />
                 </div>
                 <div class="form-group">
                     <label><b>Mot De Passe</b> <span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input *ngIf="!showPassword; else showText" type="password" name="password" id="password"
-                            class="form-control" [(ngModel)]="mdp" />
+                        <input *ngIf="!showPassword; else showText" type="password" formControlName="password"
+                            class="form-control" />
                         <ng-template #showText>
-                            <input *ngIf="showPassword" type="text" name="password" id="password" class="form-control"
-                                [(ngModel)]="mdp" />
+                            <input *ngIf="showPassword" type="text" formControlName="password" class="form-control"/>
                         </ng-template>
                         <button type="button" id="togglePassword" class="btn btn-outline-secondary btn-color"
                             (click)="togglePassword()">
@@ -38,23 +37,13 @@
                     </div>
 
                 </div>
-                <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="custom-checkbox notice">
-                        <input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox"
-                            value="yes" />
-                        <label for="wp-comment-cookies-consent">Me Rappeler</label>
-                    </div>
-                    <div class="custom-checkbox notice">
-                        <label><a style="color: #3a579a;">Mot de passe oublié?</a></label>
-                    </div>
-                
-                </div>
+                <app-error-alert [error]="error"></app-error-alert>
                 <div class="form-group">
-                    <button class="vs-btn" type="submit">SE CONNECTER</button>
+                    <button class="vs-btn" type="submit">Se Connecter</button>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Vous n'avez pas encore de compte? <b><a style="color: #3a579a;" [routerLink]="['/inscription']">S'inscrire</a></b></label>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

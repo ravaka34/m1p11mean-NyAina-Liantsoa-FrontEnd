@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { AppointmentService } from '../../service/appointment.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import moment from 'moment';
 import { BreadcrumbChild } from '../../interface/breadcrumbchild';
 import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
 import { CommonFunctionalityComponentComponent } from '../../component/common-functionality-component/common-functionality-component.component';
+import { AuthService } from '../../service/auth.service';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class CreateAppointmentComponent extends CommonFunctionalityComponentComp
   totalHours = 0;
   priceTotal = 0;
   duration = "";
-  title = "Creation de rendez-vous"
+  title = "Creation de rendez-vous";
+  authService = inject(AuthService);
 
   breadcrumChilds: BreadcrumbChild [] = [
     {
@@ -69,6 +71,10 @@ export class CreateAppointmentComponent extends CommonFunctionalityComponentComp
   }
 
   override ngOnInit(){
+    if(this.authService.isConnected == false){
+      this.router.navigate(['/connecter'])
+      return;
+    }
     this.loaderService.showLoader();
     this.appointmentService.getCreateDatas().subscribe(
       (res) => {

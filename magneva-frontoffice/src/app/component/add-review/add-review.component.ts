@@ -6,6 +6,7 @@ import { LoaderService } from '../../service/loader.service';
 import { ErrorAlertComponent } from '../error-alert/error-alert.component';
 import { Router } from '@angular/router';
 import { CommonFunctionalityComponentComponent } from '../common-functionality-component/common-functionality-component.component';
+import { AuthService } from '../../service/auth.service';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
   reviewService : ReviewService = inject(ReviewService);
   loaderService : LoaderService = inject(LoaderService);
   error : string | null = null;
+  authService : AuthService = inject(AuthService);
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -68,7 +70,7 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
     // TODO: make the user dynamic
     let createData : any = {
       note:this.createForm.value.note,
-      user: "65dc4454cf95340c0db28ee4",
+      user: this.authService.getUser()._id,
       description: this.createForm.value.description
     }
     createData[this.data.entityName] = this.data.entityId;

@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <h4> Liste de vos rendez-vous </h4>
+  <div *ngFor="let appointment of appointmnents"  class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-8">
+          <h6> {{ convertDate(appointment.date) }} à {{ convertToReadableHour(appointment.hour) }}</h6>
+          <p class="desc-text">
+            {{ convertToReadableHour(appointment.duration) }} - {{ appointment.sumPrice | number: '1.2-2' }} Ar
+          </p>
+          <a [routerLink]="['/rendez-vous/', appointment._id ]" class="vs-btn" > Voir details </a>
+        </div>
+      </div>
+  </div>
+  </div>
+</div>
+

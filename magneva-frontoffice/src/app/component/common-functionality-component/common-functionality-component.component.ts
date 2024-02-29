@@ -10,6 +10,7 @@ import moment from 'moment';
   styleUrl: './common-functionality-component.component.css'
 })
 export class CommonFunctionalityComponentComponent {
+  
   constructor(public router:Router) { }
 
   ngOnInit(): void {
