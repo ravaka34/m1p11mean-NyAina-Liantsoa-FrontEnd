@@ -23,14 +23,14 @@ export class AppointmentDetailsComponent implements OnInit{
 
   ngOnInit() {
     let appointmentId = this.router.snapshot.params['id'];
-    // this.loaderService.showLoader();
-    // this.appointmentService.getPageDetailsData(appointmentId).subscribe(
-    //   data => {
-    //     this.data = data;
-    //     console.log(data);
-    //     this.loaderService.hideLoader();
-    //   }
-    // );
+    this.loaderService.showLoader();
+    this.appointmentService.getPageDetailsData(appointmentId).subscribe(
+      data => {
+        this.data = data;
+        console.log(data);
+        this.loaderService.hideLoader();
+      }
+    );
   }
 
   breadcrumChilds: BreadcrumbChild [] = [
@@ -38,7 +38,7 @@ export class AppointmentDetailsComponent implements OnInit{
       title: "ACCUEIL",
       link: "/accueil"
     },
-    {
+     {
       title: "RENDEZ-VOUS",
       link: null
     },
