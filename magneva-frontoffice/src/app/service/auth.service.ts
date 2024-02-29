@@ -23,6 +23,11 @@ export class AuthService {
     return this.apiService.post("/auth/signin", data);
   }
 
+  signup(data: any){
+    data.roles = ["user"];
+    return this.apiService.post("/auth/signup", data);
+  }
+
   setUser(data : any){
     this.user = data;
   }

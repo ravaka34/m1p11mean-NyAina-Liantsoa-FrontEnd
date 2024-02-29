@@ -23,5 +23,6 @@ export const routes: Routes = [
   { path: 'mes-rendez-vous', component: AppointmentListComponent, title: 'Mes rendez vous'},
   { path: 'accueil', component: AccueilComponent, title: 'Accueil'},
   { path: '', component: AccueilComponent, title: 'Accueil'},
+  { path: 'inscription', component: InscriptionComponent, title: 'Inscription'},
 ];
 
