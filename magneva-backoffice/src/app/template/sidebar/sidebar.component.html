@@ -78,11 +78,17 @@
                 </ul>
             </li>
         </ul>
-        
+
         <ul *ngIf="isManager === 0" class="metismenu" id="menu">
             <li><a [routerLink]="['employe/accueil']">
                     <i class="bi bi-house"></i>
                     <span class="nav-text">Accueil</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['employe/detail']">
+                    <i class="bi bi-person"></i>
+                    <span class="nav-text">Profil</span>
                 </a>
             </li>
             <li><a class="has-arrow" aria-expanded="false">

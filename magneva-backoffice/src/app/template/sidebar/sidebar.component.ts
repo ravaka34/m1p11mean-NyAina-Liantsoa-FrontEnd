@@ -17,6 +17,6 @@ export class SidebarComponent {
 
   localStorageService : LocalStorageService = inject(LocalStorageService);
 
-  // isManager = 1;
-  isManager = this.localStorageService.getItem("isManager");
+  isManager = 0;
+  // isManager = this.localStorageService.getItem("isManager");
 }

@@ -82,7 +82,7 @@ export const routes: Routes = [
 
   { path: 'employe/accueil', component: DashboardComponent, title: "Accueil"},
 
-  { path: 'employe/detail/:idEmploye', component: DetailEmploye, title: "Détail employé"},
+  { path: 'employe/detail', component: DetailEmploye, title: "Détail employé"},
   { path: 'employe/modifierMdp/:idEmploye', component: UpdateMdpEmp, title: "Modifier Mot De Passe"},
   { path: 'employe/modifierProfil/:idEmploye', component: UpdateProfilEmployeeComponent, title: "Modifier Profil"},
 

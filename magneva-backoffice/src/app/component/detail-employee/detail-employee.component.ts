@@ -50,7 +50,8 @@ export class DetailEmployeeComponent extends BodyComponent implements OnInit{
 
   getEmployee(){
     this.loaderService.showLoader();
-    this.employeID = this.route.snapshot.paramMap.get('idEmploye') ?? "";
+    // this.employeID = this.route.snapshot.paramMap.get('idEmploye') ?? "";
+    this.employeID = "65e0c80b14ccd438357aa3ef";
     this.employeeService.getEmployee(this.employeID).subscribe(
       (data) =>{
         this.employee = data;

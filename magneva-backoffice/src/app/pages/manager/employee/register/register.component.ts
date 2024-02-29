@@ -46,12 +46,12 @@ export class RegisterComponent extends BodyComponent implements OnInit{
   }
 
   applyForm = new FormGroup({
-    name: new FormControl("Rasoa"),
-    firstName: new FormControl('Kathy'),
+    name: new FormControl("Rasolofoson"),
+    firstName: new FormControl('Liantsoa'),
     sex: new FormControl(2),
-    email: new FormControl("kathyrasoa@gmail.com"),
-    password: new FormControl("kathy123"),
-    contact: new FormControl("0324489635"),
+    email: new FormControl("liantsoarasolofoson@gmail.com"),
+    password: new FormControl("liantsoa123"),
+    contact: new FormControl("032 44 896 35"),
     startDate: new FormControl("2024-01-01"),
     serviceCheckbox: this.formBuilder.array([])
   });
