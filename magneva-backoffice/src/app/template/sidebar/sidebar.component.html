@@ -1,6 +1,6 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
-        <ul class="metismenu" id="menu">
+        <ul *ngIf="isManager === 1" class="metismenu" id="menu">
             <li><a [routerLink]="['manager/accueil']">
                     <i class="bi bi-house"></i>
                     <span class="nav-text">Accueil</span>
@@ -77,9 +77,9 @@
                     <li><a [routerLink]="['manager/offreSpecial/liste']">Liste</a></li>
                 </ul>
             </li>
-
-
-
+        </ul>
+        
+        <ul *ngIf="isManager === 0" class="metismenu" id="menu">
             <li><a [routerLink]="['employe/accueil']">
                     <i class="bi bi-house"></i>
                     <span class="nav-text">Accueil</span>

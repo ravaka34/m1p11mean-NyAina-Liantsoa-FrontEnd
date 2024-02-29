@@ -7,6 +7,7 @@ import { DateService } from '../../../service/date.service';
 import { CommonModule } from '@angular/common';
 import { ErrorComponent } from '../../../template/error/error.component';
 import { ChartLineComponent } from '../../../component/chart-line/chart-line.component';
+import { LocalStorageService } from '../../../service/local-storage.service';
 
 @Component({
   selector: 'app-dashboard-manager',
@@ -24,6 +25,7 @@ export class DashboardManagerComponent extends BodyComponent implements OnInit{
 
   override title = "Accueil";
 
+  localStorageService : LocalStorageService = inject(LocalStorageService);
   loaderService : LoaderService = inject(LoaderService);
   statistiqueService: StatistiqueService = inject(StatistiqueService);
   dateService: DateService = inject(DateService);
@@ -60,6 +62,7 @@ export class DashboardManagerComponent extends BodyComponent implements OnInit{
   ngOnInit(): void {
     this.setPageTitleService();
     this.statsInit();
+    // console.log(this.localStorageService.getItem("user"));
   }
 
   applyForm1 = new FormGroup({
