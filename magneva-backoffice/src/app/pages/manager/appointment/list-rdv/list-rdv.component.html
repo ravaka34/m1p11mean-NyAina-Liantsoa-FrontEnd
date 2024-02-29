@@ -1,0 +1,192 @@
+
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Rendez-vous / <span class="text-primary"> {{title}}</span></li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Recherche multicritères</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form [formGroup]="applyForm" (submit)="filter()">
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Client</label>
+                                <input type="text" class="form-control" formControlName="user">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Date Min</label>
+                                <input type="date" class="form-control" formControlName="minDate">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Date Max</label>
+                                <input type="text" class="form-control" formControlName="maxDate">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Statut</label>
+                                <select class="form-control" formControlName="isPaid">
+                                    <option>Choisir un statut</option>
+                                    <option *ngFor="let statut of statuts" [value]="statut.value">{{ statut.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Heure Min</label>
+                                <input type="time" class="form-control" formControlName="minHour">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Heure Max</label>
+                                <input type="time" class="form-control" formControlName="maxHour">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Prix Min</label>
+                                <input type="text" class="form-control" formControlName="minPrice">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label">Prix Max</label>
+                                <input type="text" class="form-control" formControlName="maxPrice">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-3"></div>
+                            <div class="mb-3 col-md-3"></div>
+                            <div class="mb-3 col-md-3"></div>
+                            <div class="mb-3 col-md-3">
+                                <label style="color: transparent;">bouton</label>
+                                <button type="submit" class="btn btn-primary form-control">FILTRER</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{title}} des rendez-vous </h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="error" class="row">
+                    <app-error [error]="error"></app-error>
+                </div>
+                <div *ngIf="success" class="row">
+                    <app-success [success]="success"></app-success>
+                </div>
+                <div class="table-responsive">
+                    <table class="table primary-table-bordered">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col" class="text-uppercase">Date</th>
+                                <th scope="col" class="text-uppercase">Heure début</th>
+                                <th scope="col" class="text-uppercase">Client</th>
+                                <th scope="col" class="text-uppercase">Prix Total</th>
+                                <th scope="col" class="text-uppercase">Statut payement</th>
+                                <th scope="col" class="text-uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="rdvs.entities?.length === 0">
+                                <td colspan="6">Aucun rendez-vous</td>
+                            </tr>
+                            <tr *ngFor="let rdv of rdvs.entities">
+                                <td>
+                                    {{rdv.date | date:'yyyy-MM-dd'}}
+                                </td>
+                                <td>
+                                    {{ formatHour(rdv.hour) }}
+                                </td>
+                                <td>
+                                    {{ rdv.user }}
+                                </td>
+                                <td>
+                                    {{ rdv.sumPrice | number:'1.2-2'}} Ar
+                                </td>
+                                <td *ngIf="!rdv.isPaid"> 
+                                    <span class="badge badge-danger">Non payé</span>
+                                </td>
+                                <td *ngIf="rdv.isPaid"> 
+                                    <span class="badge badge-success">Payé</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <button  *ngIf="!rdv.isPaid" type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                        [attr.data-bs-target]="'#payement' + rdv._id"><span
+                                            class="btn-icon-start text-info"><i class="fa fa-credit-card"></i>
+                                        </span>Payer</button>
+                                        <div class="modal fade" id="payement{{rdv._id}}" style="display: none;"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Payement d'un rendez-vous</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3 row">
+                                                            <label class="form-label">Date <span class="text-danger">*</span></label>
+                                                            <input type="date" class="form-control" id="date{{rdv._id}}">
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label class="form-label">Montant <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" id="montant{{rdv._id}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light"
+                                                            data-bs-dismiss="modal">ANNULER</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="payer(rdv._id)"
+                                                            data-bs-dismiss="modal">PAYER</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <a title="Supprimer" class="btn btn-danger shadow btn-xs sharp me-1"
+                                            data-bs-toggle="modal"
+                                            [attr.data-bs-target]="'#deletePurchase' + purchase._id"><i
+                                                class="fa fa-trash"></i></a>
+
+                                        <div class="modal fade" id="deletePurchase{{purchase._id}}" style="display: none;"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Suppression d'un achat</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3 row">
+                                                            <p>Voulez-vous vraiment supprimer cet achat? </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light"
+                                                            data-bs-dismiss="modal">NON</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            (click)="deletePurchase(purchase._id)"
+                                                            data-bs-dismiss="modal">OUI</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

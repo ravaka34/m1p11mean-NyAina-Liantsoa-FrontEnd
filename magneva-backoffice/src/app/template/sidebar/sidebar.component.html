@@ -16,6 +16,14 @@
                 </ul>
             </li>
             <li><a class="has-arrow" aria-expanded="false">
+                    <i class="bi bi-calendar-event"></i>
+                    <span class="nav-text">Rendez-Vous</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a [routerLink]="['manager/rendezVous/liste']">Liste</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow" aria-expanded="false">
                     <i class="bi bi-brush"></i>
                     <span class="nav-text">Service</span>
                 </a>
@@ -69,6 +77,7 @@
                     <li><a [routerLink]="['manager/offreSpecial/liste']">Liste</a></li>
                 </ul>
             </li>
+
 
 
             <li><a [routerLink]="['employe/accueil']">

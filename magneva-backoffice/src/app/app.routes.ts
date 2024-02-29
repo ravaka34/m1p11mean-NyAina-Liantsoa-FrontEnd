@@ -32,6 +32,7 @@ import { HourlyDetailComponent } from './pages/employee/hourly/hourly-detail/hou
 import { CreateHourlyComponent } from './pages/employee/hourly/create-hourly/create-hourly.component';
 import { DashboardManagerComponent } from './pages/manager/dashboard-manager/dashboard-manager.component';
 import { ChartManagerComponent } from './pages/manager/chart-manager/chart-manager.component';
+import { ListRdvComponent } from './pages/manager/appointment/list-rdv/list-rdv.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
@@ -68,6 +69,8 @@ export const routes: Routes = [
   { path: 'manager/offreSpecial/liste', component: ListOfferComponent, title: "Liste des offres spéciales"}, 
   { path: 'manager/offreSpecial/detail/:idOffer', component: DetailOfferComponent, title: "Détail d'une offre spéciale"}, 
   { path: 'manager/offreSpecial/ajout', component: CreateOfferComponent, title: "Nouvelle offre spéciale"}, 
+
+  { path: 'manager/rendezVous/liste', component: ListRdvComponent, title: "Liste rendez-vous"}, 
   
 
   { path: 'employe/accueil', component: DashboardComponent, title: "Accueil"},
