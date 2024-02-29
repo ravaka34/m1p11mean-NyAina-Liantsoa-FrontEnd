@@ -23,7 +23,7 @@ export class AppointmentService {
   }
 
   getPageDetailsData(id: string){
-    return this.apiService.get<any>("/page-fo/appointment-details/"+id);
+    return this.apiService.get<any>("/appointment/"+id);
   }
 
   getCreateDatas(){
