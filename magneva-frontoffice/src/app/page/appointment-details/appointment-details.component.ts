@@ -5,32 +5,54 @@ import { AppointmentContentComponent } from '../../component/appointment-content
 import { LoaderService } from '../../service/loader.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppointmentService } from '../../service/appointment.service';
+import { CommonFunctionalityComponentComponent } from '../../component/common-functionality-component/common-functionality-component.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-appointment-details',
   standalone: true,
-  imports: [BreadcrumbComponent, AppointmentContentComponent],
+  imports: [BreadcrumbComponent, AppointmentContentComponent, CommonModule],
   templateUrl: './appointment-details.component.html',
   styleUrl: './appointment-details.component.css'
 })
-export class AppointmentDetailsComponent implements OnInit{
+export class AppointmentDetailsComponent extends CommonFunctionalityComponentComponent implements OnInit{
   title = "Mon rendez-vous";
   data! :any;
   loaderService : LoaderService = inject(LoaderService);
-  router: ActivatedRoute = inject(ActivatedRoute);
+  activatedRouter: ActivatedRoute = inject(ActivatedRoute);
   appointmentService = inject(AppointmentService);
+  isAlreadyPassed = false;
 
-  ngOnInit() {
-    let appointmentId = this.router.snapshot.params['id'];
+
+  override ngOnInit() {
+    let appointmentId = this.activatedRouter.snapshot.params['id'];
     this.loaderService.showLoader();
     this.appointmentService.getPageDetailsData(appointmentId).subscribe(
       data => {
-        this.data = data;
+        this.data = data.appointment;
+        this.isAlreadyPassed = data.isAlreadyPassed;
         console.log(data);
         this.loaderService.hideLoader();
       }
     );
+  }
+
+  convertDate(stringDate : string){
+    const date = new Date(stringDate);
+
+    const options : any = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+
+    return date.toLocaleDateString('fr-FR', options);
+  }
+
+  getRealPrice(price: number, reduction: number ){
+    return price * (1 + reduction/100 );
   }
 
   breadcrumChilds: BreadcrumbChild [] = [

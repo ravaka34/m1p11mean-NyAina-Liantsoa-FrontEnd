@@ -1,50 +1,34 @@
 <app-breadcrumb [breadcrumbChilds]="breadcrumChilds" [title]="title"></app-breadcrumb>
 
-<div class="container mt-5">
-
+<div class="container mt-5" *ngIf="data">
   <div class="mb-5">
-    <h5>Le 28 février 2023 à 15:00</h5>
-    <p class="blockquote-footer"> Durée : 02:00h</p>
-    <button class="btn vs-btn">Update</button>
+    <h5>Le {{ convertDate(data.date) }} à {{ convertToReadableHour(data.hour) }}</h5>
+    <p class="blockquote-footer"> Durée : {{ convertToReadableHour(data.duration) }}</p>
+    <button *ngIf="!this.isAlreadyPassed" class="btn vs-btn">Annuler mon rendez-vous</button>
   </div>
 
   <div class="mb-5">
     <h5 class="mb-4"> Récapitulatif </h5>
     <div class="mb-3">
-      <div class="card mb-3">
+      <div *ngFor="let appointmentDetail of data.appointmentDetails" class="card mb-3">
         <div class="card-body">
             <div class="row">
               <div class="col-8">
-                <h6> Coiffure </h6>
+                <h6> {{ appointmentDetail.service.name}} </h6>
                 <p class="desc-text">
-                  01:00 h avec John Doe <span class="highlight"> (-15%)</span>
+                  {{ convertToReadableHour(appointmentDetail.service.duration) }} avec {{ appointmentDetail.employee.name }} {{ appointmentDetail.employee.firstName }}
+                  <span *ngIf="appointmentDetail.reduction > 0" class="highlight"> (-{{ appointmentDetail.reduction }}%)</span>
                 </p>
               </div>
               <div class="col">
-                <h6 class="price">15,000 Ar</h6>
-                <del class="highlight"> 20,000 Ar</del>
+                <h6 class="price">{{ appointmentDetail.price | number: '1.2-2' }} Ar</h6>
+                <del *ngIf="appointmentDetail.reduction > 0" class="highlight">
+                  {{ getRealPrice(appointmentDetail.price, appointmentDetail.reduction) | number: '1.2-2' }} Ar
+                </del>
               </div>
             </div>
         </div>
     </div>
-
-    <div class="card mb-3">
-      <div class="card-body">
-          <div class="row">
-            <div class="col-8">
-              <h6> Coiffure </h6>
-              <p class="desc-text">
-                01:00 h avec John Doe
-              </p>
-            </div>
-            <div class="col">
-              <h6 class="price">15,000 Ar</h6>
-            </div>
-          </div>
-      </div>
-    </div>
-    </div>
-
 
     <hr>
 
@@ -53,7 +37,7 @@
         <h6 class="highlight">Total</h6>
       </div>
       <div class="col">
-        <h6 class="price">15,000 Ar</h6>
+        <h6 class="price">{{ data.sumPrice | number: '1.2-2' }} Ar</h6>
       </div>
     </div>
   </div>
