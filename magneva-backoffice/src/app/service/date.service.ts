@@ -14,5 +14,14 @@ export class DateService {
     const day = today.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
+
+  getEndOfWeek(): string {
+    const endOfWeek = new Date(new Date());
+    endOfWeek.setDate(endOfWeek.getDate() + (7 - endOfWeek.getDay()));
+    const year = endOfWeek.getFullYear();
+    const month = (endOfWeek.getMonth() + 1).toString().padStart(2, '0');
+    const day = endOfWeek.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
   
 }

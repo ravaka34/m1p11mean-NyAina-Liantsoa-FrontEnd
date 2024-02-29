@@ -1,0 +1,275 @@
+
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Statistique des nombres de réservation par jour</h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12">
+                            <div class="basic-form">
+                                <form [formGroup]="applyForm1" (submit)="submitForm(1)">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date début</label>
+                                                <input type="date" class="form-control" formControlName="startDate1">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date Fin</label>
+                                                <input type="date" class="form-control" formControlName="endDate1">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color: transparent">Filtrer</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="FILTRER">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <app-chart-line 
+                                *ngIf="nbReservationJour" 
+                                [data]="nbReservationJour" 
+                                [name]="name1" 
+                                [type]="type1"
+                            ></app-chart-line>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Statistique des nombres de réservation par mois</h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12">
+                            <div class="basic-form">
+                                <form [formGroup]="applyForm3" (submit)="submitForm(3)">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Année</label>
+                                                <input type="text" class="form-control" formControlName="year3">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color: transparent">Filtrer</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="FILTRER">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <app-chart-line 
+                                *ngIf="nbReservationMois" 
+                                [data]="nbReservationMois" 
+                                [name]="name1" 
+                                [x]="months" 
+                                [type]="type2"
+                            ></app-chart-line>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Statistique des chiffres d'affaires par jour</h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12">
+                            <div class="basic-form">
+                                <form [formGroup]="applyForm2" (submit)="submitForm(2)">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date début</label>
+                                                <input type="date" class="form-control" formControlName="startDate2">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date Fin</label>
+                                                <input type="date" class="form-control" formControlName="endDate2">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color: transparent">Filtrer</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="FILTRER">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <app-chart-line 
+                                *ngIf="caJour" 
+                                [data]="caJour" 
+                                [name]="name2" 
+                                [type]="type1"
+                            ></app-chart-line>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Statistique des chiffres d'affaires par mois</h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12">
+                            <div class="basic-form">
+                                <form [formGroup]="applyForm4" (submit)="submitForm(4)">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Année</label>
+                                                <input type="text" class="form-control" formControlName="year4">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color: transparent">Filtrer</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="FILTRER">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <app-chart-line 
+                                *ngIf="caMois" 
+                                [data]="caMois" 
+                                [name]="name2" 
+                                [x]="months" 
+                                [type]="type2"
+                            ></app-chart-line>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Statistique du bénéfice par mois</h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12">
+                            <div class="basic-form">
+                                <form [formGroup]="applyForm5" (submit)="submitForm(5)">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Année</label>
+                                                <input type="text" class="form-control" formControlName="year5">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color: transparent">Filtrer</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="FILTRER">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <app-chart-line 
+                                *ngIf="profit" 
+                                [data]="profit" 
+                                [name]="name3" 
+                                [x]="months" 
+                                [type]="type2"
+                            ></app-chart-line>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Temps de travail par employé</h4>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12">
+                            <div class="basic-form">
+                                <form [formGroup]="applyForm6" (submit)="submitForm(6)">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date début</label>
+                                                <input type="date" class="form-control" formControlName="startDate6">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Date Fin</label>
+                                                <input type="date" class="form-control" formControlName="endDate6">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color: transparent">Filtrer</label>
+                                                <input type="submit" class="form-control btn btn-primary" value="FILTRER">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table primary-table-bordered">
+                                    <thead class="thead-primary">
+                                        <tr>
+                                            <th scope="col" class="text-uppercase">Employé</th>
+                                            <th scope="col" class="text-uppercase">Temps</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let e of emp">
+                                            <td>{{e.employee.name}} {{e.employee.firstName}}</td>
+                                            <td>{{e.hour}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -30,12 +30,16 @@ import { DetailOfferComponent } from './pages/manager/offer/detail-offer/detail-
 import { CreateOfferComponent } from './pages/manager/offer/create-offer/create-offer.component';
 import { HourlyDetailComponent } from './pages/employee/hourly/hourly-detail/hourly-detail.component';
 import { CreateHourlyComponent } from './pages/employee/hourly/create-hourly/create-hourly.component';
+import { DashboardManagerComponent } from './pages/manager/dashboard-manager/dashboard-manager.component';
+import { ChartManagerComponent } from './pages/manager/chart-manager/chart-manager.component';
 
 export const routes: Routes = [
   { path: 'connexion', component: LoginComponent, title: 'Connexion'},
   { path: 'exemple1', component: Exemple1Component, title: 'Exemple 1'},
   { path: 'exemple2', component: Exemple2Component, title: 'Exemple 2'},
   
+  { path: 'manager/accueil', component: DashboardManagerComponent, title: "Accueil"},
+
   { path: 'manager/employe/inscription', component: RegisterComponent, title: "Inscrption d'un employé"},
   { path: 'manager/employe/liste', component: ListComponent, title: "Liste des employés"},
   { path: 'manager/employe/detail/:idEmploye', component: DetailComponent, title: "Détail employé"},
@@ -76,4 +80,6 @@ export const routes: Routes = [
 
   { path: 'employe/horaire/detail', component: HourlyDetailComponent, title: "Détail horaire de travail"},
   { path: 'employe/horaire/ajout', component: CreateHourlyComponent, title: "Nouveau horaire de travail"},
+
+  { path: 'chart', component: ChartManagerComponent, title: "Nouveau horaire de travail"},
 ];
