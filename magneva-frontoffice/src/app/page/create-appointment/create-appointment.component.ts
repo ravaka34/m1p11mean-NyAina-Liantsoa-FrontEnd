@@ -41,7 +41,7 @@ export class CreateAppointmentComponent extends CommonFunctionalityComponentComp
   totalHours = 0;
   priceTotal = 0;
   duration = "";
-  title = "Creation de rendez-vous";
+  title = "Création de rendez-vous";
   authService = inject(AuthService);
 
   breadcrumChilds: BreadcrumbChild [] = [
