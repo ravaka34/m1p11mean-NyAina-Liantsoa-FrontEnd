@@ -23,7 +23,7 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
   formBuilder : FormBuilder = inject(FormBuilder);
   createForm : FormGroup = this.formBuilder.group({
     "note": '',
-    "description": ''
+    "description": 'Saisir une description'
   });
   reviewService : ReviewService = inject(ReviewService);
   loaderService : LoaderService = inject(LoaderService);
@@ -77,8 +77,9 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
     this.reviewService.createReview(createData).subscribe(
       data => {
         //redirect to the details page
-        this.loaderService.hideLoader();
+
         this.dialogRef.close();
+        this.loaderService.hideLoader();
         this.reloadComponent(true);
        },
       error => {
@@ -94,13 +95,13 @@ export class AddReviewComponent extends CommonFunctionalityComponentComponent {
       note : this.createForm.value.note ,
       description : this.createForm.value.description
     }
-    
+
     this.loaderService.showLoader();
     this.reviewService.updateReview(updateData).subscribe(
       data => {
         //redirect to the details page
-        this.loaderService.hideLoader();
         this.dialogRef.close();
+        this.loaderService.hideLoader();
         this.reloadComponent(true);
        },
       error => {

@@ -1,0 +1,10 @@
+.team-pic {
+  max-width: 250px;
+  max-height: 250px;
+  background-color: #e5d4ce;
+  border-radius: 5%;
+  overflow: hidden;
+  margin: 7px;
+  outline: .5px solid rgba(154,86,58,.4);
+  outline-offset: 5px;
+}

@@ -1,20 +1,54 @@
 .plus-button {
+  border: 1px solid silver;
   width: 30px;
   height: 30px;
-  border: 2px solid #007bff;
-  border-radius: 10%;
-  background-color: transparent;
-  color: #007bff;
-  font-size: 24px;
+  border-radius: 5px;
   cursor: pointer;
-  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.plus-icon {
+  font-size: 20px;
+}
+
+.minus-icon {
+  font-size: 20px;
+  color: white;
+}
+
+.plus-button:hover {
+  background-color: var(--theme-color) ;
+}
+
+.plus-button:checked {
+  background-color: #808080;
 }
 
 .plus-button-clicked {
+  border: 1px solid silver;
+  background-color: var(--theme-color);
   width: 30px;
   height: 30px;
-  border-radius: 10%;
+  border-radius: 5px;
   cursor: pointer;
-  outline: none;
-  background-color: rgb(12, 172, 12);
 }
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.desc-text {
+  margin-top: -5px;
+  font-size: 14px;
+}
+
+.price {
+  font-family : var(--body-font);
+}
+
+.highlight {
+  color: var(--theme-color);
+}
+

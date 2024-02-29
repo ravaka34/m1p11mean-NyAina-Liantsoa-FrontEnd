@@ -1,11 +1,24 @@
-<p>Add or update review</p>
-<form  [formGroup]="createForm" (submit)="onSubmit()" >
-  <p>
-    Note: <input type="number" step="any" formControlName="note" />
-  </p>
-  <p>
-    Description: <input type="text" formControlName="description" />
-  </p>
-  <app-error-alert [error]="error" ></app-error-alert>
-  <button type="submit"> Valider </button>
-</form>
+<div class="card add-review-card">
+  <div class="card-body">
+    <form [formGroup]="createForm" (submit)="onSubmit()" class="form-style6">
+      <div class="title-area text-center">
+        <h2 class="sec-title">Revue</h2>
+      </div>
+      <div class="form-group">
+        <i class="far fa-star"></i>
+        <input
+          type="number"
+          class="form-control mb-3"
+          step="any"
+          formControlName="note"
+          placeholder="Saisir un note entre 0 et 5"
+        />
+      </div>
+      <textarea formControlName="description" class="form-control mb-3"> </textarea>
+      <app-error-alert [error]="error"></app-error-alert>
+      <button type="submit" class="vs-btn">Valider</button>
+    </form>
+  </div>
+</div>
+
+

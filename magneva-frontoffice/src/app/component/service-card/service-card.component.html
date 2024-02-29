@@ -1,8 +1,22 @@
 <div>
-  <p>Nom
-    {{ service.entity.name }}</p>
-  <p> Prix {{ service.entity.price }}</p>
-  <p> Note {{ service.note }}</p>
-  <a [routerLink]="['/service', service.entity._id ]" > Go check</a>
-</div>
+  <!-- <a [routerLink]="['/service', service.entity._id]"> -->
+    <div class="vs-blog blog-style1 image-box-hover">
+      <div class="box-img blog-img">
+        <img src="{{ service.entity.picture }}" class="w-100" />
+      </div>
+      <div class="blog-content">
+        <div class="blog-meta">
+          {{ service.note }} <i class="fas fa-star"></i>
+        </div>
 
+          <h4 class="blog-title">
+            {{ service.entity.name }}
+          </h4>
+          <a class="vs-btn" [routerLink]="['/service', service.entity._id]">
+            Voir
+          </a>
+      </div>
+    </div>
+  <!-- </a> -->
+
+</div>

@@ -1,7 +1,7 @@
-<div *ngIf="services">
-  <div>
-      <h3> Nos services </h3>
-      <app-choose-service *ngFor="let service of services" [service] = "service" [selectedServices]= "selectedServices"> </app-choose-service>
+<div class="container" *ngIf="services">
+  <div class="row">
+      <h5 class="mb-4"> Nos services </h5>
+      <app-choose-service class="mb-3" *ngFor="let service of services" [service] = "service" [selectedServices]= "selectedServices"> </app-choose-service>
   </div>
 
   <div>

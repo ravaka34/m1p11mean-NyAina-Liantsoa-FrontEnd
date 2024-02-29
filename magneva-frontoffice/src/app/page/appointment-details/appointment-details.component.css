@@ -1,0 +1,18 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.desc-text {
+  margin-top: -5px;
+  font-size: 14px;
+}
+
+.price {
+  font-family : var(--body-font);
+}
+
+.highlight {
+  color: var(--theme-color);
+}

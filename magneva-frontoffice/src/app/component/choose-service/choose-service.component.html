@@ -1,9 +1,27 @@
-<div>
-  <p>Nom
-    {{ service.entity.name }}</p>
-  <p> Prix {{ service.entity.price }}</p>
-  <p> Note {{ service.note }}</p>
-  <p> {{ service.entity._id }} </p>
-  <button  [ngClass]="{'plus-button': !isChecked, 'plus-button-clicked': isChecked}"  (click)="onClick()">+</button>
-  <!-- <input type="checkbox" [(ngModel)]="isChecked" (change)="onChange($event)" > -->
+<div class="card">
+  <div class="card-body">
+      <div class="row">
+        <div class="col-8">
+          <h6> {{ service.entity.name }} </h6>
+          <p class="desc-text">
+            Duree: 1:15 h
+          </p>
+        </div>
+        <div class="col-2">
+          <h6 class="price">{{ service.entity.price }} Ar</h6>
+        </div>
+        <div class="col">
+          <button  [ngClass]="{'plus-button': !isChecked, 'plus-button-clicked': isChecked}"  (click)="onClick()">
+            <span *ngIf="isChecked; else elseBlock" class="minus-icon">
+              -
+            </span>
+            <ng-template #elseBlock>
+              <span class="plus-icon">
+                +
+              </span>
+            </ng-template>
+          </button>
+        </div>
+      </div>
+  </div>
 </div>

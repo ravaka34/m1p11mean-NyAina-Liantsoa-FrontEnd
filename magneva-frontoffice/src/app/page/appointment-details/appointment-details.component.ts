@@ -15,7 +15,7 @@ import { AppointmentService } from '../../service/appointment.service';
   styleUrl: './appointment-details.component.css'
 })
 export class AppointmentDetailsComponent implements OnInit{
-
+  title = "Mon rendez-vous";
   data! :any;
   loaderService : LoaderService = inject(LoaderService);
   router: ActivatedRoute = inject(ActivatedRoute);
@@ -23,14 +23,14 @@ export class AppointmentDetailsComponent implements OnInit{
 
   ngOnInit() {
     let appointmentId = this.router.snapshot.params['id'];
-    this.loaderService.showLoader();
-    this.appointmentService.getPageDetailsData(appointmentId).subscribe(
-      data => {
-        this.data = data;
-        console.log(data);
-        this.loaderService.hideLoader();
-      }
-    );
+    // this.loaderService.showLoader();
+    // this.appointmentService.getPageDetailsData(appointmentId).subscribe(
+    //   data => {
+    //     this.data = data;
+    //     console.log(data);
+    //     this.loaderService.hideLoader();
+    //   }
+    // );
   }
 
   breadcrumChilds: BreadcrumbChild [] = [

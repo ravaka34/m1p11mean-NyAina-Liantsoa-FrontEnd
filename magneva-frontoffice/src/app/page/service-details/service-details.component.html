@@ -1,21 +1,72 @@
-<div *ngIf="service" >
-  <p>service-details works!</p>
-  <p> {{ service.entity.name }}</p>
-  <p> Description : {{ service.entity.description  }}</p>
-  <p> Prix : {{ service.entity.price }} Ar </p>
-  <p> Note : {{ service.note }} </p>
+<app-breadcrumb
+  [breadcrumbChilds]="breadcrumChilds"
+  [title]="title"
+></app-breadcrumb>
 
-  <h3> Votre revue :</h3>
-    <div *ngIf="!service.userReview; elseBlock" >
-      Vous n'avez pas encore donnez votre avis
-      <button (click)="openAddReview()" > Ajouter mon avis </button>
+<div class="container mt-5" *ngIf="service" >
+
+  <div class="row gx-60">
+    <div class="col-lg-3 col-xl-3 mb-40 mb-lg-0">
+      <div class="team-pic">
+        <img src="{{ service.entity.picture }}" />
+      </div>
     </div>
+    <div class="col-lg-9 col-xl-9 align-self-center">
+      <div class="team-about">
+        <h3 class="team-name h1">
+          {{ service.entity.name }}
+        </h3>
+        <p class="team-text">
+          {{ service.entity.description }}
+        </p>
+        <div class="team-info">
+          <ul class="list-unstyled">
+            <li>
+              <span class="title">Evaluation:</span> {{ service.note }}
+              <i class="fas fa-star"> </i>
+            </li>
+            <li>
+              <span class="title">Prix:</span>
+             {{ service.entity.price }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <app-review-card #elseBlock [review]="service.userReview"  [updatable]="true" > </app-review-card>
+  <div class="mb-5">
+    <h5 class="mb-2">Votre revue</h5>
+  </div>
+  <div *ngIf="!service.userReview; elseBlock">
+    Vous n'avez pas encore donnez votre avis
+    <button class="btn vs-btn" (click)="openAddReview()">Ajouter mon avis</button>
+  </div>
 
+  <div #elseBlock class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+      <app-review-card  [review]="service.userReview" [updatable]="true"></app-review-card>
+    </div>
+  </div>
 
-  <h3> Les revues :</h3>
-    <app-review-card *ngFor="let review of service.reviews" [review]="review" ></app-review-card>
+  <div class="mb-5">
+    <h5>Les Revues</h5>
+    <ng-container *ngIf="service.reviews.length > 0; else noReviews">
+      <div class="row">
+        <app-review-card
+          class="col-md-4"
+          *ngFor="let review of service.reviews"
+          [review]="review"
+        ></app-review-card>
+      </div>
+    </ng-container>
+
+    <ng-template #noReviews>
+      <p>Pas encore de revue.</p>
+    </ng-template>
+  </div>
 </div>
 
 
