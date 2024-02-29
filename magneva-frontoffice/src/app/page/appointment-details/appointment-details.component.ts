@@ -38,6 +38,14 @@ export class AppointmentDetailsComponent extends CommonFunctionalityComponentCom
     );
   }
 
+  cancel(){
+    // this.appointmentService.cancelAppointment().subscribe(
+    //   data => {
+    //     this.data =
+    //   }
+    // );
+  }
+
   convertDate(stringDate : string){
     const date = new Date(stringDate);
 

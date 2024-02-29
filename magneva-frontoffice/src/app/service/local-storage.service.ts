@@ -1,30 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, StateKey } from '@angular/core';
+import { TransferState, makeStateKey } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor(private transferState : TransferState) { }
 
    // Method to set an item in local storage
-   setItem(key: string, value: any): void {
-    localStorage.setItem(key, JSON.stringify(value));
+  setItem(key: StateKey<any>, value: any): void {
+    this.transferState.set(key, value);
   }
 
   // Method to get an item from local storage
-  getItem(key: string): any {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
+  getItem(key: StateKey<any>): any {
+    console.log(this.transferState);
+    return this.transferState.get(key, null);
   }
 
   // Method to remove an item from local storage
-  removeItem(key: string): void {
-    localStorage.removeItem(key);
-  }
-
-  // Method to clear all items from local storage
-  clear(): void {
-    localStorage.clear();
+  removeItem(key: StateKey<any>): void {
+    this.transferState.remove(key);
   }
 }

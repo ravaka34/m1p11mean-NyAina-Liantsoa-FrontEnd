@@ -8,6 +8,8 @@ import { AddReviewComponent } from '../../component/add-review/add-review.compon
 import { ReviewService } from '../../service/review.service';
 import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
 import { BreadcrumbChild } from '../../interface/breadcrumbchild';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-details',
@@ -27,7 +29,9 @@ export class ServiceDetailsComponent {
   service: any;
   loaderService: LoaderService = inject(LoaderService);
   dialog: MatDialog = inject(MatDialog);
-  title = "Details Service"
+  title = "Details Service";
+  router: Router = inject(Router);
+  authService: AuthService = inject(AuthService);
 
   breadcrumChilds: BreadcrumbChild [] = [
     {
@@ -45,14 +49,19 @@ export class ServiceDetailsComponent {
   ]
 
   ngOnInit(){
-    let serviceId = this.route.snapshot.params['id'];
-    this.loaderService.showLoader();
-    this.reviewService.getEntityWithReviews(serviceId, "service").subscribe(
-      data => {
-        this.service = data;
-        this.loaderService.hideLoader();
-      }
-    )
+    if(this.authService.isConnected == false){
+      this.router.navigate(['/connecter']);
+      return;
+    }else{
+      let serviceId = this.route.snapshot.params['id'];
+      this.loaderService.showLoader();
+      this.reviewService.getEntityWithReviews(serviceId, "service").subscribe(
+        data => {
+          this.service = data;
+          this.loaderService.hideLoader();
+        }
+      )
+    }
   }
 
   openAddReview(){

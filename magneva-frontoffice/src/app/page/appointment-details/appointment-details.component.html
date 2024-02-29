@@ -4,7 +4,7 @@
   <div class="mb-5">
     <h5>Le {{ convertDate(data.date) }} à {{ convertToReadableHour(data.hour) }}</h5>
     <p class="blockquote-footer"> Durée : {{ convertToReadableHour(data.duration) }}</p>
-    <button *ngIf="!this.isAlreadyPassed" class="btn vs-btn">Annuler mon rendez-vous</button>
+    <button *ngIf="!this.isAlreadyPassed" class="btn vs-btn" (click)="cancel()">Annuler mon rendez-vous</button>
   </div>
 
   <div class="mb-5">

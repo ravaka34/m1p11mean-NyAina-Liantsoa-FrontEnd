@@ -1,25 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from './api.service';
 import { catchError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
+
   apiService : ApiService = inject(ApiService);
+  authService : AuthService = inject(AuthService);
 
   constructor() { }
 
   createAppointment(appointment: any){
-    //TODO: Render dynamic userId
-    const userId = "65d114b9694b16acf977652b";
-    appointment.userId = userId;
+    appointment.userId = this.authService.user.id;
     return this.apiService.post<any, any>("/appointment/create", appointment);
-  }
-
-  getAppointments (){
-    return this.apiService.get<any[]>("/appointment/list?userId=65d114b9694b16acf977652b") ;
   }
 
   getPageDetailsData(id: string){
@@ -30,4 +27,11 @@ export class AppointmentService {
     return this.apiService.get<any>("/appointment/create/datas");
   }
 
+  getUserAppointments(){
+    return this.apiService.get<any>("/appointment/user/"+this.authService.user.id);
+  }
+
+  cancelAppointment(id:string){
+    return this.apiService.delete("/appointment/"+id);
+  }
 }
