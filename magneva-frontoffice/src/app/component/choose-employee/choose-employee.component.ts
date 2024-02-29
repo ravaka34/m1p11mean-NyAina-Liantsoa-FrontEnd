@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CommonFunctionalityComponentComponent } from '../common-functionality-component/common-functionality-component.component';
 
 @Component({
   selector: 'app-choose-employee',
@@ -10,7 +11,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './choose-employee.component.html',
   styleUrl: './choose-employee.component.css'
 })
-export class ChooseEmployeeComponent {
+export class ChooseEmployeeComponent extends CommonFunctionalityComponentComponent {
 
   @Input() service : any;
   @Input() employees! : any[];

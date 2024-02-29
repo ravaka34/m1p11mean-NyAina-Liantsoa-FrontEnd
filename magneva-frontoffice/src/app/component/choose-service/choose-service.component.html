@@ -1,14 +1,14 @@
 <div class="card">
   <div class="card-body">
       <div class="row">
-        <div class="col-8">
+        <div class="col-7">
           <h6> {{ service.entity.name }} </h6>
           <p class="desc-text">
-            Duree: 1:15 h
+            Duree: {{ convertToReadableHour(service.entity.duration) }} h
           </p>
         </div>
-        <div class="col-2">
-          <h6 class="price">{{ service.entity.price }} Ar</h6>
+        <div class="col-3">
+          <h6 class="price">{{ service.entity.price | number: '1.2-2' }} Ar</h6>
         </div>
         <div class="col">
           <button  [ngClass]="{'plus-button': !isChecked, 'plus-button-clicked': isChecked}"  (click)="onClick()">

@@ -10,6 +10,9 @@ import { ChooseServiceComponent } from '../../component/choose-service/choose-se
 import { ChooseEmployeeComponent } from '../../component/choose-employee/choose-employee.component';
 import { CdkDropList, CdkDragDrop, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
 import moment from 'moment';
+import { BreadcrumbChild } from '../../interface/breadcrumbchild';
+import { BreadcrumbComponent } from '../../component/breadcrumb/breadcrumb.component';
+import { CommonFunctionalityComponentComponent } from '../../component/common-functionality-component/common-functionality-component.component';
 
 
 @Component({
@@ -22,20 +25,33 @@ import moment from 'moment';
     ChooseServiceComponent,
     ChooseEmployeeComponent,
     CdkDropList,
-    CdkDrag
+    CdkDrag,
+    BreadcrumbComponent
   ],
   templateUrl: './create-appointment.component.html',
   styleUrl: './create-appointment.component.css'
 })
-export class CreateAppointmentComponent implements DoCheck {
+export class CreateAppointmentComponent extends CommonFunctionalityComponentComponent implements DoCheck {
 
   error : string | null = null;
-  services! : any[];
+  services : any[] = [];
   employees! : any;
   selectedServices : any[] = [];
   totalHours = 0;
   priceTotal = 0;
   duration = "";
+  title = "Creation de rendez-vous"
+
+  breadcrumChilds: BreadcrumbChild [] = [
+    {
+      title: "ACCUEIL",
+      link: "/accueil"
+    },
+    {
+      title: "RENDEZ-VOUS",
+      link: null
+    },
+  ]
 
   otherInformation = this.formBuilder.group({
     hour: '',
@@ -47,11 +63,12 @@ export class CreateAppointmentComponent implements DoCheck {
     private appointmentService : AppointmentService,
     private loaderService : LoaderService,
     private formBuilder : FormBuilder,
-    private router : Router
+    public override router:Router
   ){
+    super(router);
   }
 
-  ngOnInit(){
+  override ngOnInit(){
     this.loaderService.showLoader();
     this.appointmentService.getCreateDatas().subscribe(
       (res) => {
@@ -64,10 +81,8 @@ export class CreateAppointmentComponent implements DoCheck {
 
   ngDoCheck(){
     console.log('there are changes');
-
     this.updateTotalHours();
     this.updateTotalPrice();
-
   }
 
   private updateTotalHours(): void {
@@ -114,7 +129,7 @@ export class CreateAppointmentComponent implements DoCheck {
       (res) => {
         console.log(res);
         this.loaderService.hideLoader();
-        // this.router.navigate(['rendez-vous/'+res._id]);
+        this.router.navigate(['rendez-vous/'+res._id]);
       },
       (error) => {
         this.error = error.error.message;

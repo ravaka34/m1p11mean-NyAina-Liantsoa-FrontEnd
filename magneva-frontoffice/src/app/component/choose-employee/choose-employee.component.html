@@ -1,31 +1,42 @@
-<div>
-  <p>Nom
-    {{ service.entity.name }}</p>
-  <p> Prix {{ service.entity.price }}</p>
-  <p> Note {{ service.note }}</p>
-  <p *ngIf="employeeChoosen"> {{ employeeChoosen.entity.name }} {{ employeeChoosen.entity.firstName }} </p>
-  <p class="d-inline-flex gap-1">
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-    [attr.data-bs-target]="'#collapseEmployee-' + service.entity._id" aria-expanded="false" aria-controls="collapseExample">
-      Choisir un professionel
-    </button>
-  </p>
-  <div class="collapse" [id]="'collapseEmployee-' + service.entity._id">
-
-    <div class="card card-body">
-
-      <ng-container *ngFor="let employee of employees[service.entity._id]">
-        <button class="card" (click)="chooseEmployee(employee)" >
-          <div class="card-body">
-            <p>Nom
-              {{ employee.entity.name }} {{ employee.entity.firstName }}</p>
-            <p> Note {{ employee.note }}</p>
-              <p *ngIf="employeeChoosen && employeeChoosen.entity._id == employee.entity._id" >
-                It's choosen
-              </p>
+<div class="card selected-service">
+  <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-7">
+          <h6> {{ service.entity.name }} </h6>
+          <div>
+            {{ convertToReadableHour(service.entity.duration ) }} h
+            <span *ngIf="employeeChoosen"> avec {{ employeeChoosen.entity.name }} {{ employeeChoosen.entity.firstName }} </span>
+            <button class="choose-btn" type="button" data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapseEmployee-' + service.entity._id" aria-expanded="false" aria-controls="collapseExample">
+              Choisir un professionel v
+            </button>
           </div>
-        </button>
-      </ng-container>
-    </div>
+
+        </div>
+        <div class="col-3">
+          <h6 class="price">{{ service.entity.price | number:'1.2-2' }} Ar</h6>
+        </div>
+        <div class="col-2">
+          <i class="fal fa-bars"></i>
+        </div>
+      </div>
+
+      <div class="collapse row mt-4" [id]="'collapseEmployee-' + service.entity._id">
+        <ng-container *ngFor="let employee of employees[service.entity._id]">
+          <div class="col-md-3">
+            <button class="card"
+            [class.selected]="employeeChoosen != null && employeeChoosen.entity._id == employee.entity._id"
+            (click)="chooseEmployee(employee)" >
+              <div class="card-body d-flex align-items-center">
+                <img src="{{ employee.entity.picture }}" alt="Avatar" class="avatar mr-3">
+                <div>
+                    <h6>{{ employee.entity.name }} {{ employee.entity.firstName }}</h6>
+                    <p class="card-text">{{ employee.note }} <i class="fas fa-star"></i> </p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </ng-container>
+      </div>
   </div>
 </div>
