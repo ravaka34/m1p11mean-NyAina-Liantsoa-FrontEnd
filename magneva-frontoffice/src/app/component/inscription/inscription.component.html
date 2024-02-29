@@ -1,7 +1,5 @@
 <style>
     .space {
-        background-image: url('assets/img/bg/bg2.jpg');
-        background-size: cover;
         background-position: center;
     }
 </style>
@@ -16,42 +14,45 @@
                     <p class="pe-xxl-4"></p>
                 </div>
             </div>
-            <form class="ajax-contact form-style6">
+            <form class="form-style6" [formGroup]="signupForm" (submit)="onSubmit()" >
                 <p class="form-messages"></p>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label><b>Nom</b> <span class="text-danger">*</span></label>
-                            <input type="text" name="nom" id="nom" class="form-control" value="{{nom}}" />
+                            <input type="text" formControlName="name" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label><b>Email</b> <span class="text-danger">*</span></label>
-                            <input type="email" name="email" id="email" class="form-control" value="{{mail}}" />
+                            <input type="email" formControlName="email" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label><b>Prénom</b> <span class="text-danger">*</span></label>
-                            <input type="text" name="prenom" id="prenom" class="form-control" value="{{prenom}}" />
-                        </div>
+                          <label><b>Contact</b> <span class="text-danger">*</span></label>
+                          <input type="text" formControlName="contact"/>
+                      </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label><b>Contact</b> <span class="text-danger">*</span></label>
-                            <input type="text" name="contact" id="contact" class="form-control" value="{{contact}}" />
-                        </div>
+                      <div class="form-group">
+                        <label><b>Prénom</b> <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="firstName" />
+                    </div>
+
+
                         <div class="form-group">
                             <label><b>Genre</b> <span class="text-danger">*</span></label>
-                            <select class="form-control" name="genre" id="genre">
-                                <option *ngFor="let genre of genres" [value]="genre.value">{{ genre.label }}</option>
+                            <select class="form-control" formControlName="sex">
+                                <option value="1" >Homme</option>
+                                <option value="2">Femme</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label><b>Mot De Passe</b> <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input *ngIf="!showPassword; else showText" type="password" name="password"
-                                    id="password" class="form-control" [(ngModel)]="mdp" />
+                                <input *ngIf="!showPassword; else showText" type="password" formControlName="password"
+                                   class="form-control"/>
                                 <ng-template #showText>
-                                    <input *ngIf="showPassword" type="text" name="password" id="password"
-                                        class="form-control" [(ngModel)]="mdp" />
+                                    <input *ngIf="showPassword" type="text" formControlName="password"
+                                        class="form-control"/>
                                 </ng-template>
                                 <button type="button" id="togglePassword" class="btn btn-outline-secondary btn-color"
                                     (click)="togglePassword()">
@@ -61,25 +62,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label><b>Confirmer Mot De Passe</b> <span class="text-danger">*</span></label>
-                            <div class="input-group">
-                                <input *ngIf="!showConfirmPassword; else showText2" type="password"
-                                    name="confirmPassword" id="confirmPassword" class="form-control"
-                                    [(ngModel)]="confirmMdp" />
-                                <ng-template #showText2>
-                                    <input *ngIf="showConfirmPassword" type="text" name="confirmPassword"
-                                        id="confirmPassword" class="form-control" [(ngModel)]="confirmMdp" />
-                                </ng-template>
-                                <button type="button" id="toggleConfirmPassword"
-                                    class="btn btn-outline-secondary btn-color" (click)="toggleConfirmPassword()">
-                                    <i class="far"
-                                        [ngClass]="{'fa-eye': showConfirmPassword, 'fa-eye-slash': !showConfirmPassword}"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <button class="vs-btn" type="submit">S'INSCRIRE</button>
+                          <app-error-alert [error]="error"></app-error-alert>
+                          <button class="vs-btn" type="submit">S'INSCRIRE</button>
                         </div>
                     </div>
                 </div>
